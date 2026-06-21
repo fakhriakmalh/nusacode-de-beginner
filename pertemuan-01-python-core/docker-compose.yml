@@ -1,0 +1,14 @@
+# docker-compose.yml
+# File ini dirancang sesederhana mungkin agar pemula langsung bisa menjalankan PostgreSQL dengan 1 perintah.
+version: '3.8'
+
+services:
+  database_server:
+    image: postgres:15-alpine
+    container_name: nusacode_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admindwpass
+      - POSTGRES_DB=dw_nusacode
+    ports:
+      - "5432:5432"

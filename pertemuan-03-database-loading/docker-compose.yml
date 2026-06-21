@@ -1,0 +1,23 @@
+# docker-compose.yml
+# Konfigurasi database PostgreSQL lokal untuk Sesi 3.
+# Dilengkapi mount initialization script (init.sql) untuk setup raw_schema otomatis.
+version: '3.8'
+
+services:
+  dw_server:
+    image: postgres:15-alpine
+    container_name: postgres_dw_sesi3
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admindwpass
+      - POSTGRES_DB=dw_nusacode
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_sesi3:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Setup skema otomatis saat up
+    restart: unless-stopped
+
+volumes:
+  pgdata_sesi3:
+    driver: local
