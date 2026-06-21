@@ -1,167 +1,255 @@
 # Panduan Mengajar Sesi 4: Advanced SQL for Analytics
-**Materi:** OLTP vs OLAP, CTE (Common Table Expressions), Window Functions, & Analisis Data Penjualan (120 Menit)
+**Materi:** Gold Layer (Data Mart), CTE, Window Functions, & Analisis Data Olist (120 Menit)
 
 ---
 
-## ⚡ 1. Analogi Dunia Nyata (2 Menit)
+## 🗺️ 1. Arsitektur Medali Data (2 Menit)
 
-### A. OLTP (Kasir Cepat) vs OLAP (Manager Analitik)
-*   **OLTP (Online Transaction Processing)** = **Kasir Dapur Restoran**. Tugasnya harus secepat kilat melayani pelanggan satu per satu: catat pesanan, terima uang, cetak struk. Dia tidak peduli dengan tren 6 bulan lalu, yang penting transaksi detik ini lancar dan tidak antre.
-*   **OLAP (Online Analytical Processing)** = **Manager Restoran di Kantor Pusat**. Dia tidak melayani pembeli langsung. Dia duduk membaca database transaksi selama 1 tahun terakhir untuk menganalisis: *"Menu apa yang paling laku di hari hujan?"* atau *"Jam berapa kita harus memberi diskon?"*. OLAP menangani data yang sangat besar untuk mengambil keputusan bisnis.
+Gunakan analogi **Medali Olimpiade 🥉🥈🥇** untuk menjelaskan arsitektur data berlapis:
 
-### B. Window Functions (Kaca Pembesar Bergerak)
-*   **GROUP BY (Agregasi Biasa)** = **Mesin Blender**. Dia memadatkan 10 baris transaksi produk menjadi 1 baris ringkasan (misal: Total Terjual = 15). Kita kehilangan detail transaksi per tanggalnya.
-*   **Window Functions (`OVER`)** = **Kaca Pembesar Geser**. 10 baris transaksi kita tetap utuh ditampilkan satu-satu (tidak diblender). Namun, di samping baris tersebut, kita melekatkan kaca pembesar bergerak yang menghitung nilai akumulatif (Running Total) atau peringkat (Rank) per kelompok produk (`PARTITION BY`).
+*   **🥉 Bronze Layer** — Data mentah dari sumber (CSV Olist). Tabel `raw_schema.*` yang kita buat di Sesi 3. Isinya sama persis dengan file CSV, belum ada agregasi.
+*   **🥈 Silver Layer** — Data yang sudah dibersihkan, divalidasi, dan dideduplikasi (kita lewati di sesi ini karena data Olist sudah cukup bersih).
+*   **🥇 Gold Layer** — **Bintangnya sesi ini!** Tabel agregasi siap-pakai untuk BI tools (Metabase, Looker, Grafana). Di sinilah Data Engineer mengungkapkan nilainya: mengubah data mentah menjadi wawasan bisnis.
+
+> **Kata Kunci:** *Gold Layer* = `CREATE TABLE gold.nama_tabel AS SELECT ...` — satu perintah SQL yang langsung membuat tabel agregat siap-pakai menunggu query analitik selanjutnya!
 
 ---
 
 ## ⏰ 2. Rencana Alokasi Waktu (120 Menit)
 
-*   **10 Menit — Pembuka & Analogi Bisnis**
-    *   Pengenalan perbedaan mendasar OLTP vs OLAP serta analogi Kaca Pembesar (Window Functions).
-*   **15 Menit — Data Seeding & Review Struktur**
-    *   Membimbing peserta membuka DBeaver dan mengeksekusi script [seed_data.sql](file:///Users/fakhriakmalh/Documents/nusacode/pertemuan-04-advanced-sql/seed_data.sql) untuk menyuntikkan data transaksi historis.
-*   **45 Menit — Live Code-Along SQL: Joins, Aggregations, & CTE**
-    *   Menggabungkan tabel produk dan transaksi menggunakan `INNER JOIN`.
-    *   Menulis query bertingkat menggunakan CTE (`WITH ... AS`) untuk mempermudah analisis bisnis.
-*   **35 Menit — Live Code-Along SQL: Window Functions**
-    *   Mempraktikkan `DENSE_RANK()` untuk melihat produk terlaris harian.
-    *   Mempraktikkan `SUM() OVER` untuk menghitung akumulasi pendapatan (Running Total).
-*   **15 Menit — Penjelasan Tugas 2 & Penutup**
-    *   Membagikan instruksi Tugas 2 di grup kelas dan Q&A penutup.
+*   **10 Menit — Pembuka & Arsitektur Medali Data**
+    *   Memahami posisi Gold Layer dalam pipeline data modern.
+*   **15 Menit — Eksekusi Seed Data (Gold Layer)**
+    *   Menjalankan script `seed_data.sql` untuk membuat 10 tabel gold layer.
+    *   Review struktur tabel yang terbentuk.
+*   **45 Menit — Live Code-Along: Query Analitik di Gold Layer**
+    *   Menulis query CTE dan Window Functions di atas tabel `gold.*`.
+    *   Menjawab pertanyaan bisnis nyata: "Kategori apa paling laris?", "Siapa customer platinum?".
+*   **35 Menit — Praktik Mandiri & Optimasi**
+    *   Peserta menulis query ranking, running total, dan segmentasi sendiri.
+    *   Diskusi hasil query dan perbandingan performa.
+*   **15 Menit — Review & Penutup**
+    *   Q&A, pembahasan tugas, dan pembagian cheat sheet.
 
 ---
 
-## 🛠️ 3. Panduan Jalur Live Coding (DBeaver)
+## 🛠️ 3. Panduan Setup & Jalur Live Coding
 
-### Langkah 1: Seeding Data (15 Menit)
+### A. Prasyarat
+1.  Pastikan container PostgreSQL Sesi 3 masih berjalan (`docker ps`).
+2.  Pastikan tabel `raw_schema.*` sudah terisi data Olist (dari `ingest_to_db.py` Sesi 3).
+3.  Buka DBeaver → koneksi ke `dw_nusacode`.
+
+### B. Seed Data: Membangun Gold Layer (15 Menit)
 1.  Buka SQL Editor di DBeaver.
-2.  Minta peserta membuka dan meng-copy isi berkas [seed_data.sql](file:///Users/fakhriakmalh/Documents/nusacode/pertemuan-04-advanced-sql/seed_data.sql) ke editor SQL DBeaver mereka.
-3.  Eksekusi script tersebut (`Alt + X` atau klik tombol run script).
-4.  Lakukan verifikasi dengan:
+2.  Buka file `pertemuan-04-advanced-sql/seed_data.sql`.
+3.  Jalankan seluruh script (Alt+X).
+4.  **Verifikasi:**
     ```sql
-    SELECT * FROM raw_schema.sales;
+    -- Cek apakah schema gold sudah ada
+    SELECT * FROM information_schema.schemata WHERE schema_name = 'gold';
+
+    -- Cek salah satu tabel gold
+    SELECT * FROM gold.category_performance ORDER BY total_revenue DESC LIMIT 5;
     ```
 
+### C. Struktur Gold Layer yang Terbentuk
+
+| Tabel Gold | Isi | Penggunaan |
+|---|---|---|
+| `gold.daily_sales_summary` | Orders, revenue, freight per hari | Tren penjualan |
+| `gold.product_performance` | Performa tiap produk + review | Analisis SKU |
+| `gold.customer_ltv` | Lifetime value per customer | Segmentasi pelanggan |
+| `gold.seller_performance` | Revenue & rating per seller | Evaluasi seller |
+| `gold.payment_analysis` | Metode pembayaran & volume | Analisis payment |
+| `gold.review_analysis` | Distribusi skor review | Analisis kepuasan |
+| `gold.order_fulfillment` | Durasi pengiriman per order | Logistik |
+| `gold.category_performance` | Performa per kategori produk | Kategori bisnis |
+| `gold.daily_kpi` | KPI harian (siap dashboard) | Metabase/Grafana |
+
 ---
 
-### Langkah 2: Menulis Query Bersama (80 Menit)
+### D. Live Code-Along: Query Analitik (45 Menit)
 
-Minta peserta mengetik bersama file [queries.sql](file:///Users/fakhriakmalh/Documents/nusacode/pertemuan-04-advanced-sql/queries.sql):
+Buka `pertemuan-04-advanced-sql/queries.sql` di DBeaver. Ketik bersama peserta.
 
-#### A. JOIN & AGGREGATION (Mencari Produk Terlaris secara Finansial)
-*   *Poin Pengajaran:* Tunjukkan bagaimana data dihubungkan lewat `id_produk`.
+#### 🔹 Query 1: Ringkasan Eksekutif (CTE)
 ```sql
-SELECT 
-    p.nama_produk,
-    SUM(s.jumlah_terjual) AS total_item_terjual,
-    SUM(s.total_bayar) AS total_pendapatan
-FROM raw_schema.sales s
-INNER JOIN raw_schema.products p ON s.id_produk = p.id_produk
-GROUP BY p.nama_produk
-ORDER BY total_pendapatan DESC;
-```
-
-#### B. CTE (Studi Kasus: Filter Agregasi)
-*   *Poin Pengajaran:* Jelaskan bahwa kita tidak bisa menggunakan `WHERE` untuk memfilter hasil `SUM()`, dan menggunakan `HAVING` kadang sulit dibaca. CTE adalah solusinya!
-```sql
-WITH pendapatan_kategori_cte AS (
-    SELECT 
-        p.kategori,
-        SUM(s.total_bayar) AS total_pendapatan
-    FROM raw_schema.sales s
-    INNER JOIN raw_schema.products p ON s.id_produk = p.id_produk
-    GROUP BY p.kategori
+WITH kpi AS (
+    SELECT
+        COUNT(DISTINCT order_id) AS total_orders,
+        COUNT(DISTINCT customer_id) AS total_customers,
+        SUM(price) AS total_revenue,
+        AVG(review_score) AS avg_review_score
+    FROM raw_schema.fact_order o
+    LEFT JOIN raw_schema.fact_order_item oi USING (order_id)
+    LEFT JOIN raw_schema.fact_order_review r USING (order_id)
+    WHERE o.order_status NOT IN ('canceled', 'unavailable')
 )
-SELECT * FROM pendapatan_kategori_cte WHERE total_pendapatan > 50.00;
+SELECT *, total_revenue / total_orders AS revenue_per_order FROM kpi;
 ```
 
-#### C. Window Function 1: Perankingan Harian (`DENSE_RANK`)
-*   *Poin Pengajaran:* Jelaskan fungsi `PARTITION BY` (kelompok pembagi rangking) dan `ORDER BY` (dasar penilaian rangking).
+#### 🔹 Query 2: TOP 3 Produk per Kategori (Window Function: DENSE_RANK)
 ```sql
-SELECT 
-    s.tanggal_penjualan,
-    p.nama_produk,
-    SUM(s.jumlah_terjual) AS qty,
-    DENSE_RANK() OVER(PARTITION BY s.tanggal_penjualan ORDER BY SUM(s.jumlah_terjual) DESC) AS rank
-FROM raw_schema.sales s
-INNER JOIN raw_schema.products p ON s.id_produk = p.id_produk
-GROUP BY s.tanggal_penjualan, p.nama_produk;
+WITH ranked_products AS (
+    SELECT
+        category_english,
+        product_id,
+        total_units_sold,
+        total_revenue,
+        DENSE_RANK() OVER (
+            PARTITION BY category_english
+            ORDER BY total_revenue DESC
+        ) AS rank_in_category
+    FROM gold.product_performance
+    WHERE total_units_sold > 0
+)
+SELECT * FROM ranked_products
+WHERE rank_in_category <= 3
+ORDER BY category_english, rank_in_category;
 ```
 
-#### D. Window Function 2: Running Total Pendapatan (`SUM OVER`)
-*   *Poin Pengajaran:* Tunjukkan bahwa baris data tidak terkompresi, kita bisa melihat transaksi harian sekaligus akumulasi pendapatannya dari hari ke hari secara mendetail.
+#### 🔹 Query 3: Running Total Revenue (Window Function: SUM OVER)
 ```sql
-SELECT 
-    s.tanggal_penjualan,
-    p.nama_produk,
-    s.total_bayar AS pendapatan_hari_ini,
-    SUM(s.total_bayar) OVER (PARTITION BY s.id_produk ORDER BY s.tanggal_penjualan) AS running_total
-FROM raw_schema.sales s
-INNER JOIN raw_schema.products p ON s.id_produk = p.id_produk;
+SELECT
+    order_date,
+    total_orders,
+    total_revenue,
+    SUM(total_revenue) OVER (ORDER BY order_date) AS cumulative_revenue,
+    AVG(total_revenue) OVER (ORDER BY order_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS revenue_ma_7d
+FROM gold.daily_sales_summary
+ORDER BY order_date;
+```
+
+#### 🔹 Query 4: Segmentasi Pelanggan (CASE + Window)
+```sql
+SELECT
+    customer_tier,
+    COUNT(*) AS total_customers,
+    AVG(total_revenue) AS avg_revenue,
+    AVG(total_orders) AS avg_orders
+FROM (
+    SELECT *,
+        CASE
+            WHEN total_revenue >= 500 THEN 'Platinum'
+            WHEN total_revenue >= 200 THEN 'Gold'
+            WHEN total_revenue >= 100 THEN 'Silver'
+            ELSE 'Bronze'
+        END AS customer_tier
+    FROM gold.customer_ltv
+    WHERE total_orders > 0
+) sub
+GROUP BY customer_tier
+ORDER BY MIN(total_revenue) DESC;
 ```
 
 ---
 
-## 📝 4. Lembar Contekkan (Cheat Sheet) Advanced SQL
+### E. Praktik Mandiri (35 Menit)
 
-### A. Format Dasar CTE (Common Table Expressions)
+Minta peserta menjawab pertanyaan bisnis berikut dengan query di gold layer:
+
+1. **"Kota mana yang punya customer dengan rata-rata LTV tertinggi?"**
+   *Petunjuk: GROUP BY customer_city di gold.customer_ltv*
+
+2. **"Seller mana yang ratingnya di bawah rata-rata?"**
+   *Petunjuk: Bandingkan avg_customer_review di gold.seller_performance dengan AVG() di subquery*
+
+3. **"Berapa persen order yang dikirim terlambat?"**
+   *Petunjuk: Hitung delivery_status di gold.order_fulfillment*
+
+4. **"Buat perankingan metode pembayaran paling populer per bulan!"**
+   *Petunjuk: Gunakan DATE_TRUNC('month', ...) + DENSE_RANK()*
+
+---
+
+## 📝 4. Lembar Contekkan (Cheat Sheet)
+
+### A. Gold Layer Pattern
+```sql
+-- Membuat tabel gold layer dari raw_schema
+CREATE TABLE gold.<nama> AS
+SELECT <kolom_agregasi>
+FROM raw_schema.<fact/dim>
+GROUP BY <dimensi>;
+```
+
+### B. CTE (Common Table Expressions)
 ```sql
 WITH <nama_cte> AS (
-    -- Tulis query SQL standar di sini
-    SELECT kolom1, kolom2 FROM tabel
+    SELECT kolom1, kolom2 FROM tabel WHERE kondisi
 )
-SELECT * FROM <nama_cte> WHERE kondisi;
+SELECT * FROM <nama_cte>;
 ```
 
-### B. Format Window Functions
+### C. Window Functions
 ```sql
-<fungsi_window>() OVER (
-    PARTITION BY <kolom_pengelompok> 
-    ORDER BY <kolom_pengurutan>
+<fungsi>() OVER (
+    PARTITION BY <kelompok> 
+    ORDER BY <urutan>
 )
 ```
-*   `ROW_NUMBER()`: Memberikan nomor urut baris unik (1, 2, 3, 4).
-*   `RANK()`: Memberikan rangking. Jika ada nilai kembar, rangking berikutnya akan melompati nomor (1, 2, 2, 4).
-*   `DENSE_RANK()`: Memberikan rangking tanpa melompati nomor jika ada nilai kembar (1, 2, 2, 3).
-*   `SUM(kolom)`: Menghitung nilai akumulatif dari baris pertama hingga baris aktif saat ini.
+| Fungsi | Kegunaan |
+|---|---|
+| `ROW_NUMBER()` | Nomor baris unik (1,2,3,4) |
+| `DENSE_RANK()` | Ranking tanpa lompat (1,2,2,3) |
+| `SUM() OVER` | Running total akumulatif |
+| `AVG() OVER` | Moving average |
+| `LAG() / LEAD()` | Nilai baris sebelumnya/sesudahnya |
+
+### D. Case Study: Bronze → Gold Pipeline
+```sql
+-- BRONZE (raw)
+SELECT * FROM raw_schema.fact_order;
+
+-- GOLD (siap dashboard)
+SELECT
+    DATE(order_purchase_timestamp) AS date,
+    COUNT(*) AS orders,
+    SUM(price) AS revenue
+FROM raw_schema.fact_order o
+JOIN raw_schema.fact_order_item oi ON o.order_id = oi.order_id
+WHERE order_status = 'delivered'
+GROUP BY date;
+```
 
 ---
 
-## 📬 5. Template Tugas 2: "The Warehouse Ingestion & SQL Mastery"
-*Copy-paste teks di bawah ini untuk dibagikan ke grup belajar peserta:*
+## 📬 5. Template Tugas 2: "Gold Layer Builder"
 
 ```markdown
-🚨 **TUGAS 2: THE WAREHOUSE INGESTION & SQL MASTERY (DE NUSACODE)** 🚨
+🚨 **TUGAS 2: GOLD LAYER & ADVANCED SQL (DE NUSACODE)** 🚨
 
-Halo teman-teman Data Engineer! 🧑‍💻
-Kita akan melanjutkan proyek data pipeline kita. Kali ini kita akan naik tingkat: menghubungkan pipeline ke database relasional (PostgreSQL) dan menulis query analitik canggih di atas tabel tersebut.
+### 📋 Deskripsi
+Buat **Gold Layer** dari data Olist! Anda akan membuat tabel agregasi dan menulis query analitik di atasnya.
 
-### 📋 Deskripsi Tugas & Goal:
-Anda diminta memodifikasi pipeline Python dari Tugas 1 agar tidak lagi sekadar menyimpan file Parquet lokal. Script harus otomatis memindahkan (*load*) data postingan blog tersebut ke dalam PostgreSQL kontainer Docker di dalam tabel bernama `raw_schema.fact_posts`. Setelah data berhasil masuk, Anda wajib menulis 3 query SQL analitik untuk menjawab kebutuhan divisi bisnis.
+### ⚙️ Langkah-langkah
+1. **Jalankan seed_data.sql** di DBeaver untuk membuat 10 gold tables.
+2. **Tulis 5 query analitik baru** di file `analysis_gold.sql`:
+   - 1 CTE untuk menemukan TOP 5 customer berdasarkan total revenue
+   - 1 Window Function ranking seller per state
+   - 1 Running total penjualan per bulan
+   - 1 Perbandingan `LAG()` revenue week-over-week
+   - 1 Query bebas (kreativitas Anda!)
 
-### ⚙️ Langkah-langkah Pengerjaan:
-1.  **Database Setup:** Jalankan kontainer database PostgreSQL Sesi 3/4 Anda menggunakan Docker.
-2.  **Modify Python Script:** Modifikasi script `ingest_posts.py` Anda. Tambahkan fungsi koneksi database dan gunakan Polars `.write_database()` untuk memindahkan data bersih langsung ke tabel `raw_schema.fact_posts` dengan opsi `if_table_exists='replace'`.
-3.  **Tulis 3 Query Analitik (Simpan dalam berkas `analysis_queries.sql`):**
-    *   **Query 1 (JOIN):** Gabungkan data postingan blog dengan data user (jika ada) untuk memetakan nama penulis dan judul tulisan.
-    *   **Query 2 (CTE):** Tulis query menggunakan CTE (`WITH`) untuk menghitung total postingan per `author_id`, lalu tampilkan hanya penulis yang menulis lebih dari 2 postingan.
-    *   **Query 3 (Window Functions):** Gunakan fungsi `ROW_NUMBER()` atau `DENSE_RANK()` untuk meranking postingan blog per masing-masing penulis (`author_id`) berdasarkan panjang karakter `body_char_length` dari yang terpanjang ke terpendek.
+### 🗂️ Output
+tugas-02-gold-layer/
+├── analysis_gold.sql
+└── screenshot_hasil_query.png
 
-### 🗂️ Struktur Folder Output Akhir:
-tugas-02-warehouse-ingestion/
-├── requirements.txt            # Library (polars, requests, psycopg2-binary, sqlalchemy)
-├── ingest_posts.py             # Script Python ETL terupdate (Load to Postgres)
-├── analysis_queries.sql        # Berkas berisi 3 query SQL analitik Anda
-└── logs/
-    └── pipeline.log            # Log aktivitas pipeline database Anda
+### 🏆 Nilai A
+✅ Query valid dan bisa dieksekusi
+✅ Menggunakan minimal 2 window functions berbeda
+✅ Menggunakan CTE minimal di 2 query
+✅ Ada insight bisnis yang ditulis sebagai komentar SQL
 
-### 🏆 Kriteria Penilaian (Nilai A):
-1.  **Database Automation:** Script Python berhasil melakukan penulisan tabel database relasional secara otomatis tanpa crash.
-2.  **Valid Advanced SQL:** Ketiga query SQL analitik di file `analysis_queries.sql` lolos uji coba eksekusi (syntactically valid) dan menggunakan format CTE serta Window Functions secara tepat.
-3.  **Resiliency (Try-Catch DB):** Jika koneksi database PostgreSQL mati, script Python Anda secara otomatis mencatat error ke log dan melakukan backup darurat ke berkas `.parquet` lokal.
-
-📅 **Batas Pengumpulan:** H-2 Sebelum Pertemuan Sesi 5. Setorkan link repositori GitHub Anda ke Google Form kelas!
-
-*"Let SQL do the heavy lifting in your Warehouse!"* 🚀
+"Data is the new gold. Refine it!" 🥇
 ```
+
+---
+
+## 🔗 Referensi Dataset
+
+Dataset: **Olist Brazilian E-Commerce**  
+Link: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce  
+9 CSV files → `raw_schema.*` → `gold.*` (10 analytical tables)

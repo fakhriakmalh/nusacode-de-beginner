@@ -1,6 +1,13 @@
 # ingest_to_db.py
-# Script Hands-on Sesi 3 - Ingesti data Parquet lokal ke PostgreSQL
+# Script Hands-on Sesi 3 - Ingesti data CSV Olist ke PostgreSQL
 # Diketik bareng instruktur di kelas!
+#
+# Dataset: Olist Brazilian E-Commerce (Kaggle)
+# Link: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+#
+# Klasifikasi Tabel:
+#   Fact Tables  : fact_order, fact_order_item, fact_order_payment, fact_order_review
+#   Dim Tables   : dim_customer, dim_geolocation, dim_product, dim_product_category, dim_seller
 
 import os
 import sys
@@ -23,70 +30,89 @@ logging.basicConfig(
 # =====================================================================
 # 2. KONFIGURASI DATABASE
 # =====================================================================
-# Menghubungkan ke PostgreSQL kontainer Docker yang sudah kita jalankan
 DB_USER = "postgres"
 DB_PASS = "admindwpass"
 DB_HOST = "localhost"
 DB_PORT = "5432"
 DB_NAME = "dw_nusacode"
 
-# Target skema dan nama tabel
-TARGET_TABLE = "raw_schema.products"
-
-# Connection URI (standar SQLAlchemy & Polars)
 DB_URI = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # =====================================================================
-# 3. PIPELINE EKSEKUSI
+# 3. DEFINISI TABEL: Mapping CSV -> Table Name (dengan klasifikasi Fact/Dim)
 # =====================================================================
-def load_parquet_to_postgres():
-    # File Parquet keluaran dari Sesi 2
-    parquet_path = "products_cleaned.parquet"
-    
-    # Path adjustment jika script dijalankan dari folder sesi 3 atau root
-    if not os.path.exists(parquet_path) and os.path.exists(f"../pertemuan-02-api-polars/{parquet_path}"):
-        parquet_path = f"../pertemuan-02-api-polars/{parquet_path}"
-    elif not os.path.exists(parquet_path) and os.path.exists(f"../{parquet_path}"):
-        parquet_path = f"../{parquet_path}"
-        
-    logging.info("=== MEMULAI INGESTI DATA PARQUET KE POSTGRESQL ===")
-    logging.info(f"Membaca file Parquet: {parquet_path}")
-    
-    # Validasi file Parquet
-    if not os.path.exists(parquet_path):
-        logging.error(f"Fungsi Batal: File '{parquet_path}' tidak ditemukan! Jalankan Sesi 2 terlebih dahulu.")
-        return False
-        
-    try:
-        # 1. Read Parquet (Sangat cepat & hemat memori)
-        df_parquet = pl.read_parquet(parquet_path)
-        logging.info(f"Sukses membaca Parquet. Ditemukan {len(df_parquet)} baris data.")
-        
-        # 2. Write Database
-        logging.info(f"Menulis data ke database PostgreSQL -> Tabel: {TARGET_TABLE}...")
-        
-        # Polars write_database akan otomatis memetakan skema tipe data Polars ke kolom SQL.
-        # if_table_exists='replace' akan menghapus tabel lama jika ada, lalu membuat baru.
-        df_parquet.write_database(
-            table_name=TARGET_TABLE,
-            connection=DB_URI,
-            if_table_exists="replace"
-        )
-        
-        logging.info("✅ SUKSES: Data berhasil masuk ke PostgreSQL!")
-        return True
-        
-    except ImportError as ie:
-        logging.error("Gagal melakukan load database! Dependency konektor database belum terinstal.")
-        logging.error("Instruksi: Jalankan 'pip install psycopg2-binary sqlalchemy'")
-        
-    except Exception as e:
-        logging.error(f"Terjadi kegagalan saat menulis ke PostgreSQL: {e}")
-        # Strategi recovery: infokan untuk cek apakah Docker container sudah menyala
-        logging.warning("Saran: Pastikan Docker Desktop aktif dan container 'postgres_dw_sesi3' sudah running.")
-        
-    logging.info("=== PROSES SELESAI DENGAN ANOMALI ===\n")
-    return False
+# Struktur: (label_tabel, nama_file_csv, nama_tabel_db, kategori)
+DATASET_MAP = [
+    # --- DIMENSION TABLES ---
+    ("dim_customer",        "olist_customers_dataset.csv",              "raw_schema.dim_customer",        "DIM"),
+    ("dim_geolocation",     "olist_geolocation_dataset.csv",           "raw_schema.dim_geolocation",     "DIM"),
+    ("dim_product",         "olist_products_dataset.csv",              "raw_schema.dim_product",         "DIM"),
+    ("dim_product_category","product_category_name_translation.csv",   "raw_schema.dim_product_category","DIM"),
+    ("dim_seller",          "olist_sellers_dataset.csv",               "raw_schema.dim_seller",          "DIM"),
+    # --- FACT TABLES ---
+    ("fact_order",          "olist_orders_dataset.csv",                "raw_schema.fact_order",          "FACT"),
+    ("fact_order_item",     "olist_order_items_dataset.csv",           "raw_schema.fact_order_item",     "FACT"),
+    ("fact_order_payment",  "olist_order_payments_dataset.csv",        "raw_schema.fact_order_payment",  "FACT"),
+    ("fact_order_review",   "olist_order_reviews_dataset.csv",         "raw_schema.fact_order_review",   "FACT"),
+]
+
+ARCHIVE_DIR = os.path.join(os.path.dirname(__file__), "archive")
+
+# =====================================================================
+# 4. PIPELINE EKSEKUSI
+# =====================================================================
+def ingest_csv_to_postgres():
+    logging.info("=" * 60)
+    logging.info("MEMULAI INGESTI DATA OLIST CSV KE POSTGRESQL (POLARS)")
+    logging.info("=" * 60)
+
+    total_success = 0
+    total_fail = 0
+
+    for label, csv_filename, table_name, category in DATASET_MAP:
+        csv_path = os.path.join(ARCHIVE_DIR, csv_filename)
+
+        logging.info(f"\n{'─' * 50}")
+        logging.info(f"[{category}] {label}")
+        logging.info(f"   CSV  : {csv_path}")
+        logging.info(f"   Table: {table_name}")
+
+        if not os.path.exists(csv_path):
+            logging.warning(f"   ⚠ File CSV tidak ditemukan: {csv_path}, dilewati.")
+            total_fail += 1
+            continue
+
+        try:
+            # 1. Baca CSV dengan Polars
+            logging.info(f"   📖 Membaca CSV...")
+            df = pl.read_csv(csv_path, try_parse_dates=True)
+            row_count = len(df)
+            logging.info(f"   ✅ Membaca {row_count} baris, {len(df.columns)} kolom: {list(df.columns)}")
+
+            # 2. Tulis ke PostgreSQL
+            logging.info(f"   💾 Menulis ke {table_name}...")
+            df.write_database(
+                table_name=table_name,
+                connection=DB_URI,
+                if_table_exists="replace"
+            )
+            logging.info(f"   ✅ SUKSES: {row_count} baris → {table_name}")
+            total_success += 1
+
+        except ImportError as ie:
+            logging.error(f"   ❌ Gagal! Dependency konektor database belum terinstal.")
+            logging.error(f"      Jalankan: pip install psycopg2-binary sqlalchemy")
+            total_fail += 1
+
+        except Exception as e:
+            logging.error(f"   ❌ Gagal ingest {label}: {e}")
+            total_fail += 1
+
+    logging.info(f"\n{'=' * 60}")
+    logging.info(f"RINGKASAN INGESTI: {total_success} sukses, {total_fail} gagal dari {len(DATASET_MAP)} tabel")
+    logging.info(f"{'=' * 60}")
+
+    return total_fail == 0
 
 if __name__ == "__main__":
-    load_parquet_to_postgres()
+    ingest_csv_to_postgres()

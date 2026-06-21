@@ -3,6 +3,23 @@
 
 ---
 
+## 📥 Dataset Sumber Pembelajaran
+
+Dataset yang digunakan pada sesi ini adalah **Olist Brazilian E-Commerce Dataset** dari Kaggle.
+
+**🔗 Link Kaggle:** [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+Dataset ini berisi data e-commerce Brasil ~100k pesanan dari tahun 2016–2018 yang terdiri dari 9 tabel CSV:
+- **Dimension Tables:** customers, products, sellers, geolocation, product category translation
+- **Fact Tables:** orders, order items, order payments, order reviews
+
+Data CSV sudah disediakan di folder `archive/`. Untuk mendownload ulang, gunakan script:
+```bash
+python pertemuan-03-database-loading/load_kagglehub.py
+```
+
+---
+
 ## 🗄️ 1. Analogi Dunia Nyata (2 Menit)
 
 Gunakan analogi **"Lemari Arsip Kantor yang Disiplin Ketat"** untuk memahamkan database relasional ke pemula:

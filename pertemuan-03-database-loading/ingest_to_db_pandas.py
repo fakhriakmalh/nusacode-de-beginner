@@ -1,15 +1,21 @@
 # ingest_to_db_pandas.py
-# Script Hands-on Sesi 3 - Ingesti data Parquet lokal ke PostgreSQL
+# Script Hands-on Sesi 3 - Ingesti data CSV Olist ke PostgreSQL
 # Menggunakan Pandas (sebagai alternatif dari versi Polars)
 #
-# Package tambahan yang disarankan:
-#   1. pandas       -> untuk membaca Parquet & transformasi data
+# Dataset: Olist Brazilian E-Commerce (Kaggle)
+# Link: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+#
+# Klasifikasi Tabel:
+#   Fact Tables  : fact_order, fact_order_item, fact_order_payment, fact_order_review
+#   Dim Tables   : dim_customer, dim_geolocation, dim_product, dim_product_category, dim_seller
+#
+# Package tambahan:
+#   1. pandas       -> untuk membaca CSV & transformasi data
 #   2. sqlalchemy   -> sebagai engine koneksi database (ORM-style)
 #   3. psycopg2-binary -> driver PostgreSQL untuk SQLAlchemy
 #
-# Alternatif package lain (all-in-one):
-#   - `pandas` + `pyarrow` (engine read_parquet)
-#     cukup dengan:  pip install pandas pyarrow psycopg2-binary sqlalchemy
+# Install:
+#   pip install pandas pyarrow psycopg2-binary sqlalchemy
 
 import os
 import sys
@@ -33,108 +39,120 @@ logging.basicConfig(
 # =====================================================================
 # 2. KONFIGURASI DATABASE
 # =====================================================================
-# Menghubungkan ke PostgreSQL kontainer Docker yang sudah kita jalankan
 DB_USER = "postgres"
 DB_PASS = "admindwpass"
 DB_HOST = "localhost"
 DB_PORT = "5432"
 DB_NAME = "dw_nusacode"
 
-# Target skema dan nama tabel
-TARGET_TABLE = "raw_schema.products"
-
-# Connection URI (standar SQLAlchemy & Polars)
 DB_URI = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # =====================================================================
-# 3. FUNGSI BANTU DROP TABLE
+# 3. DEFINISI TABEL: Mapping CSV -> Table Name (dengan klasifikasi Fact/Dim)
+# =====================================================================
+# Struktur: (label_tabel, nama_file_csv, nama_tabel_db, kategori)
+DATASET_MAP = [
+    # --- DIMENSION TABLES ---
+    ("dim_customer",        "olist_customers_dataset.csv",              "raw_schema.dim_customer",        "DIM"),
+    ("dim_geolocation",     "olist_geolocation_dataset.csv",           "raw_schema.dim_geolocation",     "DIM"),
+    ("dim_product",         "olist_products_dataset.csv",              "raw_schema.dim_product",         "DIM"),
+    ("dim_product_category","product_category_name_translation.csv",   "raw_schema.dim_product_category","DIM"),
+    ("dim_seller",          "olist_sellers_dataset.csv",               "raw_schema.dim_seller",          "DIM"),
+    # --- FACT TABLES ---
+    ("fact_order",          "olist_orders_dataset.csv",                "raw_schema.fact_order",          "FACT"),
+    ("fact_order_item",     "olist_order_items_dataset.csv",           "raw_schema.fact_order_item",     "FACT"),
+    ("fact_order_payment",  "olist_order_payments_dataset.csv",        "raw_schema.fact_order_payment",  "FACT"),
+    ("fact_order_review",   "olist_order_reviews_dataset.csv",         "raw_schema.fact_order_review",   "FACT"),
+]
+
+ARCHIVE_DIR = os.path.join(os.path.dirname(__file__), "archive")
+
+# =====================================================================
+# 4. FUNGSI BANTU DROP TABLE
 # =====================================================================
 def drop_table_if_exists(engine, table_name: str):
     """
     Menghapus tabel jika sudah ada.
-    Fungsi ini digunakan untuk mensimulasikan if_table_exists='replace'
-    karena pd.to_sql() membutuhkan parameter 'replace' di tingkat SQLAlchemy.
+    Digunakan untuk simulasi if_table_exists='replace'
     """
     with engine.connect() as conn:
-        # Eksekusi DROP TABLE IF EXISTS
         conn.execute(text(f"DROP TABLE IF EXISTS {table_name} CASCADE"))
         conn.commit()
-        logging.info(f"Tabel {table_name} berhasil dihapus (jika ada).")
+        logging.info(f"   Tabel {table_name} berhasil dihapus (jika ada).")
 
 # =====================================================================
-# 4. PIPELINE EKSEKUSI
+# 5. PIPELINE EKSEKUSI
 # =====================================================================
-def load_parquet_to_postgres():
-    # File Parquet keluaran dari Sesi 2
-    parquet_path = "products_cleaned.parquet"
+def ingest_csv_to_postgres():
+    logging.info("=" * 60)
+    logging.info("MEMULAI INGESTI DATA OLIST CSV KE POSTGRESQL (PANDAS)")
+    logging.info("=" * 60)
 
-    # Path adjustment jika script dijalankan dari folder sesi 3 atau root
-    if not os.path.exists(parquet_path) and os.path.exists(f"../pertemuan-02-api-polars/{parquet_path}"):
-        parquet_path = f"../pertemuan-02-api-polars/{parquet_path}"
-    elif not os.path.exists(parquet_path) and os.path.exists(f"../{parquet_path}"):
-        parquet_path = f"../{parquet_path}"
-
-    logging.info("=== MEMULAI INGESTI DATA PARQUET KE POSTGRESQL (PANDAS) ===")
-    logging.info(f"Membaca file Parquet: {parquet_path}")
-
-    # Validasi file Parquet
-    if not os.path.exists(parquet_path):
-        logging.error(f"Fungsi Batal: File '{parquet_path}' tidak ditemukan! Jalankan Sesi 2 terlebih dahulu.")
+    # Buat engine koneksi
+    try:
+        engine = create_engine(DB_URI)
+        logging.info("✅ Engine database berhasil dibuat.")
+    except Exception as e:
+        logging.error(f"❌ Gagal membuat engine database: {e}")
         return False
 
-    try:
-        # ------------------------------------------------------------------
-        # Pendekatan 1: Pandas + SQLAlchemy (engine database)
-        # ------------------------------------------------------------------
-        logging.info("Membuat engine koneksi ke PostgreSQL via SQLAlchemy...")
-        engine = create_engine(DB_URI)
-        logging.info("Engine berhasil dibuat.")
+    total_success = 0
+    total_fail = 0
 
-        # 1. Read Parquet menggunakan Pandas
-        df_parquet = pd.read_parquet(parquet_path)
-        logging.info(f"Sukses membaca Parquet. Ditemukan {len(df_parquet)} baris data.")
-        logging.info(f"Kolom yang terdeteksi: {list(df_parquet.columns)}")
-        logging.info(f"Tipe data tiap kolom:\n{df_parquet.dtypes}")
+    for label, csv_filename, table_name, category in DATASET_MAP:
+        csv_path = os.path.join(ARCHIVE_DIR, csv_filename)
 
-        # 2. Drop tabel lama + buat ulang (simulasi if_table_exists='replace')
-        drop_table_if_exists(engine, TARGET_TABLE)
+        logging.info(f"\n{'─' * 50}")
+        logging.info(f"[{category}] {label}")
+        logging.info(f"   CSV  : {csv_path}")
+        logging.info(f"   Table: {table_name}")
 
-        # 3. Write ke database PostgreSQL
-        #    Parameter if_exists='replace' di pd.to_sql hanya bekerja dalam satu sesi,
-        #    tapi untuk safety kita drop manual dulu.
-        logging.info(f"Menulis data ke database PostgreSQL -> Tabel: {TARGET_TABLE}...")
-        df_parquet.to_sql(
-            name=TARGET_TABLE.split(".")[-1],      # nama tabel saja (tanpa skema)
-            con=engine,
-            schema=TARGET_TABLE.split(".")[0],      # skema dipisahkan
-            if_exists="replace",
-            index=False,
-            method="multi"                          # insert multi-baris untuk kecepatan
-        )
-        logging.info("✅ SUKSES: Data berhasil masuk ke PostgreSQL menggunakan Pandas!")
-        return True
+        if not os.path.exists(csv_path):
+            logging.warning(f"   ⚠ File CSV tidak ditemukan: {csv_path}, dilewati.")
+            total_fail += 1
+            continue
 
-    except ImportError as ie:
-        logging.error("Gagal melakukan load database! Dependency belum terinstal.")
-        logging.error("Instruksi: Jalankan 'pip install pandas pyarrow psycopg2-binary sqlalchemy'")
-        logging.error(f"Detail error: {ie}")
+        try:
+            # 1. Baca CSV dengan Pandas
+            logging.info(f"   📖 Membaca CSV...")
+            df = pd.read_csv(csv_path)
+            row_count = len(df)
+            logging.info(f"   ✅ Membaca {row_count} baris, {len(df.columns)} kolom: {list(df.columns)}")
+            logging.info(f"   Tipe data:\n{df.dtypes}")
 
-    except Exception as e:
-        logging.error(f"Terjadi kegagalan saat menulis ke PostgreSQL: {e}")
-        logging.warning("Saran: Pastikan Docker Desktop aktif dan container 'postgres_dw_sesi3' sudah running.")
+            # 2. Drop tabel lama + buat ulang
+            drop_table_if_exists(engine, table_name)
 
-    finally:
-        # Tutup engine jika berhasil dibuat
-        if 'engine' in locals():
-            engine.dispose()
-            logging.info("Engine database ditutup.")
+            # 3. Tulis ke PostgreSQL
+            logging.info(f"   💾 Menulis ke {table_name}...")
+            df.to_sql(
+                name=table_name.split(".")[-1],      # nama tabel saja (tanpa skema)
+                con=engine,
+                schema=table_name.split(".")[0],      # skema dipisahkan
+                if_exists="replace",
+                index=False,
+                method="multi"                        # insert multi-baris untuk kecepatan
+            )
+            logging.info(f"   ✅ SUKSES: {row_count} baris → {table_name}")
+            total_success += 1
 
-    logging.info("=== PROSES SELESAI DENGAN ANOMALI ===\n")
-    return False
+        except Exception as e:
+            logging.error(f"   ❌ Gagal ingest {label}: {e}")
+            total_fail += 1
+
+    # Tutup engine
+    engine.dispose()
+    logging.info("Engine database ditutup.")
+
+    logging.info(f"\n{'=' * 60}")
+    logging.info(f"RINGKASAN INGESTI: {total_success} sukses, {total_fail} gagal dari {len(DATASET_MAP)} tabel")
+    logging.info(f"{'=' * 60}")
+
+    return total_fail == 0
 
 
 # =====================================================================
-# 5. EKSEKUSI UTAMA
+# 6. EKSEKUSI UTAMA
 # =====================================================================
 if __name__ == "__main__":
-    load_parquet_to_postgres()
+    ingest_csv_to_postgres()
