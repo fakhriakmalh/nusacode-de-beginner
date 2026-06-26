@@ -9,14 +9,14 @@
 --   Fact Tables  : fact_order, fact_order_item, fact_order_payment, fact_order_review
 --   Dim Tables   : dim_customer, dim_geolocation, dim_product, dim_product_category, dim_seller
 
-CREATE SCHEMA IF NOT EXISTS raw_schema;
+-- CREATE SCHEMA IF NOT EXISTS raw_schema;
 
 -- ============================================================================
 -- DIMENSION TABLES
 -- ============================================================================
 
 -- 1. dim_customer: Data pelanggan
-CREATE TABLE IF NOT EXISTS raw_schema.dim_customer (
+CREATE TABLE IF NOT EXISTS public.dim_customer (
     customer_id          TEXT NOT NULL,
     customer_unique_id   TEXT,
     customer_zip_code_prefix TEXT,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS raw_schema.dim_customer (
 );
 
 -- 2. dim_geolocation: Data lokasi kode pos
-CREATE TABLE IF NOT EXISTS raw_schema.dim_geolocation (
+CREATE TABLE IF NOT EXISTS public.dim_geolocation (
     geolocation_zip_code_prefix TEXT NOT NULL,
     geolocation_lat            DOUBLE PRECISION,
     geolocation_lng            DOUBLE PRECISION,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS raw_schema.dim_geolocation (
 );
 
 -- 3. dim_product: Data produk
-CREATE TABLE IF NOT EXISTS raw_schema.dim_product (
+CREATE TABLE IF NOT EXISTS public.dim_product (
     product_id               TEXT NOT NULL,
     product_category_name    TEXT,
     product_name_lenght      INT,
@@ -49,14 +49,14 @@ CREATE TABLE IF NOT EXISTS raw_schema.dim_product (
 );
 
 -- 4. dim_product_category: Terjemahan kategori produk (Portugis -> Inggris)
-CREATE TABLE IF NOT EXISTS raw_schema.dim_product_category (
+CREATE TABLE IF NOT EXISTS public.dim_product_category (
     product_category_name          TEXT NOT NULL,
     product_category_name_english  TEXT,
     PRIMARY KEY (product_category_name)
 );
 
 -- 5. dim_seller: Data penjual
-CREATE TABLE IF NOT EXISTS raw_schema.dim_seller (
+CREATE TABLE IF NOT EXISTS public.dim_seller (
     seller_id               TEXT NOT NULL,
     seller_zip_code_prefix  TEXT,
     seller_city             TEXT,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS raw_schema.dim_seller (
 -- ============================================================================
 
 -- 6. fact_order: Data pesanan / transaksi utama
-CREATE TABLE IF NOT EXISTS raw_schema.fact_order (
+CREATE TABLE IF NOT EXISTS public.fact_order (
     order_id                       TEXT NOT NULL,
     customer_id                    TEXT,
     order_status                   TEXT,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS raw_schema.fact_order (
 );
 
 -- 7. fact_order_item: Item detail dalam setiap pesanan
-CREATE TABLE IF NOT EXISTS raw_schema.fact_order_item (
+CREATE TABLE IF NOT EXISTS public.fact_order_item (
     order_id            TEXT NOT NULL,
     order_item_id       INT NOT NULL,
     product_id          TEXT,
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS raw_schema.fact_order_item (
 );
 
 -- 8. fact_order_payment: Metode pembayaran per pesanan
-CREATE TABLE IF NOT EXISTS raw_schema.fact_order_payment (
+CREATE TABLE IF NOT EXISTS public.fact_order_payment (
     order_id            TEXT NOT NULL,
     payment_sequential  INT NOT NULL,
     payment_type        TEXT,
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS raw_schema.fact_order_payment (
 );
 
 -- 9. fact_order_review: Ulasan / review per pesanan
-CREATE TABLE IF NOT EXISTS raw_schema.fact_order_review (
+CREATE TABLE IF NOT EXISTS public.fact_order_review (
     review_id                  TEXT NOT NULL,
     order_id                   TEXT,
     review_score               INT,

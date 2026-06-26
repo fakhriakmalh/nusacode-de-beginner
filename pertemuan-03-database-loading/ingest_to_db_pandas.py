@@ -19,6 +19,7 @@
 
 import os
 import sys
+import time
 import logging
 import pandas as pd
 from sqlalchemy import create_engine, text
@@ -53,16 +54,16 @@ DB_URI = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 # Struktur: (label_tabel, nama_file_csv, nama_tabel_db, kategori)
 DATASET_MAP = [
     # --- DIMENSION TABLES ---
-    ("dim_customer",        "olist_customers_dataset.csv",              "raw_schema.dim_customer",        "DIM"),
-    ("dim_geolocation",     "olist_geolocation_dataset.csv",           "raw_schema.dim_geolocation",     "DIM"),
-    ("dim_product",         "olist_products_dataset.csv",              "raw_schema.dim_product",         "DIM"),
-    ("dim_product_category","product_category_name_translation.csv",   "raw_schema.dim_product_category","DIM"),
-    ("dim_seller",          "olist_sellers_dataset.csv",               "raw_schema.dim_seller",          "DIM"),
+    ("dim_customer",        "olist_customers_dataset.csv",              "public.dim_customer",        "DIM"),
+    ("dim_geolocation",     "olist_geolocation_dataset.csv",           "public.dim_geolocation",     "DIM"),
+    ("dim_product",         "olist_products_dataset.csv",              "public.dim_product",         "DIM"),
+    ("dim_product_category","product_category_name_translation.csv",   "public.dim_product_category","DIM"),
+    ("dim_seller",          "olist_sellers_dataset.csv",               "public.dim_seller",          "DIM"),
     # --- FACT TABLES ---
-    ("fact_order",          "olist_orders_dataset.csv",                "raw_schema.fact_order",          "FACT"),
-    ("fact_order_item",     "olist_order_items_dataset.csv",           "raw_schema.fact_order_item",     "FACT"),
-    ("fact_order_payment",  "olist_order_payments_dataset.csv",        "raw_schema.fact_order_payment",  "FACT"),
-    ("fact_order_review",   "olist_order_reviews_dataset.csv",         "raw_schema.fact_order_review",   "FACT"),
+    ("fact_order",          "olist_orders_dataset.csv",                "public.fact_order",          "FACT"),
+    ("fact_order_item",     "olist_order_items_dataset.csv",           "public.fact_order_item",     "FACT"),
+    ("fact_order_payment",  "olist_order_payments_dataset.csv",        "public.fact_order_payment",  "FACT"),
+    ("fact_order_review",   "olist_order_reviews_dataset.csv",         "public.fact_order_review",   "FACT"),
 ]
 
 ARCHIVE_DIR = os.path.join(os.path.dirname(__file__), "archive")
@@ -96,6 +97,8 @@ def ingest_csv_to_postgres():
         logging.error(f"❌ Gagal membuat engine database: {e}")
         return False
 
+    total_start = time.perf_counter()
+
     total_success = 0
     total_fail = 0
 
@@ -125,20 +128,25 @@ def ingest_csv_to_postgres():
 
             # 3. Tulis ke PostgreSQL
             logging.info(f"   💾 Menulis ke {table_name}...")
+            write_start = time.perf_counter()
             df.to_sql(
-                name=table_name.split(".")[-1],      # nama tabel saja (tanpa skema)
+                name=table_name.split(".")[-1],
                 con=engine,
-                schema=table_name.split(".")[0],      # skema dipisahkan
+                schema=table_name.split(".")[0],
                 if_exists="replace",
                 index=False,
-                method="multi"                        # insert multi-baris untuk kecepatan
+                chunksize=500,
+                method="multi"
             )
-            logging.info(f"   ✅ SUKSES: {row_count} baris → {table_name}")
+            write_elapsed = time.perf_counter() - write_start
+            logging.info(f"   ✅ SUKSES: {row_count} baris → {table_name} ({write_elapsed:.2f}s)")
             total_success += 1
 
         except Exception as e:
             logging.error(f"   ❌ Gagal ingest {label}: {e}")
             total_fail += 1
+
+    total_elapsed = time.perf_counter() - total_start
 
     # Tutup engine
     engine.dispose()
@@ -146,6 +154,7 @@ def ingest_csv_to_postgres():
 
     logging.info(f"\n{'=' * 60}")
     logging.info(f"RINGKASAN INGESTI: {total_success} sukses, {total_fail} gagal dari {len(DATASET_MAP)} tabel")
+    logging.info(f"TOTAL WAKTU EKSEKUSI: {total_elapsed:.2f} detik")
     logging.info(f"{'=' * 60}")
 
     return total_fail == 0
@@ -155,4 +164,8 @@ def ingest_csv_to_postgres():
 # 6. EKSEKUSI UTAMA
 # =====================================================================
 if __name__ == "__main__":
-    ingest_csv_to_postgres()
+    script_start = time.perf_counter()
+    success = ingest_csv_to_postgres()
+    script_elapsed = time.perf_counter() - script_start
+    logging.info(f"TOTAL WAKTU SCRIPT: {script_elapsed:.2f} detik")
+    sys.exit(0 if success else 1)
