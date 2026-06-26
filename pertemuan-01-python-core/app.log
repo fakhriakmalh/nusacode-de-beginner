@@ -1,0 +1,7 @@
+2026-06-26 10:06:46,582 - INFO - === Memulai Pipeline Hitung Harga Satuan ===
+2026-06-26 10:06:46,583 - INFO - SUKSES: Laptop | Harga Satuan: Rp 10,000,000.00
+2026-06-26 10:06:46,583 - ERROR - GAGAL PROSES: Jumlah barang 'Mouse' bernilai 0 (pembagian nol)! Melewati baris...
+2026-06-26 10:06:46,583 - ERROR - GAGAL PROSES: Data barang 'Keyboard' tidak memiliki kolom 'jumlah'! Melewati baris...
+2026-06-26 10:06:46,583 - INFO - SUKSES: Monitor | Harga Satuan: Rp 5,000,000.00
+2026-06-26 10:06:46,583 - INFO - === Pipeline Selesai Diproses ===
+

@@ -1,44 +1,95 @@
--- ============================================================================
--- Marts Model: dim_customers
--- Deskripsi    : Dimension table untuk data pelanggan. Berisi informasi
---                demografis dan metrik agregat tiap customer.
---                Grain: satu baris per pelanggan (customer_id).
--- ============================================================================
-
-WITH source AS (
-    SELECT * FROM {{ ref('int_customer_orders') }}
+WITH customers AS (
+    SELECT * FROM {{ ref('stg_customers') }}
 ),
 
-final AS (
+orders AS (
+    SELECT * FROM {{ ref('stg_orders') }}
+),
+
+items AS (
+    SELECT * FROM {{ ref('stg_order_items') }}
+),
+
+payments AS (
     SELECT
-        customer_id,
-        customer_unique_id,
-        customer_city,
-        customer_state,
-        total_orders,
-        delivered_orders,
-        canceled_orders,
+        order_id,
+        SUM(payment_value) AS total_payment,
+        COUNT(DISTINCT payment_type) AS payment_method_count,
+        STRING_AGG(DISTINCT payment_type, ', ') AS payment_types
+    FROM {{ ref('stg_payments') }}
+    GROUP BY order_id
+),
 
-        -- Conversion rate
-        CASE
-            WHEN total_orders > 0
-            THEN ROUND(delivered_orders::NUMERIC / total_orders, 2)
-            ELSE 0
-        END AS delivery_rate,
+reviews AS (
+    SELECT
+        order_id,
+        AVG(review_score) AS avg_review_score,
+        COUNT(review_id) AS review_count
+    FROM {{ ref('stg_reviews') }}
+    GROUP BY order_id
+),
 
-        total_revenue,
-        avg_review_score,
-        first_order_date,
-        last_order_date,
+order_details AS (
+    SELECT
+        o.order_id,
+        o.customer_id,
+        o.is_delivered,
+        o.is_canceled,
+        o.order_purchase_timestamp,
+        COALESCE(p.total_payment, 0) AS total_payment,
+        COALESCE(r.avg_review_score, 0) AS avg_review_score
 
-        -- Customer tenure dalam hari
-        CASE
-            WHEN first_order_date IS NOT NULL AND last_order_date IS NOT NULL
-            THEN EXTRACT(DAY FROM (last_order_date - first_order_date))
-            ELSE 0
-        END AS customer_tenure_days
+    FROM orders o
+    LEFT JOIN payments p ON o.order_id = p.order_id
+    LEFT JOIN reviews r ON o.order_id = r.order_id
+),
 
-    FROM source
+customer_summary AS (
+    SELECT
+        c.customer_id,
+        c.customer_unique_id,
+        c.customer_city,
+        c.customer_state,
+
+        COUNT(DISTINCT o.order_id) AS total_orders,
+        COUNT(DISTINCT CASE WHEN o.is_delivered THEN o.order_id END) AS delivered_orders,
+        COUNT(DISTINCT CASE WHEN o.is_canceled THEN o.order_id END) AS canceled_orders,
+        SUM(o.total_payment) AS total_revenue,
+        AVG(o.avg_review_score) AS avg_review_score,
+        MIN(o.order_purchase_timestamp) AS first_order_date,
+        MAX(o.order_purchase_timestamp) AS last_order_date
+
+    FROM customers c
+    LEFT JOIN order_details o ON c.customer_id = o.customer_id
+    GROUP BY
+        c.customer_id, c.customer_unique_id,
+        c.customer_city, c.customer_state
 )
 
-SELECT * FROM final
+SELECT
+    customer_id,
+    customer_unique_id,
+    customer_city,
+    customer_state,
+    total_orders,
+    delivered_orders,
+    canceled_orders,
+
+    CASE
+        WHEN total_orders > 0
+        THEN ROUND(delivered_orders::NUMERIC / total_orders, 2)
+        ELSE 0
+    END AS delivery_rate,
+
+    total_revenue,
+    avg_review_score,
+    first_order_date,
+    last_order_date,
+
+    CASE
+        WHEN first_order_date IS NOT NULL AND last_order_date IS NOT NULL
+        THEN EXTRACT(DAY FROM (last_order_date - first_order_date))
+        ELSE 0
+    END AS customer_tenure_days
+
+FROM customer_summary

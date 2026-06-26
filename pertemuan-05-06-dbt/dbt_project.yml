@@ -31,13 +31,11 @@ models:
     +materialized: view
 
     staging:
-      # Staging models: materialized sebagai VIEW agar ringan
-      +materialized: view
-
-    intermediate:
-      # Intermediate models: VIEW untuk logika bisnis di antaranya
-      +materialized: view
+      # Staging models: TABLE, di schema "staging"
+      +materialized: table
+      +schema: staging
 
     marts:
-      # Marts models: TABLE agar query cepat ketika diakses BI tools
+      # Marts models: TABLE, di schema "marts"
       +materialized: table
+      +schema: marts

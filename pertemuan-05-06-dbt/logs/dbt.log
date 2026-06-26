@@ -1514,3 +1514,1334 @@ drop view if exists "dw_nusacode"."public"."stg_customers__dbt_backup" cascade
 [0m15:46:45.856475 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x720f7315aa80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x720f7315ae10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x720f720ea8a0>]}
 [0m15:46:45.857427 [debug] [MainThread]: Flushing usage events
 [0m15:46:52.538678 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:18:36.464950 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f41b7410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f3c50f20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f405f5c0>]}
+
+
+============================== 16:18:36.471198 | 42a6c748-5a5c-4531-8792-0c13d95c4ac7 ==============================
+[0m16:18:36.471198 [info ] [MainThread]: Running with dbt=1.11.11
+[0m16:18:36.472440 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'introspect': 'True', 'invocation_command': 'dbt run --select stg_*', 'quiet': 'False', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'warn_error': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'no_print': 'None', 'log_format': 'default', 'debug': 'False', 'static_parser': 'True', 'target_path': 'None', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'log_cache_events': 'False', 'empty': 'False', 'cache_selected_only': 'False', 'write_json': 'True', 'printer_width': '80', 'send_anonymous_usage_stats': 'True'}
+[0m16:18:36.825384 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '42a6c748-5a5c-4531-8792-0c13d95c4ac7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f5f5b680>]}
+[0m16:18:36.964201 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '42a6c748-5a5c-4531-8792-0c13d95c4ac7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f3772f30>]}
+[0m16:18:36.966174 [info ] [MainThread]: Registered adapter: postgres=1.10.1
+[0m16:18:37.128366 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m16:18:37.369779 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m16:18:37.370934 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '42a6c748-5a5c-4531-8792-0c13d95c4ac7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f3adbbc0>]}
+[0m16:18:40.394334 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '42a6c748-5a5c-4531-8792-0c13d95c4ac7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f1b07c20>]}
+[0m16:18:40.580951 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:18:40.585998 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:18:40.608934 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '42a6c748-5a5c-4531-8792-0c13d95c4ac7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f07a75c0>]}
+[0m16:18:40.610212 [info ] [MainThread]: Found 13 models, 33 data tests, 8 sources, 476 macros
+[0m16:18:40.611023 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '42a6c748-5a5c-4531-8792-0c13d95c4ac7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f1f866f0>]}
+[0m16:18:40.613436 [warn ] [MainThread]: The selection criterion 'stg_*' does not match any enabled nodes
+[0m16:18:40.616688 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m16:18:40.618586 [debug] [MainThread]: Command end result
+[0m16:18:40.693422 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:18:40.698076 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:18:40.707761 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m16:18:40.710751 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.3682218, "process_in_blocks": "48", "process_kernel_time": 0.521163, "process_mem_max_rss": "142940", "process_out_blocks": "3728", "process_user_time": 9.435955}
+[0m16:18:40.712077 [debug] [MainThread]: Command `dbt run` succeeded at 16:18:40.711885 after 4.37 seconds
+[0m16:18:40.712924 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f3607140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f4eb9bb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70b0f27fc050>]}
+[0m16:18:40.713767 [debug] [MainThread]: Flushing usage events
+[0m16:18:42.452018 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:20:25.229770 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad9c04b30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad87b8b60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad981a870>]}
+
+
+============================== 16:20:25.236968 | be77ce62-d2c0-4834-90ab-6b41982a933c ==============================
+[0m16:20:25.236968 [info ] [MainThread]: Running with dbt=1.11.11
+[0m16:20:25.238532 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt run --select stg_*', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'log_format': 'default', 'indirect_selection': 'eager', 'introspect': 'True', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'no_print': 'None', 'use_experimental_parser': 'False', 'version_check': 'True', 'printer_width': '80', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'quiet': 'False', 'empty': 'False', 'fail_fast': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'warn_error': 'None', 'target_path': 'None', 'debug': 'False', 'use_colors': 'True'}
+[0m16:20:25.621260 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'be77ce62-d2c0-4834-90ab-6b41982a933c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad89ab9b0>]}
+[0m16:20:25.763277 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'be77ce62-d2c0-4834-90ab-6b41982a933c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad86f4590>]}
+[0m16:20:25.765114 [info ] [MainThread]: Registered adapter: postgres=1.10.1
+[0m16:20:25.932202 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m16:20:26.184822 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:20:26.185932 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m16:20:26.186822 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m16:20:26.286093 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'be77ce62-d2c0-4834-90ab-6b41982a933c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad7946030>]}
+[0m16:20:26.713611 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:20:26.717579 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:20:26.742517 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'be77ce62-d2c0-4834-90ab-6b41982a933c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad71a0860>]}
+[0m16:20:26.743788 [info ] [MainThread]: Found 13 models, 33 data tests, 8 sources, 476 macros
+[0m16:20:26.744708 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'be77ce62-d2c0-4834-90ab-6b41982a933c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad693ea50>]}
+[0m16:20:26.747111 [warn ] [MainThread]: The selection criterion 'stg_*' does not match any enabled nodes
+[0m16:20:26.750354 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m16:20:26.756632 [debug] [MainThread]: Command end result
+[0m16:20:26.844664 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:20:26.849701 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:20:26.856862 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m16:20:26.859253 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 1.7551572, "process_in_blocks": "0", "process_kernel_time": 0.497219, "process_mem_max_rss": "134832", "process_out_blocks": "2608", "process_user_time": 6.984038}
+[0m16:20:26.860480 [debug] [MainThread]: Command `dbt run` succeeded at 16:20:26.860282 after 1.76 seconds
+[0m16:20:26.861338 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad693d940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad693ffb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x791ad693cd10>]}
+[0m16:20:26.862186 [debug] [MainThread]: Flushing usage events
+[0m16:20:28.847253 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:20:42.286617 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad9094c6810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90b1a0bf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90aa913a0>]}
+
+
+============================== 16:20:42.293666 | b6179e0a-7f65-4d67-a050-df31b0079bc4 ==============================
+[0m16:20:42.293666 [info ] [MainThread]: Running with dbt=1.11.11
+[0m16:20:42.294978 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'fail_fast': 'False', 'no_print': 'None', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'invocation_command': 'dbt run --select staging', 'log_cache_events': 'False', 'version_check': 'True', 'indirect_selection': 'eager', 'printer_width': '80', 'target_path': 'None', 'write_json': 'True', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'introspect': 'True', 'empty': 'False', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'debug': 'False', 'use_experimental_parser': 'False', 'use_colors': 'True'}
+[0m16:20:42.655375 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90af62180>]}
+[0m16:20:42.796383 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90860a030>]}
+[0m16:20:42.798206 [info ] [MainThread]: Registered adapter: postgres=1.10.1
+[0m16:20:42.955484 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m16:20:43.200105 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:20:43.201088 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m16:20:43.201733 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m16:20:43.301876 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad907345940>]}
+[0m16:20:43.710042 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:20:43.714223 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:20:43.735455 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad906ba0890>]}
+[0m16:20:43.736643 [info ] [MainThread]: Found 13 models, 33 data tests, 8 sources, 476 macros
+[0m16:20:43.737542 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90633a660>]}
+[0m16:20:43.742337 [info ] [MainThread]: 
+[0m16:20:43.743497 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:20:43.744709 [info ] [MainThread]: 
+[0m16:20:43.746269 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:20:43.756529 [debug] [ThreadPool]: Acquiring new postgres connection 'list_dw_nusacode'
+[0m16:20:43.837185 [debug] [ThreadPool]: Using postgres connection "list_dw_nusacode"
+[0m16:20:43.838467 [debug] [ThreadPool]: On list_dw_nusacode: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_dw_nusacode"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m16:20:43.839861 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:20:43.864866 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.025 seconds
+[0m16:20:43.867896 [debug] [ThreadPool]: On list_dw_nusacode: Close
+[0m16:20:43.869527 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_dw_nusacode, now create_dw_nusacode_staging)
+[0m16:20:43.871085 [debug] [ThreadPool]: Creating schema "database: "dw_nusacode"
+schema: "staging"
+"
+[0m16:20:43.882792 [debug] [ThreadPool]: Using postgres connection "create_dw_nusacode_staging"
+[0m16:20:43.883777 [debug] [ThreadPool]: On create_dw_nusacode_staging: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "create_dw_nusacode_staging"} */
+create schema if not exists "staging"
+[0m16:20:43.884463 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:20:43.902148 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.017 seconds
+[0m16:20:43.904477 [debug] [ThreadPool]: On create_dw_nusacode_staging: COMMIT
+[0m16:20:43.905548 [debug] [ThreadPool]: Using postgres connection "create_dw_nusacode_staging"
+[0m16:20:43.906381 [debug] [ThreadPool]: On create_dw_nusacode_staging: COMMIT
+[0m16:20:43.912582 [debug] [ThreadPool]: SQL status: COMMIT in 0.005 seconds
+[0m16:20:43.913616 [debug] [ThreadPool]: On create_dw_nusacode_staging: Close
+[0m16:20:43.919368 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_dw_nusacode_staging, now list_dw_nusacode_None)
+[0m16:20:43.921759 [debug] [ThreadPool]: Acquiring new postgres connection 'list_dw_nusacode_staging'
+[0m16:20:43.936140 [debug] [ThreadPool]: Using postgres connection "list_dw_nusacode_None"
+[0m16:20:43.947690 [debug] [ThreadPool]: Using postgres connection "list_dw_nusacode_staging"
+[0m16:20:43.949438 [debug] [ThreadPool]: On list_dw_nusacode_None: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_dw_nusacode_None"} */
+select
+      'dw_nusacode' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'None'
+    union all
+    select
+      'dw_nusacode' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'None'
+    union all
+    select
+      'dw_nusacode' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'None'
+  
+[0m16:20:43.950382 [debug] [ThreadPool]: On list_dw_nusacode_staging: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_dw_nusacode_staging"} */
+select
+      'dw_nusacode' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'staging'
+    union all
+    select
+      'dw_nusacode' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'staging'
+    union all
+    select
+      'dw_nusacode' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'staging'
+  
+[0m16:20:43.951668 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:20:43.952479 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:20:43.987722 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.036 seconds
+[0m16:20:43.989093 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.037 seconds
+[0m16:20:43.992372 [debug] [ThreadPool]: On list_dw_nusacode_None: ROLLBACK
+[0m16:20:43.995323 [debug] [ThreadPool]: On list_dw_nusacode_staging: ROLLBACK
+[0m16:20:43.996933 [debug] [ThreadPool]: On list_dw_nusacode_staging: Close
+[0m16:20:43.997799 [debug] [ThreadPool]: On list_dw_nusacode_None: Close
+[0m16:20:44.010240 [debug] [MainThread]: Using postgres connection "master"
+[0m16:20:44.011413 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m16:20:44.012212 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:20:44.041887 [debug] [MainThread]: SQL status: SELECT 2 in 0.029 seconds
+[0m16:20:44.045350 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90acb5880>]}
+[0m16:20:44.046629 [debug] [MainThread]: On master: ROLLBACK
+[0m16:20:44.047995 [debug] [MainThread]: On master: COMMIT
+[0m16:20:44.049377 [debug] [MainThread]: Using postgres connection "master"
+[0m16:20:44.050086 [debug] [MainThread]: On master: COMMIT
+[0m16:20:44.051470 [debug] [MainThread]: SQL status: COMMIT in 0.001 seconds
+[0m16:20:44.052276 [debug] [MainThread]: On master: Close
+[0m16:20:44.058841 [debug] [Thread-1 (]: Began running node model.nusacode_de.stg_customers
+[0m16:20:44.060177 [debug] [Thread-2 (]: Began running node model.nusacode_de.stg_order_items
+[0m16:20:44.061356 [debug] [Thread-3 (]: Began running node model.nusacode_de.stg_orders
+[0m16:20:44.062215 [debug] [Thread-4 (]: Began running node model.nusacode_de.stg_payments
+[0m16:20:44.063360 [info ] [Thread-1 (]: 1 of 7 START sql table model staging.stg_customers ............................. [RUN]
+[0m16:20:44.064656 [info ] [Thread-2 (]: 2 of 7 START sql table model staging.stg_order_items ........................... [RUN]
+[0m16:20:44.066118 [info ] [Thread-3 (]: 3 of 7 START sql table model staging.stg_orders ................................ [RUN]
+[0m16:20:44.067515 [info ] [Thread-4 (]: 4 of 7 START sql table model staging.stg_payments .............................. [RUN]
+[0m16:20:44.068844 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_dw_nusacode_None, now model.nusacode_de.stg_customers)
+[0m16:20:44.070137 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_dw_nusacode_staging, now model.nusacode_de.stg_order_items)
+[0m16:20:44.072245 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.nusacode_de.stg_orders'
+[0m16:20:44.074544 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.nusacode_de.stg_payments'
+[0m16:20:44.076193 [debug] [Thread-1 (]: Began compiling node model.nusacode_de.stg_customers
+[0m16:20:44.077805 [debug] [Thread-2 (]: Began compiling node model.nusacode_de.stg_order_items
+[0m16:20:44.078985 [debug] [Thread-3 (]: Began compiling node model.nusacode_de.stg_orders
+[0m16:20:44.079949 [debug] [Thread-4 (]: Began compiling node model.nusacode_de.stg_payments
+[0m16:20:44.097514 [debug] [Thread-1 (]: Writing injected SQL for node "model.nusacode_de.stg_customers"
+[0m16:20:44.103604 [debug] [Thread-2 (]: Writing injected SQL for node "model.nusacode_de.stg_order_items"
+[0m16:20:44.111049 [debug] [Thread-3 (]: Writing injected SQL for node "model.nusacode_de.stg_orders"
+[0m16:20:44.117206 [debug] [Thread-4 (]: Writing injected SQL for node "model.nusacode_de.stg_payments"
+[0m16:20:44.119285 [debug] [Thread-2 (]: Began executing node model.nusacode_de.stg_order_items
+[0m16:20:44.120206 [debug] [Thread-1 (]: Began executing node model.nusacode_de.stg_customers
+[0m16:20:44.132173 [debug] [Thread-3 (]: Began executing node model.nusacode_de.stg_orders
+[0m16:20:44.139100 [debug] [Thread-4 (]: Began executing node model.nusacode_de.stg_payments
+[0m16:20:44.327369 [debug] [Thread-2 (]: Writing runtime sql for node "model.nusacode_de.stg_order_items"
+[0m16:20:44.334698 [debug] [Thread-1 (]: Writing runtime sql for node "model.nusacode_de.stg_customers"
+[0m16:20:44.344893 [debug] [Thread-3 (]: Writing runtime sql for node "model.nusacode_de.stg_orders"
+[0m16:20:44.352431 [debug] [Thread-4 (]: Writing runtime sql for node "model.nusacode_de.stg_payments"
+[0m16:20:44.354679 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_order_items"
+[0m16:20:44.356972 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_customers"
+[0m16:20:44.359006 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.stg_orders"
+[0m16:20:44.360431 [debug] [Thread-2 (]: On model.nusacode_de.stg_order_items: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_order_items"} */
+
+  
+    
+
+  create  table "dw_nusacode"."staging"."stg_order_items__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Staging Model: stg_order_items
+-- Deskripsi    : Membersihkan data item pesanan, memastikan harga dan
+--                freight bernilai positif.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."public"."fact_order_item"
+),
+
+cleaned AS (
+    SELECT
+        order_id,
+        order_item_id,
+        product_id,
+        seller_id,
+        shipping_limit_date,
+        -- Harga: null -> 0, negatif -> 0
+        CASE
+            WHEN price IS NULL OR price < 0 THEN 0
+            ELSE price
+        END AS price,
+        -- Freight: null -> 0, negatif -> 0
+        CASE
+            WHEN freight_value IS NULL OR freight_value < 0 THEN 0
+            ELSE freight_value
+        END AS freight_value
+    FROM source
+)
+
+SELECT * FROM cleaned
+  );
+  
+[0m16:20:44.362122 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_payments"
+[0m16:20:44.363564 [debug] [Thread-1 (]: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+  
+    
+
+  create  table "dw_nusacode"."staging"."stg_customers__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Staging Model: stg_customers
+-- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
+--                raw_schema.dim_customer.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."public"."dim_customer"
+),
+
+cleaned AS (
+    SELECT
+        customer_id,
+        customer_unique_id,
+        customer_zip_code_prefix,
+        -- Trim whitespace dan standarisasi format kota
+        TRIM(INITCAP(customer_city)) AS customer_city,
+        -- Standarisasi state ke uppercase
+        UPPER(TRIM(customer_state)) AS customer_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+  );
+  
+[0m16:20:44.365101 [debug] [Thread-3 (]: On model.nusacode_de.stg_orders: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_orders"} */
+
+  
+    
+
+  create  table "dw_nusacode"."staging"."stg_orders__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Staging Model: stg_orders
+-- Deskripsi    : Membersihkan data pesanan dan menambahkan kolom flag
+--                untuk memudahkan filtering di model selanjutnya.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."public"."fact_order"
+),
+
+cleaned AS (
+    SELECT
+        order_id,
+        customer_id,
+        order_status,
+        order_purchase_timestamp,
+        order_approved_at,
+        order_delivered_carrier_date,
+        order_delivered_customer_date,
+        order_estimated_delivery_date,
+
+        -- Flag: Apakah pesanan sudah delivered?
+        CASE
+            WHEN order_status = 'delivered' THEN TRUE
+            ELSE FALSE
+        END AS is_delivered,
+
+        -- Flag: Apakah pesanan dibatalkan?
+        CASE
+            WHEN order_status IN ('canceled', 'unavailable') THEN TRUE
+            ELSE FALSE
+        END AS is_canceled,
+
+        -- Durasi konfirmasi pesanan (approved - purchase) dalam jam
+        EXTRACT(EPOCH FROM (order_approved_at - order_purchase_timestamp)) / 3600
+            AS approval_hours
+    FROM source
+)
+
+SELECT * FROM cleaned
+  );
+  
+[0m16:20:44.366551 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:20:44.368007 [debug] [Thread-4 (]: On model.nusacode_de.stg_payments: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_payments"} */
+
+  
+    
+
+  create  table "dw_nusacode"."staging"."stg_payments__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Staging Model: stg_payments
+-- Deskripsi    : Membersihkan data pembayaran per pesanan.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."public"."fact_order_payment"
+),
+
+cleaned AS (
+    SELECT
+        order_id,
+        payment_sequential,
+        payment_type,
+        payment_installments,
+        CASE
+            WHEN payment_value IS NULL OR payment_value < 0 THEN 0
+            ELSE payment_value
+        END AS payment_value
+    FROM source
+)
+
+SELECT * FROM cleaned
+  );
+  
+[0m16:20:44.369565 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:20:44.371477 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m16:20:44.373453 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m16:20:44.991829 [debug] [Thread-4 (]: SQL status: SELECT 103886 in 0.618 seconds
+[0m16:20:45.017835 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_payments"
+[0m16:20:45.019168 [debug] [Thread-4 (]: On model.nusacode_de.stg_payments: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_payments"} */
+alter table "dw_nusacode"."staging"."stg_payments__dbt_tmp" rename to "stg_payments"
+[0m16:20:45.120773 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.100 seconds
+[0m16:20:45.178227 [debug] [Thread-4 (]: On model.nusacode_de.stg_payments: COMMIT
+[0m16:20:45.179784 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_payments"
+[0m16:20:45.181232 [debug] [Thread-4 (]: On model.nusacode_de.stg_payments: COMMIT
+[0m16:20:45.219450 [debug] [Thread-4 (]: SQL status: COMMIT in 0.037 seconds
+[0m16:20:45.237413 [debug] [Thread-4 (]: Applying DROP to: "dw_nusacode"."staging"."stg_payments__dbt_backup"
+[0m16:20:45.252566 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_payments"
+[0m16:20:45.253796 [debug] [Thread-4 (]: On model.nusacode_de.stg_payments: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_payments"} */
+drop table if exists "dw_nusacode"."staging"."stg_payments__dbt_backup" cascade
+[0m16:20:45.256871 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.002 seconds
+[0m16:20:45.265203 [debug] [Thread-4 (]: On model.nusacode_de.stg_payments: Close
+[0m16:20:45.270247 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90af61280>]}
+[0m16:20:45.272812 [info ] [Thread-4 (]: 4 of 7 OK created sql table model staging.stg_payments ......................... [[32mSELECT 103886[0m in 1.19s]
+[0m16:20:45.275392 [debug] [Thread-4 (]: Finished running node model.nusacode_de.stg_payments
+[0m16:20:45.277084 [debug] [Thread-4 (]: Began running node model.nusacode_de.stg_products
+[0m16:20:45.279590 [info ] [Thread-4 (]: 5 of 7 START sql table model staging.stg_products .............................. [RUN]
+[0m16:20:45.281924 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.nusacode_de.stg_payments, now model.nusacode_de.stg_products)
+[0m16:20:45.283775 [debug] [Thread-4 (]: Began compiling node model.nusacode_de.stg_products
+[0m16:20:45.295148 [debug] [Thread-4 (]: Writing injected SQL for node "model.nusacode_de.stg_products"
+[0m16:20:45.297511 [debug] [Thread-4 (]: Began executing node model.nusacode_de.stg_products
+[0m16:20:45.309307 [debug] [Thread-4 (]: Writing runtime sql for node "model.nusacode_de.stg_products"
+[0m16:20:45.311903 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_products"
+[0m16:20:45.313434 [debug] [Thread-4 (]: On model.nusacode_de.stg_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_products"} */
+
+  
+    
+
+  create  table "dw_nusacode"."staging"."stg_products__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Staging Model: stg_products
+-- Deskripsi    : Menggabungkan data produk dengan terjemahan kategori
+--                (Portugis -> Inggris).
+-- ============================================================================
+
+WITH source_product AS (
+    SELECT * FROM "dw_nusacode"."public"."dim_product"
+),
+
+source_category AS (
+    SELECT * FROM "dw_nusacode"."public"."dim_product_category"
+),
+
+joined AS (
+    SELECT
+        p.product_id,
+        p.product_category_name,
+        COALESCE(c.product_category_name_english, 'unknown') AS product_category_english,
+        p.product_name_lenght,
+        p.product_description_lenght,
+        p.product_photos_qty,
+        p.product_weight_g,
+        p.product_length_cm,
+        p.product_height_cm,
+        p.product_width_cm
+    FROM source_product p
+    LEFT JOIN source_category c
+        ON p.product_category_name = c.product_category_name
+)
+
+SELECT * FROM joined
+  );
+  
+[0m16:20:45.315237 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m16:20:45.385186 [debug] [Thread-2 (]: SQL status: SELECT 112650 in 1.019 seconds
+[0m16:20:45.394090 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_order_items"
+[0m16:20:45.395637 [debug] [Thread-2 (]: On model.nusacode_de.stg_order_items: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_order_items"} */
+alter table "dw_nusacode"."staging"."stg_order_items__dbt_tmp" rename to "stg_order_items"
+[0m16:20:45.398700 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m16:20:45.402257 [debug] [Thread-2 (]: On model.nusacode_de.stg_order_items: COMMIT
+[0m16:20:45.403555 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_order_items"
+[0m16:20:45.404565 [debug] [Thread-2 (]: On model.nusacode_de.stg_order_items: COMMIT
+[0m16:20:45.437467 [debug] [Thread-2 (]: SQL status: COMMIT in 0.032 seconds
+[0m16:20:45.449819 [debug] [Thread-2 (]: Applying DROP to: "dw_nusacode"."staging"."stg_order_items__dbt_backup"
+[0m16:20:45.451922 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_order_items"
+[0m16:20:45.453483 [debug] [Thread-2 (]: On model.nusacode_de.stg_order_items: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_order_items"} */
+drop table if exists "dw_nusacode"."staging"."stg_order_items__dbt_backup" cascade
+[0m16:20:45.456091 [debug] [Thread-2 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m16:20:45.460985 [debug] [Thread-2 (]: On model.nusacode_de.stg_order_items: Close
+[0m16:20:45.463814 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90431c1a0>]}
+[0m16:20:45.466456 [info ] [Thread-2 (]: 2 of 7 OK created sql table model staging.stg_order_items ...................... [[32mSELECT 112650[0m in 1.39s]
+[0m16:20:45.468858 [debug] [Thread-2 (]: Finished running node model.nusacode_de.stg_order_items
+[0m16:20:45.470565 [debug] [Thread-2 (]: Began running node model.nusacode_de.stg_reviews
+[0m16:20:45.472809 [info ] [Thread-2 (]: 6 of 7 START sql table model staging.stg_reviews ............................... [RUN]
+[0m16:20:45.475277 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.nusacode_de.stg_order_items, now model.nusacode_de.stg_reviews)
+[0m16:20:45.477171 [debug] [Thread-2 (]: Began compiling node model.nusacode_de.stg_reviews
+[0m16:20:45.488265 [debug] [Thread-2 (]: Writing injected SQL for node "model.nusacode_de.stg_reviews"
+[0m16:20:45.491008 [debug] [Thread-1 (]: SQL status: SELECT 99441 in 1.121 seconds
+[0m16:20:45.493546 [debug] [Thread-2 (]: Began executing node model.nusacode_de.stg_reviews
+[0m16:20:45.505230 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_customers"
+[0m16:20:45.515725 [debug] [Thread-1 (]: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+alter table "dw_nusacode"."staging"."stg_customers__dbt_tmp" rename to "stg_customers"
+[0m16:20:45.521387 [debug] [Thread-2 (]: Writing runtime sql for node "model.nusacode_de.stg_reviews"
+[0m16:20:45.525187 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_reviews"
+[0m16:20:45.527892 [debug] [Thread-2 (]: On model.nusacode_de.stg_reviews: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_reviews"} */
+
+  
+    
+
+  create  table "dw_nusacode"."staging"."stg_reviews__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Staging Model: stg_reviews
+-- Deskripsi    : Membersihkan data review, menstandarisasi skor review.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."public"."fact_order_review"
+),
+
+cleaned AS (
+    SELECT
+        review_id,
+        order_id,
+        -- Skor review: pastikan dalam rentang 1-5
+        CASE
+            WHEN review_score < 1 THEN 1
+            WHEN review_score > 5 THEN 5
+            ELSE review_score
+        END AS review_score,
+        review_comment_title,
+        review_comment_message,
+        review_creation_date,
+        review_answer_timestamp
+    FROM source
+)
+
+SELECT * FROM cleaned
+  );
+  
+[0m16:20:45.530333 [debug] [Thread-3 (]: SQL status: SELECT 99441 in 1.159 seconds
+[0m16:20:45.532059 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.008 seconds
+[0m16:20:45.533510 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:20:45.548830 [debug] [Thread-1 (]: On model.nusacode_de.stg_customers: COMMIT
+[0m16:20:45.545136 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.stg_orders"
+[0m16:20:45.552443 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_customers"
+[0m16:20:45.554019 [debug] [Thread-3 (]: On model.nusacode_de.stg_orders: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_orders"} */
+alter table "dw_nusacode"."staging"."stg_orders__dbt_tmp" rename to "stg_orders"
+[0m16:20:45.555857 [debug] [Thread-1 (]: On model.nusacode_de.stg_customers: COMMIT
+[0m16:20:45.585366 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.028 seconds
+[0m16:20:45.589351 [debug] [Thread-3 (]: On model.nusacode_de.stg_orders: COMMIT
+[0m16:20:45.590754 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.stg_orders"
+[0m16:20:45.591894 [debug] [Thread-3 (]: On model.nusacode_de.stg_orders: COMMIT
+[0m16:20:45.600495 [debug] [Thread-1 (]: SQL status: COMMIT in 0.043 seconds
+[0m16:20:45.606354 [debug] [Thread-1 (]: Applying DROP to: "dw_nusacode"."staging"."stg_customers__dbt_backup"
+[0m16:20:45.608412 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_customers"
+[0m16:20:45.609659 [debug] [Thread-3 (]: SQL status: COMMIT in 0.017 seconds
+[0m16:20:45.611176 [debug] [Thread-1 (]: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+drop table if exists "dw_nusacode"."staging"."stg_customers__dbt_backup" cascade
+[0m16:20:45.617421 [debug] [Thread-3 (]: Applying DROP to: "dw_nusacode"."staging"."stg_orders__dbt_backup"
+[0m16:20:45.619392 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.stg_orders"
+[0m16:20:45.620686 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.002 seconds
+[0m16:20:45.621976 [debug] [Thread-3 (]: On model.nusacode_de.stg_orders: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_orders"} */
+drop table if exists "dw_nusacode"."staging"."stg_orders__dbt_backup" cascade
+[0m16:20:45.626241 [debug] [Thread-1 (]: On model.nusacode_de.stg_customers: Close
+[0m16:20:45.628745 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad9057c9c10>]}
+[0m16:20:45.630426 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.003 seconds
+[0m16:20:45.632516 [info ] [Thread-1 (]: 1 of 7 OK created sql table model staging.stg_customers ........................ [[32mSELECT 99441[0m in 1.56s]
+[0m16:20:45.636956 [debug] [Thread-3 (]: On model.nusacode_de.stg_orders: Close
+[0m16:20:45.638470 [debug] [Thread-4 (]: SQL status: SELECT 32951 in 0.323 seconds
+[0m16:20:45.641057 [debug] [Thread-1 (]: Finished running node model.nusacode_de.stg_customers
+[0m16:20:45.648415 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90578a5d0>]}
+[0m16:20:45.651829 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_products"
+[0m16:20:45.653276 [debug] [Thread-1 (]: Began running node model.nusacode_de.stg_sellers
+[0m16:20:45.655093 [info ] [Thread-3 (]: 3 of 7 OK created sql table model staging.stg_orders ........................... [[32mSELECT 99441[0m in 1.58s]
+[0m16:20:45.657139 [debug] [Thread-4 (]: On model.nusacode_de.stg_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_products"} */
+alter table "dw_nusacode"."staging"."stg_products__dbt_tmp" rename to "stg_products"
+[0m16:20:45.659116 [info ] [Thread-1 (]: 7 of 7 START sql table model staging.stg_sellers ............................... [RUN]
+[0m16:20:45.661464 [debug] [Thread-3 (]: Finished running node model.nusacode_de.stg_orders
+[0m16:20:45.663777 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.nusacode_de.stg_customers, now model.nusacode_de.stg_sellers)
+[0m16:20:45.665862 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.003 seconds
+[0m16:20:45.667661 [debug] [Thread-1 (]: Began compiling node model.nusacode_de.stg_sellers
+[0m16:20:45.672248 [debug] [Thread-4 (]: On model.nusacode_de.stg_products: COMMIT
+[0m16:20:45.682891 [debug] [Thread-1 (]: Writing injected SQL for node "model.nusacode_de.stg_sellers"
+[0m16:20:45.684936 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_products"
+[0m16:20:45.686739 [debug] [Thread-4 (]: On model.nusacode_de.stg_products: COMMIT
+[0m16:20:45.688529 [debug] [Thread-1 (]: Began executing node model.nusacode_de.stg_sellers
+[0m16:20:45.699749 [debug] [Thread-1 (]: Writing runtime sql for node "model.nusacode_de.stg_sellers"
+[0m16:20:45.702178 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_sellers"
+[0m16:20:45.704206 [debug] [Thread-1 (]: On model.nusacode_de.stg_sellers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_sellers"} */
+
+  
+    
+
+  create  table "dw_nusacode"."staging"."stg_sellers__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Staging Model: stg_sellers
+-- Deskripsi    : Membersihkan data penjual, standarisasi format kota dan state.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."public"."dim_seller"
+),
+
+cleaned AS (
+    SELECT
+        seller_id,
+        seller_zip_code_prefix,
+        TRIM(INITCAP(seller_city)) AS seller_city,
+        UPPER(TRIM(seller_state)) AS seller_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+  );
+  
+[0m16:20:45.705832 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:20:45.718776 [debug] [Thread-4 (]: SQL status: COMMIT in 0.030 seconds
+[0m16:20:45.736590 [debug] [Thread-4 (]: Applying DROP to: "dw_nusacode"."staging"."stg_products__dbt_backup"
+[0m16:20:45.738649 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.stg_products"
+[0m16:20:45.740065 [debug] [Thread-4 (]: On model.nusacode_de.stg_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_products"} */
+drop table if exists "dw_nusacode"."staging"."stg_products__dbt_backup" cascade
+[0m16:20:45.743077 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m16:20:45.748672 [debug] [Thread-4 (]: On model.nusacode_de.stg_products: Close
+[0m16:20:45.751154 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad904371a60>]}
+[0m16:20:45.753834 [info ] [Thread-4 (]: 5 of 7 OK created sql table model staging.stg_products ......................... [[32mSELECT 32951[0m in 0.47s]
+[0m16:20:45.756076 [debug] [Thread-4 (]: Finished running node model.nusacode_de.stg_products
+[0m16:20:45.763265 [debug] [Thread-1 (]: SQL status: SELECT 3095 in 0.057 seconds
+[0m16:20:45.771569 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_sellers"
+[0m16:20:45.773385 [debug] [Thread-1 (]: On model.nusacode_de.stg_sellers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_sellers"} */
+alter table "dw_nusacode"."staging"."stg_sellers__dbt_tmp" rename to "stg_sellers"
+[0m16:20:45.776390 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m16:20:45.780177 [debug] [Thread-1 (]: On model.nusacode_de.stg_sellers: COMMIT
+[0m16:20:45.781442 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_sellers"
+[0m16:20:45.782384 [debug] [Thread-1 (]: On model.nusacode_de.stg_sellers: COMMIT
+[0m16:20:45.813967 [debug] [Thread-1 (]: SQL status: COMMIT in 0.030 seconds
+[0m16:20:45.820100 [debug] [Thread-1 (]: Applying DROP to: "dw_nusacode"."staging"."stg_sellers__dbt_backup"
+[0m16:20:45.821791 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.stg_sellers"
+[0m16:20:45.823027 [debug] [Thread-1 (]: On model.nusacode_de.stg_sellers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_sellers"} */
+drop table if exists "dw_nusacode"."staging"."stg_sellers__dbt_backup" cascade
+[0m16:20:45.825382 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m16:20:45.829187 [debug] [Thread-1 (]: On model.nusacode_de.stg_sellers: Close
+[0m16:20:45.831048 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad904370d10>]}
+[0m16:20:45.833094 [info ] [Thread-1 (]: 7 of 7 OK created sql table model staging.stg_sellers .......................... [[32mSELECT 3095[0m in 0.17s]
+[0m16:20:45.835024 [debug] [Thread-1 (]: Finished running node model.nusacode_de.stg_sellers
+[0m16:20:45.977550 [debug] [Thread-2 (]: SQL status: SELECT 99224 in 0.444 seconds
+[0m16:20:45.988140 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_reviews"
+[0m16:20:45.989540 [debug] [Thread-2 (]: On model.nusacode_de.stg_reviews: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_reviews"} */
+alter table "dw_nusacode"."staging"."stg_reviews__dbt_tmp" rename to "stg_reviews"
+[0m16:20:45.992598 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m16:20:45.996416 [debug] [Thread-2 (]: On model.nusacode_de.stg_reviews: COMMIT
+[0m16:20:45.997631 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_reviews"
+[0m16:20:45.998580 [debug] [Thread-2 (]: On model.nusacode_de.stg_reviews: COMMIT
+[0m16:20:46.056731 [debug] [Thread-2 (]: SQL status: COMMIT in 0.057 seconds
+[0m16:20:46.065226 [debug] [Thread-2 (]: Applying DROP to: "dw_nusacode"."staging"."stg_reviews__dbt_backup"
+[0m16:20:46.067612 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.stg_reviews"
+[0m16:20:46.069008 [debug] [Thread-2 (]: On model.nusacode_de.stg_reviews: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_reviews"} */
+drop table if exists "dw_nusacode"."staging"."stg_reviews__dbt_backup" cascade
+[0m16:20:46.071497 [debug] [Thread-2 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m16:20:46.076646 [debug] [Thread-2 (]: On model.nusacode_de.stg_reviews: Close
+[0m16:20:46.078859 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b6179e0a-7f65-4d67-a050-df31b0079bc4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad905770cb0>]}
+[0m16:20:46.081221 [info ] [Thread-2 (]: 6 of 7 OK created sql table model staging.stg_reviews .......................... [[32mSELECT 99224[0m in 0.60s]
+[0m16:20:46.083475 [debug] [Thread-2 (]: Finished running node model.nusacode_de.stg_reviews
+[0m16:20:46.087704 [debug] [MainThread]: On master: COMMIT
+[0m16:20:46.089532 [debug] [MainThread]: Using postgres connection "master"
+[0m16:20:46.091558 [debug] [MainThread]: On master: COMMIT
+[0m16:20:46.093425 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:20:46.113811 [debug] [MainThread]: SQL status: COMMIT in 0.020 seconds
+[0m16:20:46.115307 [debug] [MainThread]: On master: Close
+[0m16:20:46.117123 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:20:46.118135 [debug] [MainThread]: Connection 'model.nusacode_de.stg_sellers' was properly closed.
+[0m16:20:46.118759 [debug] [MainThread]: Connection 'model.nusacode_de.stg_reviews' was properly closed.
+[0m16:20:46.119338 [debug] [MainThread]: Connection 'model.nusacode_de.stg_orders' was properly closed.
+[0m16:20:46.119903 [debug] [MainThread]: Connection 'model.nusacode_de.stg_products' was properly closed.
+[0m16:20:46.120832 [info ] [MainThread]: 
+[0m16:20:46.121640 [info ] [MainThread]: Finished running 7 table models in 0 hours 0 minutes and 2.37 seconds (2.37s).
+[0m16:20:46.125045 [debug] [MainThread]: Command end result
+[0m16:20:46.203601 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:20:46.209162 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:20:46.221295 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m16:20:46.222257 [info ] [MainThread]: 
+[0m16:20:46.223260 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m16:20:46.224429 [info ] [MainThread]: 
+[0m16:20:46.225611 [info ] [MainThread]: Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7
+[0m16:20:46.227986 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.0663023, "process_in_blocks": "8", "process_kernel_time": 0.610889, "process_mem_max_rss": "147212", "process_out_blocks": "2832", "process_user_time": 8.045376}
+[0m16:20:46.229963 [debug] [MainThread]: Command `dbt run` succeeded at 16:20:46.229429 after 4.07 seconds
+[0m16:20:46.231421 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90630c260>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad9083e1b20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ad90ab48800>]}
+[0m16:20:46.232587 [debug] [MainThread]: Flushing usage events
+[0m16:20:47.894246 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:30:53.290574 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90eed903e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ef156ed0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90eed1ede0>]}
+
+
+============================== 16:30:53.296414 | 77a80a4f-1a63-4850-a4b3-66aca3ac43e5 ==============================
+[0m16:30:53.296414 [info ] [MainThread]: Running with dbt=1.11.11
+[0m16:30:53.297609 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'empty': 'False', 'version_check': 'True', 'log_cache_events': 'False', 'invocation_command': 'dbt run --select marts', 'write_json': 'True', 'no_print': 'None', 'cache_selected_only': 'False', 'quiet': 'False', 'log_format': 'default', 'printer_width': '80', 'partial_parse': 'True', 'debug': 'False', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'use_colors': 'True', 'fail_fast': 'False', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'warn_error': 'None', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'indirect_selection': 'eager', 'use_experimental_parser': 'False'}
+[0m16:30:53.731414 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90eea4c5f0>]}
+[0m16:30:53.847562 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90edff2030>]}
+[0m16:30:53.849222 [info ] [MainThread]: Registered adapter: postgres=1.10.1
+[0m16:30:53.996993 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m16:30:54.195811 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m16:30:54.196866 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90eea83410>]}
+[0m16:30:56.861508 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ebb7d460>]}
+[0m16:30:57.041121 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:30:57.045578 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:30:57.066742 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90eb7ada30>]}
+[0m16:30:57.067919 [info ] [MainThread]: Found 11 models, 33 data tests, 8 sources, 476 macros
+[0m16:30:57.068712 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90eb7a2ff0>]}
+[0m16:30:57.073238 [info ] [MainThread]: 
+[0m16:30:57.074181 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:30:57.075132 [info ] [MainThread]: 
+[0m16:30:57.076815 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:30:57.086344 [debug] [ThreadPool]: Acquiring new postgres connection 'list_dw_nusacode'
+[0m16:30:57.164147 [debug] [ThreadPool]: Using postgres connection "list_dw_nusacode"
+[0m16:30:57.165132 [debug] [ThreadPool]: On list_dw_nusacode: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_dw_nusacode"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m16:30:57.165756 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:30:57.189441 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.023 seconds
+[0m16:30:57.192460 [debug] [ThreadPool]: On list_dw_nusacode: Close
+[0m16:30:57.194180 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_dw_nusacode, now create_dw_nusacode_marts)
+[0m16:30:57.195425 [debug] [ThreadPool]: Creating schema "database: "dw_nusacode"
+schema: "marts"
+"
+[0m16:30:57.206646 [debug] [ThreadPool]: Using postgres connection "create_dw_nusacode_marts"
+[0m16:30:57.207655 [debug] [ThreadPool]: On create_dw_nusacode_marts: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "create_dw_nusacode_marts"} */
+create schema if not exists "marts"
+[0m16:30:57.208297 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:30:57.228308 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.020 seconds
+[0m16:30:57.230403 [debug] [ThreadPool]: On create_dw_nusacode_marts: COMMIT
+[0m16:30:57.231135 [debug] [ThreadPool]: Using postgres connection "create_dw_nusacode_marts"
+[0m16:30:57.231751 [debug] [ThreadPool]: On create_dw_nusacode_marts: COMMIT
+[0m16:30:57.237424 [debug] [ThreadPool]: SQL status: COMMIT in 0.005 seconds
+[0m16:30:57.238323 [debug] [ThreadPool]: On create_dw_nusacode_marts: Close
+[0m16:30:57.242568 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_dw_nusacode_marts, now list_dw_nusacode_staging)
+[0m16:30:57.249961 [debug] [ThreadPool]: Acquiring new postgres connection 'list_dw_nusacode_marts'
+[0m16:30:57.256849 [debug] [ThreadPool]: Using postgres connection "list_dw_nusacode_staging"
+[0m16:30:57.262917 [debug] [ThreadPool]: Using postgres connection "list_dw_nusacode_marts"
+[0m16:30:57.264343 [debug] [ThreadPool]: On list_dw_nusacode_staging: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_dw_nusacode_staging"} */
+select
+      'dw_nusacode' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'staging'
+    union all
+    select
+      'dw_nusacode' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'staging'
+    union all
+    select
+      'dw_nusacode' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'staging'
+  
+[0m16:30:57.265384 [debug] [ThreadPool]: On list_dw_nusacode_marts: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_dw_nusacode_marts"} */
+select
+      'dw_nusacode' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'marts'
+    union all
+    select
+      'dw_nusacode' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'marts'
+    union all
+    select
+      'dw_nusacode' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'marts'
+  
+[0m16:30:57.267014 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:30:57.268045 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:30:57.306530 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.038 seconds
+[0m16:30:57.307743 [debug] [ThreadPool]: SQL status: SELECT 7 in 0.041 seconds
+[0m16:30:57.310440 [debug] [ThreadPool]: On list_dw_nusacode_marts: ROLLBACK
+[0m16:30:57.314239 [debug] [ThreadPool]: On list_dw_nusacode_staging: ROLLBACK
+[0m16:30:57.316163 [debug] [ThreadPool]: On list_dw_nusacode_marts: Close
+[0m16:30:57.317118 [debug] [ThreadPool]: On list_dw_nusacode_staging: Close
+[0m16:30:57.333541 [debug] [MainThread]: Using postgres connection "master"
+[0m16:30:57.334660 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m16:30:57.335459 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:30:57.378208 [debug] [MainThread]: SQL status: SELECT 1 in 0.042 seconds
+[0m16:30:57.383008 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ebbab5f0>]}
+[0m16:30:57.384874 [debug] [MainThread]: On master: ROLLBACK
+[0m16:30:57.387156 [debug] [MainThread]: On master: COMMIT
+[0m16:30:57.388552 [debug] [MainThread]: Using postgres connection "master"
+[0m16:30:57.389788 [debug] [MainThread]: On master: COMMIT
+[0m16:30:57.391788 [debug] [MainThread]: SQL status: COMMIT in 0.001 seconds
+[0m16:30:57.393148 [debug] [MainThread]: On master: Close
+[0m16:30:57.401470 [debug] [Thread-1 (]: Began running node model.nusacode_de.dim_customers
+[0m16:30:57.402495 [debug] [Thread-2 (]: Began running node model.nusacode_de.dim_products
+[0m16:30:57.403460 [debug] [Thread-3 (]: Began running node model.nusacode_de.dim_sellers
+[0m16:30:57.404514 [debug] [Thread-4 (]: Began running node model.nusacode_de.fct_orders
+[0m16:30:57.405502 [info ] [Thread-1 (]: 1 of 4 START sql table model marts.dim_customers ............................... [RUN]
+[0m16:30:57.406628 [info ] [Thread-2 (]: 2 of 4 START sql table model marts.dim_products ................................ [RUN]
+[0m16:30:57.407770 [info ] [Thread-3 (]: 3 of 4 START sql table model marts.dim_sellers ................................. [RUN]
+[0m16:30:57.409763 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_dw_nusacode_staging, now model.nusacode_de.dim_customers)
+[0m16:30:57.408890 [info ] [Thread-4 (]: 4 of 4 START sql table model marts.fct_orders .................................. [RUN]
+[0m16:30:57.411000 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_dw_nusacode_marts, now model.nusacode_de.dim_products)
+[0m16:30:57.412718 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.nusacode_de.dim_sellers'
+[0m16:30:57.414001 [debug] [Thread-1 (]: Began compiling node model.nusacode_de.dim_customers
+[0m16:30:57.415445 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.nusacode_de.fct_orders'
+[0m16:30:57.416604 [debug] [Thread-2 (]: Began compiling node model.nusacode_de.dim_products
+[0m16:30:57.417675 [debug] [Thread-3 (]: Began compiling node model.nusacode_de.dim_sellers
+[0m16:30:57.437744 [debug] [Thread-1 (]: Writing injected SQL for node "model.nusacode_de.dim_customers"
+[0m16:30:57.439032 [debug] [Thread-4 (]: Began compiling node model.nusacode_de.fct_orders
+[0m16:30:57.448545 [debug] [Thread-2 (]: Writing injected SQL for node "model.nusacode_de.dim_products"
+[0m16:30:57.455967 [debug] [Thread-3 (]: Writing injected SQL for node "model.nusacode_de.dim_sellers"
+[0m16:30:57.471425 [debug] [Thread-4 (]: Writing injected SQL for node "model.nusacode_de.fct_orders"
+[0m16:30:57.473253 [debug] [Thread-1 (]: Began executing node model.nusacode_de.dim_customers
+[0m16:30:57.474639 [debug] [Thread-2 (]: Began executing node model.nusacode_de.dim_products
+[0m16:30:57.475640 [debug] [Thread-3 (]: Began executing node model.nusacode_de.dim_sellers
+[0m16:30:57.594170 [debug] [Thread-4 (]: Began executing node model.nusacode_de.fct_orders
+[0m16:30:57.708486 [debug] [Thread-3 (]: Writing runtime sql for node "model.nusacode_de.dim_sellers"
+[0m16:30:57.724910 [debug] [Thread-4 (]: Writing runtime sql for node "model.nusacode_de.fct_orders"
+[0m16:30:57.754002 [debug] [Thread-2 (]: Writing runtime sql for node "model.nusacode_de.dim_products"
+[0m16:30:57.756075 [debug] [Thread-1 (]: Writing runtime sql for node "model.nusacode_de.dim_customers"
+[0m16:30:57.758810 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.dim_sellers"
+[0m16:30:57.761073 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.fct_orders"
+[0m16:30:57.762970 [debug] [Thread-3 (]: On model.nusacode_de.dim_sellers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_sellers"} */
+
+  
+    
+
+  create  table "dw_nusacode"."marts"."dim_sellers__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Marts Model: dim_sellers
+-- Deskripsi    : Dimension table untuk data penjual. Berisi informasi
+--                demografis dan metrik performa tiap seller.
+--                Grain: satu baris per penjual (seller_id).
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."staging"."stg_sellers"
+),
+
+order_items AS (
+    SELECT
+        seller_id,
+        COUNT(DISTINCT order_id) AS total_orders,
+        SUM(price) AS total_revenue,
+        SUM(freight_value) AS total_freight,
+        COUNT(DISTINCT product_id) AS unique_products
+    FROM "dw_nusacode"."staging"."stg_order_items"
+    GROUP BY seller_id
+),
+
+reviews AS (
+    SELECT
+        oi.seller_id,
+        ROUND(AVG(r.review_score), 2) AS avg_customer_review,
+        COUNT(r.review_id) AS total_reviews
+    FROM "dw_nusacode"."staging"."stg_reviews" r
+    JOIN "dw_nusacode"."staging"."stg_order_items" oi
+        ON r.order_id = oi.order_id
+    GROUP BY oi.seller_id
+),
+
+final AS (
+    SELECT
+        s.seller_id,
+        s.seller_city,
+        s.seller_state,
+
+        -- Metrik performa
+        COALESCE(oi.total_orders, 0) AS total_orders,
+        COALESCE(oi.total_revenue, 0) AS total_revenue,
+        COALESCE(oi.total_freight, 0) AS total_freight,
+        COALESCE(oi.unique_products, 0) AS unique_products,
+
+        -- Metrik review
+        COALESCE(r.avg_customer_review, 0) AS avg_customer_review,
+        COALESCE(r.total_reviews, 0) AS total_reviews
+
+    FROM source s
+    LEFT JOIN order_items oi ON s.seller_id = oi.seller_id
+    LEFT JOIN reviews r ON s.seller_id = r.seller_id
+)
+
+SELECT * FROM final
+  );
+  
+[0m16:30:57.765140 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.dim_products"
+[0m16:30:57.767550 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.dim_customers"
+[0m16:30:57.769903 [debug] [Thread-4 (]: On model.nusacode_de.fct_orders: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.fct_orders"} */
+
+  
+    
+
+  create  table "dw_nusacode"."marts"."fct_orders__dbt_tmp"
+  
+  
+    as
+  
+  (
+    WITH orders AS (
+    SELECT * FROM "dw_nusacode"."staging"."stg_orders"
+),
+
+items AS (
+    SELECT * FROM "dw_nusacode"."staging"."stg_order_items"
+),
+
+payments AS (
+    SELECT
+        order_id,
+        SUM(payment_value) AS total_payment,
+        COUNT(DISTINCT payment_type) AS payment_method_count,
+        STRING_AGG(DISTINCT payment_type, ', ') AS payment_types
+    FROM "dw_nusacode"."staging"."stg_payments"
+    GROUP BY order_id
+),
+
+reviews AS (
+    SELECT
+        order_id,
+        AVG(review_score) AS avg_review_score,
+        COUNT(review_id) AS review_count
+    FROM "dw_nusacode"."staging"."stg_reviews"
+    GROUP BY order_id
+),
+
+joined AS (
+    SELECT
+        o.order_id,
+        o.customer_id,
+        o.order_status,
+        o.is_delivered,
+        o.is_canceled,
+        o.order_purchase_timestamp,
+        o.order_approved_at,
+        o.order_delivered_customer_date,
+        o.approval_hours,
+
+        COUNT(DISTINCT i.order_item_id) AS item_count,
+        SUM(i.price) AS total_price,
+        SUM(i.freight_value) AS total_freight,
+        SUM(i.price + i.freight_value) AS total_order_value,
+        COUNT(DISTINCT i.product_id) AS unique_products,
+        COUNT(DISTINCT i.seller_id) AS unique_sellers,
+
+        COALESCE(p.total_payment, 0) AS total_payment,
+        COALESCE(p.payment_method_count, 0) AS payment_method_count,
+        p.payment_types,
+
+        COALESCE(r.avg_review_score, 0) AS avg_review_score,
+        COALESCE(r.review_count, 0) AS review_count
+
+    FROM orders o
+    LEFT JOIN items i ON o.order_id = i.order_id
+    LEFT JOIN payments p ON o.order_id = p.order_id
+    LEFT JOIN reviews r ON o.order_id = r.order_id
+    GROUP BY
+        o.order_id, o.customer_id, o.order_status,
+        o.is_delivered, o.is_canceled,
+        o.order_purchase_timestamp, o.order_approved_at,
+        o.order_delivered_customer_date, o.approval_hours,
+        p.total_payment, p.payment_method_count, p.payment_types,
+        r.avg_review_score, r.review_count
+)
+
+SELECT
+    order_id,
+    customer_id,
+    order_status,
+    is_delivered,
+    is_canceled,
+    order_purchase_timestamp,
+    order_approved_at,
+    order_delivered_customer_date,
+    approval_hours,
+    item_count,
+    total_price,
+    total_freight,
+    total_order_value,
+    unique_products,
+    unique_sellers,
+    total_payment,
+    payment_method_count,
+    payment_types,
+    avg_review_score,
+    review_count
+FROM joined
+WHERE NOT is_canceled
+  );
+  
+[0m16:30:57.772587 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m16:30:57.774480 [debug] [Thread-2 (]: On model.nusacode_de.dim_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_products"} */
+
+  
+    
+
+  create  table "dw_nusacode"."marts"."dim_products__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- ============================================================================
+-- Marts Model: dim_products
+-- Deskripsi    : Dimension table untuk data produk. Menggabungkan produk
+--                dengan kategori Bahasa Inggris.
+--                Grain: satu baris per produk (product_id).
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM "dw_nusacode"."staging"."stg_products"
+),
+
+order_items AS (
+    SELECT
+        product_id,
+        COUNT(DISTINCT order_id) AS total_orders,
+        SUM(price) AS total_revenue,
+        SUM(freight_value) AS total_freight,
+        COUNT(DISTINCT seller_id) AS total_sellers
+    FROM "dw_nusacode"."staging"."stg_order_items"
+    GROUP BY product_id
+),
+
+final AS (
+    SELECT
+        p.product_id,
+        p.product_category_name,
+        p.product_category_english,
+        p.product_weight_g,
+        p.product_length_cm,
+        p.product_height_cm,
+        p.product_width_cm,
+
+        -- Metrik performa
+        COALESCE(oi.total_orders, 0) AS total_orders,
+        COALESCE(oi.total_revenue, 0) AS total_revenue,
+        COALESCE(oi.total_freight, 0) AS total_freight,
+        COALESCE(oi.total_sellers, 0) AS total_sellers
+
+    FROM source p
+    LEFT JOIN order_items oi ON p.product_id = oi.product_id
+)
+
+SELECT * FROM final
+  );
+  
+[0m16:30:57.775871 [debug] [Thread-1 (]: On model.nusacode_de.dim_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_customers"} */
+
+  
+    
+
+  create  table "dw_nusacode"."marts"."dim_customers__dbt_tmp"
+  
+  
+    as
+  
+  (
+    WITH customers AS (
+    SELECT * FROM "dw_nusacode"."staging"."stg_customers"
+),
+
+orders AS (
+    SELECT * FROM "dw_nusacode"."staging"."stg_orders"
+),
+
+items AS (
+    SELECT * FROM "dw_nusacode"."staging"."stg_order_items"
+),
+
+payments AS (
+    SELECT
+        order_id,
+        SUM(payment_value) AS total_payment,
+        COUNT(DISTINCT payment_type) AS payment_method_count,
+        STRING_AGG(DISTINCT payment_type, ', ') AS payment_types
+    FROM "dw_nusacode"."staging"."stg_payments"
+    GROUP BY order_id
+),
+
+reviews AS (
+    SELECT
+        order_id,
+        AVG(review_score) AS avg_review_score,
+        COUNT(review_id) AS review_count
+    FROM "dw_nusacode"."staging"."stg_reviews"
+    GROUP BY order_id
+),
+
+order_details AS (
+    SELECT
+        o.order_id,
+        o.customer_id,
+        o.is_delivered,
+        o.is_canceled,
+        o.order_purchase_timestamp,
+        COALESCE(p.total_payment, 0) AS total_payment,
+        COALESCE(r.avg_review_score, 0) AS avg_review_score
+
+    FROM orders o
+    LEFT JOIN payments p ON o.order_id = p.order_id
+    LEFT JOIN reviews r ON o.order_id = r.order_id
+),
+
+customer_summary AS (
+    SELECT
+        c.customer_id,
+        c.customer_unique_id,
+        c.customer_city,
+        c.customer_state,
+
+        COUNT(DISTINCT o.order_id) AS total_orders,
+        COUNT(DISTINCT CASE WHEN o.is_delivered THEN o.order_id END) AS delivered_orders,
+        COUNT(DISTINCT CASE WHEN o.is_canceled THEN o.order_id END) AS canceled_orders,
+        SUM(o.total_payment) AS total_revenue,
+        AVG(o.avg_review_score) AS avg_review_score,
+        MIN(o.order_purchase_timestamp) AS first_order_date,
+        MAX(o.order_purchase_timestamp) AS last_order_date
+
+    FROM customers c
+    LEFT JOIN order_details o ON c.customer_id = o.customer_id
+    GROUP BY
+        c.customer_id, c.customer_unique_id,
+        c.customer_city, c.customer_state
+)
+
+SELECT
+    customer_id,
+    customer_unique_id,
+    customer_city,
+    customer_state,
+    total_orders,
+    delivered_orders,
+    canceled_orders,
+
+    CASE
+        WHEN total_orders > 0
+        THEN ROUND(delivered_orders::NUMERIC / total_orders, 2)
+        ELSE 0
+    END AS delivery_rate,
+
+    total_revenue,
+    avg_review_score,
+    first_order_date,
+    last_order_date,
+
+    CASE
+        WHEN first_order_date IS NOT NULL AND last_order_date IS NOT NULL
+        THEN EXTRACT(DAY FROM (last_order_date - first_order_date))
+        ELSE 0
+    END AS customer_tenure_days
+
+FROM customer_summary
+  );
+  
+[0m16:30:57.777343 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m16:30:57.779071 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m16:30:57.780747 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:30:58.967151 [debug] [Thread-2 (]: SQL status: SELECT 32951 in 1.188 seconds
+[0m16:30:58.977013 [debug] [Thread-3 (]: SQL status: SELECT 3095 in 1.205 seconds
+[0m16:30:58.992235 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.dim_products"
+[0m16:30:59.001192 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.dim_sellers"
+[0m16:30:59.003005 [debug] [Thread-2 (]: On model.nusacode_de.dim_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_products"} */
+alter table "dw_nusacode"."marts"."dim_products__dbt_tmp" rename to "dim_products"
+[0m16:30:59.004429 [debug] [Thread-3 (]: On model.nusacode_de.dim_sellers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_sellers"} */
+alter table "dw_nusacode"."marts"."dim_sellers__dbt_tmp" rename to "dim_sellers"
+[0m16:30:59.007402 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m16:30:59.008658 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.003 seconds
+[0m16:30:59.091407 [debug] [Thread-2 (]: On model.nusacode_de.dim_products: COMMIT
+[0m16:30:59.092810 [debug] [Thread-3 (]: On model.nusacode_de.dim_sellers: COMMIT
+[0m16:30:59.094166 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.dim_products"
+[0m16:30:59.095304 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.dim_sellers"
+[0m16:30:59.096446 [debug] [Thread-2 (]: On model.nusacode_de.dim_products: COMMIT
+[0m16:30:59.097570 [debug] [Thread-3 (]: On model.nusacode_de.dim_sellers: COMMIT
+[0m16:30:59.118750 [debug] [Thread-2 (]: SQL status: COMMIT in 0.019 seconds
+[0m16:30:59.125576 [debug] [Thread-3 (]: SQL status: COMMIT in 0.026 seconds
+[0m16:30:59.135795 [debug] [Thread-2 (]: Applying DROP to: "dw_nusacode"."marts"."dim_products__dbt_backup"
+[0m16:30:59.141498 [debug] [Thread-3 (]: Applying DROP to: "dw_nusacode"."marts"."dim_sellers__dbt_backup"
+[0m16:30:59.155969 [debug] [Thread-2 (]: Using postgres connection "model.nusacode_de.dim_products"
+[0m16:30:59.157849 [debug] [Thread-3 (]: Using postgres connection "model.nusacode_de.dim_sellers"
+[0m16:30:59.159040 [debug] [Thread-2 (]: On model.nusacode_de.dim_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_products"} */
+drop table if exists "dw_nusacode"."marts"."dim_products__dbt_backup" cascade
+[0m16:30:59.159948 [debug] [Thread-3 (]: On model.nusacode_de.dim_sellers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_sellers"} */
+drop table if exists "dw_nusacode"."marts"."dim_sellers__dbt_backup" cascade
+[0m16:30:59.161977 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m16:30:59.163189 [debug] [Thread-2 (]: SQL status: DROP TABLE in 0.002 seconds
+[0m16:30:59.169572 [debug] [Thread-3 (]: On model.nusacode_de.dim_sellers: Close
+[0m16:30:59.172928 [debug] [Thread-2 (]: On model.nusacode_de.dim_products: Close
+[0m16:30:59.178639 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90f0f0a3c0>]}
+[0m16:30:59.179891 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90e9809820>]}
+[0m16:30:59.182364 [info ] [Thread-3 (]: 3 of 4 OK created sql table model marts.dim_sellers ............................ [[32mSELECT 3095[0m in 1.76s]
+[0m16:30:59.184886 [info ] [Thread-2 (]: 2 of 4 OK created sql table model marts.dim_products ........................... [[32mSELECT 32951[0m in 1.77s]
+[0m16:30:59.187489 [debug] [Thread-3 (]: Finished running node model.nusacode_de.dim_sellers
+[0m16:30:59.189431 [debug] [Thread-2 (]: Finished running node model.nusacode_de.dim_products
+[0m16:31:00.408573 [debug] [Thread-1 (]: SQL status: SELECT 99441 in 2.628 seconds
+[0m16:31:00.419343 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.dim_customers"
+[0m16:31:00.421049 [debug] [Thread-1 (]: On model.nusacode_de.dim_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_customers"} */
+alter table "dw_nusacode"."marts"."dim_customers__dbt_tmp" rename to "dim_customers"
+[0m16:31:00.423989 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m16:31:00.427418 [debug] [Thread-1 (]: On model.nusacode_de.dim_customers: COMMIT
+[0m16:31:00.428464 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.dim_customers"
+[0m16:31:00.429239 [debug] [Thread-1 (]: On model.nusacode_de.dim_customers: COMMIT
+[0m16:31:00.446625 [debug] [Thread-1 (]: SQL status: COMMIT in 0.016 seconds
+[0m16:31:00.454823 [debug] [Thread-1 (]: Applying DROP to: "dw_nusacode"."marts"."dim_customers__dbt_backup"
+[0m16:31:00.457836 [debug] [Thread-1 (]: Using postgres connection "model.nusacode_de.dim_customers"
+[0m16:31:00.459794 [debug] [Thread-1 (]: On model.nusacode_de.dim_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.dim_customers"} */
+drop table if exists "dw_nusacode"."marts"."dim_customers__dbt_backup" cascade
+[0m16:31:00.462671 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m16:31:00.468111 [debug] [Thread-1 (]: On model.nusacode_de.dim_customers: Close
+[0m16:31:00.470706 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90eb715fa0>]}
+[0m16:31:00.473541 [info ] [Thread-1 (]: 1 of 4 OK created sql table model marts.dim_customers .......................... [[32mSELECT 99441[0m in 3.06s]
+[0m16:31:00.476383 [debug] [Thread-1 (]: Finished running node model.nusacode_de.dim_customers
+[0m16:31:03.063859 [debug] [Thread-4 (]: SQL status: SELECT 98207 in 5.286 seconds
+[0m16:31:03.076440 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.fct_orders"
+[0m16:31:03.078441 [debug] [Thread-4 (]: On model.nusacode_de.fct_orders: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.fct_orders"} */
+alter table "dw_nusacode"."marts"."fct_orders__dbt_tmp" rename to "fct_orders"
+[0m16:31:03.082501 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m16:31:03.085881 [debug] [Thread-4 (]: On model.nusacode_de.fct_orders: COMMIT
+[0m16:31:03.087203 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.fct_orders"
+[0m16:31:03.088062 [debug] [Thread-4 (]: On model.nusacode_de.fct_orders: COMMIT
+[0m16:31:03.090279 [debug] [Thread-4 (]: SQL status: COMMIT in 0.001 seconds
+[0m16:31:03.098696 [debug] [Thread-4 (]: Applying DROP to: "dw_nusacode"."marts"."fct_orders__dbt_backup"
+[0m16:31:03.100299 [debug] [Thread-4 (]: Using postgres connection "model.nusacode_de.fct_orders"
+[0m16:31:03.101191 [debug] [Thread-4 (]: On model.nusacode_de.fct_orders: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.fct_orders"} */
+drop table if exists "dw_nusacode"."marts"."fct_orders__dbt_backup" cascade
+[0m16:31:03.103004 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m16:31:03.106002 [debug] [Thread-4 (]: On model.nusacode_de.fct_orders: Close
+[0m16:31:03.107365 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '77a80a4f-1a63-4850-a4b3-66aca3ac43e5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90e8794680>]}
+[0m16:31:03.108917 [info ] [Thread-4 (]: 4 of 4 OK created sql table model marts.fct_orders ............................. [[32mSELECT 98207[0m in 5.69s]
+[0m16:31:03.110351 [debug] [Thread-4 (]: Finished running node model.nusacode_de.fct_orders
+[0m16:31:03.113722 [debug] [MainThread]: On master: COMMIT
+[0m16:31:03.114807 [debug] [MainThread]: Using postgres connection "master"
+[0m16:31:03.115551 [debug] [MainThread]: On master: COMMIT
+[0m16:31:03.116250 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:31:03.133551 [debug] [MainThread]: SQL status: COMMIT in 0.017 seconds
+[0m16:31:03.134591 [debug] [MainThread]: On master: Close
+[0m16:31:03.135609 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:31:03.136290 [debug] [MainThread]: Connection 'model.nusacode_de.dim_customers' was properly closed.
+[0m16:31:03.136948 [debug] [MainThread]: Connection 'model.nusacode_de.dim_products' was properly closed.
+[0m16:31:03.137602 [debug] [MainThread]: Connection 'model.nusacode_de.dim_sellers' was properly closed.
+[0m16:31:03.138249 [debug] [MainThread]: Connection 'model.nusacode_de.fct_orders' was properly closed.
+[0m16:31:03.139885 [info ] [MainThread]: 
+[0m16:31:03.141895 [info ] [MainThread]: Finished running 4 table models in 0 hours 0 minutes and 6.06 seconds (6.06s).
+[0m16:31:03.145951 [debug] [MainThread]: Command end result
+[0m16:31:03.223193 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m16:31:03.227572 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m16:31:03.238299 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m16:31:03.239187 [info ] [MainThread]: 
+[0m16:31:03.239950 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m16:31:03.240654 [info ] [MainThread]: 
+[0m16:31:03.241379 [info ] [MainThread]: Done. PASS=4 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=4
+[0m16:31:03.243236 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 10.066511, "process_in_blocks": "0", "process_kernel_time": 0.564559, "process_mem_max_rss": "155100", "process_out_blocks": "3864", "process_user_time": 9.925254}
+[0m16:31:03.244268 [debug] [MainThread]: Command `dbt run` succeeded at 16:31:03.244098 after 10.07 seconds
+[0m16:31:03.245054 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ee9eac00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ef133230>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ecf74170>]}
+[0m16:31:03.245826 [debug] [MainThread]: Flushing usage events
+[0m16:31:05.504649 [debug] [MainThread]: An error was encountered while trying to flush usage events
