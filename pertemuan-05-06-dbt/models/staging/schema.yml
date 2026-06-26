@@ -1,0 +1,112 @@
+# ============================================================================
+# Staging Layer — Source Definitions & Tests
+# ============================================================================
+# Mendefinisikan sumber data mentah (raw_schema) yang digunakan oleh staging models.
+# Dengan deklarasi ini, model dbt bisa menggunakan {{ source() }} alih-alih
+# menulis hardcoded "raw_schema.nama_tabel".
+
+version: 2
+
+sources:
+  - name: public
+    description: "Data mentah Olist yang sudah di-load ke PostgreSQL dari Sesi 3"
+    database: dw_nusacode
+    schema: public
+    tables:
+      - name: dim_customer
+        description: "Data pelanggan Olist"
+        columns:
+          - name: customer_id
+            description: "Primary key pelanggan"
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_product
+        description: "Data produk Olist"
+        columns:
+          - name: product_id
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_product_category
+        description: "Terjemahan kategori produk (Portugis -> Inggris)"
+
+      - name: dim_seller
+        description: "Data penjual Olist"
+        columns:
+          - name: seller_id
+            tests:
+              - unique
+              - not_null
+
+      - name: fact_order
+        description: "Data pesanan/transaksi utama"
+        columns:
+          - name: order_id
+            tests:
+              - unique
+              - not_null
+
+      - name: fact_order_item
+        description: "Item detail dalam setiap pesanan"
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+          - name: order_item_id
+            tests:
+              - not_null
+
+      - name: fact_order_payment
+        description: "Metode pembayaran per pesanan"
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+
+      - name: fact_order_review
+        description: "Ulasan/review per pesanan"
+        columns:
+          - name: review_id
+            tests:
+              - unique
+              - not_null
+
+models:
+  - name: stg_customers
+    description: "Staging model untuk data pelanggan. Membersihkan dan menstandarisasi kolom."
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: "Staging model untuk data pesanan. Menambahkan flag status."
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_order_items
+    description: "Staging model untuk item pesanan. Memastikan harga dan freight bernilai positif."
+
+  - name: stg_products
+    description: "Staging model untuk produk dengan kategori bahasa Inggris."
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sellers
+    description: "Staging model untuk data penjual."
+
+  - name: stg_payments
+    description: "Staging model untuk pembayaran per pesanan."
+
+  - name: stg_reviews
+    description: "Staging model untuk review pesanan. Menstandarisasi skor review."

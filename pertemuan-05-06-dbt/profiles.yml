@@ -1,0 +1,31 @@
+# ============================================================================
+# dbt Profile — NusaCode DE Beginner
+# ============================================================================
+# Nilai kredensial diambil dari environment variable.
+# Setup: cp .env.example .env lalu isi sesuai PostgreSQL lokal Anda.
+#
+# Cara run:
+#   python -m dotenv -f .env run -- dbt run --select stg_customers
+#   atau:
+#   source <(grep -v '^#' .env | xargs) && dbt run --select stg_customers
+# ============================================================================
+
+nusacode_de:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+
+      # === Koneksi ke PostgreSQL lokal (dari env) ===
+      host: "{{ env_var('DBT_HOST') }}"
+      user: "{{ env_var('DBT_USER') }}"
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      port: "{{ env_var('DBT_PORT') | int }}"
+      database: "{{ env_var('DBT_DATABASE')}}"
+      schema: "{{ env_var('DBT_SCHEMA') }}"
+
+      # === Connection Pool Settings ===
+      threads: "{{ env_var('DBT_THREADS') | int }}"
+      connect_timeout: "{{ env_var('DBT_CONNECT_TIMEOUT') | int }}"
+      keepalives_idle: 0
+      priority: 1
