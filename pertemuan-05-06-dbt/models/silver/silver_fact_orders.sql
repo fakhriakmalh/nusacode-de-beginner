@@ -40,7 +40,7 @@ cleaned AS (
         END AS is_canceled,
 
         -- Durasi konfirmasi pesanan (approved - purchase) dalam jam
-        EXTRACT(EPOCH FROM (order_approved_at - order_purchase_timestamp)) / 3600
+        dateDiff('second', toDateTime(order_purchase_timestamp), toDateTime(order_approved_at)) / 3600.0
             AS approval_hours
     FROM source
 )
