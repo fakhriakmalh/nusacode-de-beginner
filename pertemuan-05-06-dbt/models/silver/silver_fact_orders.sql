@@ -1,11 +1,13 @@
 {{ config(
     materialized='table',
+    alias='silver_fact_orders',
     engine='MergeTree()',
-    order_by='order_id'
+    order_by='order_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
--- Staging Model: stg_orders
+-- Silver Model: silver_fact_orders
 -- Deskripsi    : Membersihkan data pesanan dan menambahkan kolom flag
 --                untuk memudahkan filtering di model selanjutnya.
 -- ============================================================================

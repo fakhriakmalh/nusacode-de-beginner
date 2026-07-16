@@ -1,19 +1,20 @@
 {{ config(
     materialized='table',
     engine='MergeTree()',
-    order_by='customer_id'
+    order_by='customer_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 WITH customers AS (
-    SELECT * FROM {{ ref('stg_customers') }}
+    SELECT * FROM {{ ref('silver_dim_customers') }}
 ),
 
 orders AS (
-    SELECT * FROM {{ ref('stg_orders') }}
+    SELECT * FROM {{ ref('silver_fact_orders') }}
 ),
 
 items AS (
-    SELECT * FROM {{ ref('stg_order_items') }}
+    SELECT * FROM {{ ref('silver_fact_order_items') }}
 ),
 
 payments AS (
@@ -22,7 +23,7 @@ payments AS (
         SUM(payment_value) AS total_payment,
         COUNT(DISTINCT payment_type) AS payment_method_count,
         STRING_AGG(DISTINCT payment_type, ', ') AS payment_types
-    FROM {{ ref('stg_payments') }}
+    FROM {{ ref('silver_fact_payments') }}
     GROUP BY order_id
 ),
 
@@ -31,7 +32,7 @@ reviews AS (
         order_id,
         AVG(review_score) AS avg_review_score,
         COUNT(review_id) AS review_count
-    FROM {{ ref('stg_reviews') }}
+    FROM {{ ref('silver_fact_reviews') }}
     GROUP BY order_id
 ),
 

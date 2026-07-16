@@ -1,7 +1,8 @@
 {{ config(
     materialized='table',
     engine='MergeTree()',
-    order_by='product_id'
+    order_by='product_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
@@ -12,7 +13,7 @@
 -- ============================================================================
 
 WITH source AS (
-    SELECT * FROM {{ ref('stg_products') }}
+    SELECT * FROM {{ ref('silver_dim_products') }}
 ),
 
 order_items AS (
@@ -22,7 +23,7 @@ order_items AS (
         SUM(price) AS total_revenue,
         SUM(freight_value) AS total_freight,
         COUNT(DISTINCT seller_id) AS total_sellers
-    FROM {{ ref('stg_order_items') }}
+    FROM {{ ref('silver_fact_order_items') }}
     GROUP BY product_id
 ),
 

@@ -1,11 +1,13 @@
 {{ config(
     materialized='table',
+    alias='silver_fact_payments',
     engine='MergeTree()',
-    order_by='(order_id, payment_sequential)'
+    order_by='(order_id, payment_sequential)',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
--- Staging Model: stg_payments
+-- Silver Model: silver_fact_payments
 -- Deskripsi    : Membersihkan data pembayaran per pesanan.
 -- ============================================================================
 

@@ -26,7 +26,7 @@ Module ini mencakup **Sesi 5 & 6** dari kursus Data Engineer Beginner. Fokus uta
 │  ┌──────────────────────────────────────────────────┐    │
 │  │  🔷 INTERMEDIATE LAYER (Silver)                   │    │
 │  │  int_order_details  int_customer_orders           │    │
-│  │  → Join antar staging, agregasi awal              │    │
+│  │  → Join antar silver, agregasi awal              │    │
 │  └───────────────────────┬──────────────────────────┘    │
 │                          │                                │
 │                          ▼                                │
@@ -56,7 +56,7 @@ pertemuan-05-06-dbt/
 ├── PANDUAN_MENGAJAR_SESI_6.md        ← Panduan mengajar sesi 6
 │
 ├── models/
-│   ├── staging/                      ← Bronze layer
+│   ├── silver/                       ← Bronze/Silver layer
 │   │   ├── schema.yml                ← Source & test definitions
 │   │   ├── stg_customers.sql
 │   │   ├── stg_orders.sql
@@ -70,7 +70,7 @@ pertemuan-05-06-dbt/
 │   │   ├── int_order_details.sql
 │   │   └── int_customer_orders.sql
 │   │
-│   └── marts/                        ← Gold layer (Star Schema)
+│   └── gold/                        ← Gold layer (Star Schema)
 │       ├── schema.yml                ← Marts test definitions
 │       ├── dim_customers.sql
 │       ├── dim_products.sql
@@ -128,12 +128,12 @@ dbt debug
 ### Jalankan Pipeline
 
 ```bash
-# Run semua model (stg → marts)
+# Run semua model (stg → gold)
 dbt run
 
 # Run spesifik layer
-dbt run --select staging
-dbt run --select marts
+dbt run --select silver
+dbt run --select gold
 
 # Jalankan test data quality
 dbt test
@@ -151,11 +151,11 @@ dbt docs serve
 |----------|--------|
 | `dbt debug` | Cek koneksi database |
 | `dbt run` | Jalankan semua model |
-| `dbt run --select stg_*` | Jalankan hanya staging |
+| `dbt run --select stg_*` | Jalankan hanya silver |
 | `dbt run --select int_*` | Jalankan hanya intermediate |
-| `dbt run --select marts` | Jalankan hanya marts |
+| `dbt run --select gold` | Jalankan hanya gold |
 | `dbt test` | Jalankan semua data test |
-| `dbt test --select marts` | Test hanya marts layer |
+| `dbt test --select gold` | Test hanya gold layer |
 | `dbt docs generate` | Generate dokumentasi HTML |
 | `dbt docs serve` | Buka dokumentasi di browser |
 | `dbt ls` | List semua model |
@@ -203,7 +203,7 @@ WHERE total_revenue < 0
 ### Sesi 6: Data Modeling & Star Schema (120 menit)
 
 - **Star Schema** — Fact vs Dimension tables
-- **Intermediate Models** — joining staging tables
+- **Intermediate Models** — joining silver tables
 - **Marts Models** — dim_ & fct_ tables
 - **dbt Lineage Graph** — visual DAG
 - **Data Testing & Documentation**
@@ -238,8 +238,8 @@ WHERE total_revenue < 0
    - Keduanya punya *use case berbeda*
 
 2. **Waktu terbatas** — 120 menit per sesi sudah padat:
-   - Sesi 5: instalasi, setup, staging, run pertama
-   - Sesi 6: star schema, intermediate, marts, lineage, testing
+   - Sesi 5: instalasi, setup, silver, run pertama
+   - Sesi 6: star schema, intermediate, gold, lineage, testing
    
    Menambahkan Python comparison akan memakan minimal 30-45 menit.
 
@@ -302,7 +302,7 @@ Source tables di `raw_schema`:
 1. Jalankan seluruh pipeline: `dbt run`
 2. Verifikasi lineage graph: `dbt docs serve`
 3. Buat 3 test kustom di folder `tests/`
-4. Tulis 2 query analitik di atas `dbt_marts`
+4. Tulis 2 query analitik di atas `dbt_gold`
 
 **Kriteria Nilai A:**
 - ✅ Semua model berjalan sukses

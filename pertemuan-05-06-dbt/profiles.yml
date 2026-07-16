@@ -20,7 +20,7 @@ nusacode_de:
       user: "{{ env_var('DBT_USER') }}"
       password: "{{ env_var('DBT_PASSWORD') }}"
       schema: "{{ env_var('DBT_SCHEMA') }}"
-      secure: {{ env_var('DBT_SECURE', 'false') | lower }}
+      # secure: "{{ env_var('DBT_SECURE', 'false') == 'true' }}"
 
       # === Connection Settings ===
       threads: "{{ env_var('DBT_THREADS') | int }}"

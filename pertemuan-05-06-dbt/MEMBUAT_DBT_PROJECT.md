@@ -54,11 +54,11 @@ clean-targets:
 
 models:
   nusacode_de:
-    staging:
-      +schema: staging
+    silver:
+      +schema: silver
 
-    marts:
-      +schema: marts
+    gold:
+      +schema: gold
 ```
 
 ### Field-by-field Explanation
@@ -83,14 +83,14 @@ models:
 ```yaml
 models:
   nusacode_de:        # ← HARUS sama dengan `name:` di atas
-    staging:          # ← subfolder di dalam models/
-      +schema: staging   # → semua file di models/staging/ pakai schema "staging"
-    marts:            # ← subfolder di dalam models/
-      +schema: marts     # → semua file di models/marts/ pakai schema "marts"
+    silver:          # ← subfolder di dalam models/
+      +schema: silver   # → semua file di models/silver/ pakai schema "silver"
+    gold:            # ← subfolder di dalam models/
+      +schema: gold     # → semua file di models/gold/ pakai schema "gold"
 ```
 
-- **`+schema: staging`** memberitahu dbt: "semua model di folder `models/staging/` harus dibuat di schema/database bernama `staging`".
-- Tanpa macro `generate_schema_name` (lihat bagian 4), dbt akan menggabungkan nama schema misalnya menjadi `public_staging`.
+- **`+schema: silver`** memberitahu dbt: "semua model di folder `models/silver/` harus dibuat di schema/database bernama `silver`".
+- Tanpa macro `generate_schema_name` (lihat bagian 4), dbt akan menggabungkan nama schema misalnya menjadi `public_silver`.
 - `materialized`, `engine`, `order_by` dll **tidak diatur di sini** — semuanya di-set via `{{ config() }}` di masing-masing file SQL (lihat bagian 5).
 
 ---
@@ -111,7 +111,7 @@ nusacode_de:
       user: "{{ env_var('DBT_USER') }}"
       password: "{{ env_var('DBT_PASSWORD') }}"
       schema: "{{ env_var('DBT_SCHEMA') }}"
-      secure: {{ env_var('DBT_SECURE', 'false') | lower }}
+      secure: "{{ env_var('DBT_SECURE', 'false') == 'true' }}"
 
       threads: "{{ env_var('DBT_THREADS') | int }}"
       connect_timeout: "{{ env_var('DBT_CONNECT_TIMEOUT') | int }}"
@@ -188,7 +188,7 @@ Output sukses: `All checks passed!`
 
 ### Masalah
 
-Secara default, dbt menggabungkan `target.schema` dengan `custom_schema` yang didefinisikan di `dbt_project.yml`. Contoh: jika `target.schema = public` dan `+schema: staging`, maka tabel akan dibuat di schema `public_staging`.
+Secara default, dbt menggabungkan `target.schema` dengan `custom_schema` yang didefinisikan di `dbt_project.yml`. Contoh: jika `target.schema = default` dan `+schema: silver`, maka tabel akan dibuat di schema `default_silver`.
 
 ### Solusi
 
@@ -201,10 +201,10 @@ Override macro `generate_schema_name` di `macros/generate_schema_name.sql`:
 ```
 
 **Cara kerja:**
-- Jika model punya `+schema: staging` → `custom_schema_name = 'staging'` → schema tabel `staging`
+- Jika model punya `+schema: silver` → `custom_schema_name = 'silver'` → schema tabel `silver`
 - Jika model tidak punya `+schema` → `custom_schema_name = None` → fallback ke `target.schema` (biasanya `public`)
 
-Tanpa macro ini, schema akan menjadi `public_staging` dan `public_marts` (kombinasi target + custom). Dengan macro ini, schema menjadi `staging` dan `marts` sesuai yang didefinisikan.
+Tanpa macro ini, schema akan menjadi `default_silver` dan `default_gold` (kombinasi target + custom). Dengan macro ini, schema menjadi `silver` dan `gold` sesuai yang didefinisikan.
 
 ### Cara Penggunaan
 
@@ -222,10 +222,10 @@ Berikut contoh isi masing-masing file SQL:
 
 ### Staging Models
 
-Semua staging model (`models/staging/stg_*.sql`) menggunakan config yang sama — hanya `order_by` yang berbeda sesuai primary key:
+Semua silver model (`models/silver/stg_*.sql`) menggunakan config yang sama — hanya `order_by` yang berbeda sesuai primary key:
 
 ```sql
--- models/staging/stg_customers.sql
+-- models/silver/stg_customers.sql
 {{ config(
     materialized='table',
     engine='MergeTree()',
@@ -257,10 +257,10 @@ SELECT * FROM cleaned
 | `stg_payments.sql` | `(order_id, payment_sequential)` — composite key |
 | `stg_reviews.sql` | `review_id` |
 
-### Dimension Models (Marts)
+### Dimension Models (Gold)
 
 ```sql
--- models/marts/dim_customers.sql
+-- models/gold/dim_customers.sql
 {{ config(
     materialized='table',
     engine='MergeTree()',
@@ -279,10 +279,10 @@ WITH customers AS (
 | `dim_products.sql` | `product_id` |
 | `dim_sellers.sql` | `seller_id` |
 
-### Fact Model (Marts) — Incremental
+### Fact Model (Gold) — Incremental
 
 ```sql
--- models/marts/fct_orders.sql
+-- models/gold/fct_orders.sql
 {{ config(
     materialized='incremental',
     engine='ReplacingMergeTree()',
@@ -300,7 +300,7 @@ WITH orders AS (
 
 ### Field-by-field Explanation
 
-| Config | Staging / Dim | Fact (fct_orders) |
+| Config | Silver / Gold | Fact (fct_orders) |
 |--------|---------------|-------------------|
 | `materialized` | `'table'` — Dibuat ulang tiap `dbt run` (full refresh) | `'incremental'` — Hanya tambah/update data baru |
 | `engine` | `'MergeTree()'` — Engine ClickHouse default | `'ReplacingMergeTree()'` — Otomatis dedup berdasarkan `unique_key` |
@@ -347,8 +347,8 @@ python -m dotenv -f .env run -- dbt debug
 dbt run
 
 # Run spesifik layer
-dbt run --select staging
-dbt run --select marts
+dbt run --select silver
+dbt run --select gold
 
 # Run spesifik model
 dbt run --select stg_customers
@@ -369,15 +369,15 @@ dbt docs serve
 1. dbt init <project_name>
 2. Edit dbt_project.yml
    - nama, profile
-   - +schema untuk setiap subfolder (staging, marts, dll)
+   - +schema untuk setiap subfolder (silver, gold, dll)
 3. Setup profiles.yml
    - Di ~/.dbt/ atau custom via DBT_PROFILES_DIR
    - Pakai env_var() untuk kredensial
 4. Buat macros/generate_schema_name.sql
    - Agar custom schema tidak digabung dengan target schema
-5. Buat models/staging/ — pola source → cleaned
+5. Buat models/silver/ — pola source → cleaned
    - Tambah {{ config() }} di setiap file (materialized, engine, order_by)
-6. Buat models/marts/ — pola ref → agregasi
+6. Buat models/gold/ — pola ref → agregasi
    - Fact table: materialized='incremental' + partition_by
    - Dimension: materialized='table' + order_by
 7. Buat schema.yml di setiap folder untuk source & test definitions

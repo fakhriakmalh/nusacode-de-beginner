@@ -1,11 +1,13 @@
 {{ config(
     materialized='table',
+    alias='silver_dim_customers',
     engine='MergeTree()',
-    order_by='customer_id'
+    order_by='customer_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
--- Staging Model: stg_customers
+-- Silver Model: silver_dim_customers
 -- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
 --                raw_schema.dim_customer.
 -- ============================================================================

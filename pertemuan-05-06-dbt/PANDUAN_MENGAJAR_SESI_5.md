@@ -177,7 +177,7 @@ nusacode_de/
 - Gunakan `{{ source() }}` untuk referensi ke tabel di `raw_schema`.
 - Gunakan `{{ ref() }}` untuk referensi antar model dbt.
 
-**Buka file yang sudah disediakan di `pertemuan-05-06-dbt/models/staging/`.**
+**Buka file yang sudah disediakan di `pertemuan-05-06-dbt/models/silver/`.**
 
 Jelaskan satu per satu:
 
@@ -231,7 +231,7 @@ Jelaskan sekilas — polanya sama:
 
 #### dbt run
 
-Jalankan semua staging models:
+Jalankan semua silver models:
 ```bash
 dbt run
 ```
@@ -241,15 +241,15 @@ dbt run
 17:30:00  Running with dbt=1.8.x
 17:30:01  Found 12 models, 5 tests, ...
 17:30:01
-17:30:02  1 of 12 START view model dbt_staging.stg_customers  [RUN]
-17:30:03  1 of 12 OK created view model dbt_staging.stg_customers  [CREATE VIEW in 0.25s]
-17:30:03  2 of 12 START view model dbt_staging.stg_orders  [RUN]
+17:30:02  1 of 12 START sql table model silver.stg_customers  [RUN]
+17:30:03  1 of 12 OK created sql table model silver.stg_customers  [CREATE TABLE in 0.25s]
+17:30:03  2 of 12 START sql table model silver.stg_orders  [RUN]
 ...
 ```
 
 **Yang diajarkan:**
 1. dbt mengkompilasi SQL Jinja ke SQL murni.
-2. Setiap model menjadi VIEW di schema `dbt_staging`.
+2. Setiap model menjadi TABLE di schema `silver`.
 3. Bisa filter model: `dbt run --select stg_customers`.
 
 #### dbt test

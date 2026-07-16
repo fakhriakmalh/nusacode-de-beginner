@@ -54,7 +54,7 @@ Setelah sesi ini, peserta diharapkan mampu:
 
 ```bash
 # 1. Pastikan Sesi 5 sudah completed
-dbt ls                      # Harusnya ada 7+ staging models
+dbt ls                      # Harusnya ada 7+ silver models
 dbt source freshness        # Cek apakah data masih fresh
 
 # 2. Pastikan PostgreSQL masih berjalan
@@ -101,7 +101,7 @@ Gunakan analogi **"Perpustakaan"** untuk menjelaskan Star Schema:
 
 **Langkah 1:** Pastikan semua sudah punya project dbt dari Sesi 5.
 
-**Langkah 2:** Jalankan ulang staging models untuk memastikan semuanya fresh:
+**Langkah 2:** Jalankan ulang silver models untuk memastikan semuanya fresh:
 ```bash
 cd nusacode_de
 dbt clean       # Hapus target/ lama
@@ -111,14 +111,14 @@ dbt test        # Pastikan semua test PASS
 
 **Langkah 3:** Cek hasil di database:
 ```sql
--- Di DBeaver, cek apakah schema dbt_staging sudah ada
-SELECT * FROM information_schema.schemata WHERE schema_name LIKE 'dbt_%';
--- Harusnya: dbt_staging, dbt_intermediate, dbt_marts (masih kosong)
+-- Di DBeaver, cek apakah schema silver sudah ada
+SELECT * FROM information_schema.schemata WHERE schema_name LIKE 'silver';
+-- Harusnya: silver, gold (masih kosong)
 ```
 
 ### D. Intermediate Models (20 Menit)
 
-**Konsep:** Intermediate = **"Dapur tengah"** — tempat menggabungkan beberapa staging models sebelum disajikan ke marts.
+**Konsep:** Intermediate = **"Dapur tengah"** — tempat menggabungkan beberapa silver models sebelum disajikan ke gold.
 
 #### int_order_details.sql
 
@@ -224,19 +224,21 @@ Sebelum membuat model, jelaskan **materialization**:
 # dbt_project.yml
 models:
   nusacode_de:
-    staging:
-      +materialized: view       # Ringan, data selalu fresh
+    silver:
+      +materialized: table
+      +schema: silver
     intermediate:
-      +materialized: view       # Ringan
-    marts:
-      +materialized: table      # Berat, tapi cepat diquery
+      +materialized: view
+    gold:
+      +materialized: table
+      +schema: gold
 ```
 
-> **Mengapa marts pakai TABLE?** Karena data di marts akan diquery berulang kali oleh BI tools (Metabase, Grafana). TABLE lebih cepat daripada VIEW yang dihitung ulang setiap kali.
+> **Mengapa gold pakai TABLE?** Karena data di gold akan diquery berulang kali oleh BI tools (Metabase, Grafana). TABLE lebih cepat daripada VIEW yang dihitung ulang setiap kali.
 
 #### dim_customers.sql
 
-Buka `models/marts/dim_customers.sql`:
+Buka `models/gold/dim_customers.sql`:
 
 ```sql
 WITH source AS (
@@ -268,7 +270,7 @@ FROM source
 
 #### dim_products.sql
 
-Buka `models/marts/dim_products.sql`:
+Buka `models/gold/dim_products.sql`:
 
 ```sql
 WITH source AS (...),
@@ -292,7 +294,7 @@ LEFT JOIN order_items oi ON p.product_id = oi.product_id
 
 #### dim_sellers.sql
 
-Buka `models/marts/dim_sellers.sql`:
+Buka `models/gold/dim_sellers.sql`:
 
 ```sql
 WITH source AS (...),
@@ -312,7 +314,7 @@ reviews AS (
 
 #### fct_orders.sql
 
-Buka `models/marts/fct_orders.sql`:
+Buka `models/gold/fct_orders.sql`:
 
 ```sql
 WITH source AS (
@@ -324,7 +326,7 @@ WHERE NOT is_canceled  -- Filter data yang valid
 
 **Yang diajarkan:**
 1. **Fact table** — grain: satu baris per transaksi (order_id).
-2. **Filtering** — hanya data valid yang masuk ke marts.
+2. **Filtering** — hanya data valid yang masuk ke gold.
 
 #### Final dbt run + Lineage (20 Menit)
 
@@ -338,11 +340,11 @@ Amati output — dbt akan menjalankan model dalam urutan yang benar sesuai DAG:
 2. `int_*` (2 models)
 3. `dim_*` + `fct_*` (4 models)
 
-**Hasil:** Schema `dbt_marts` berisi 4 tabel:
+**Hasil:** Schema `gold` berisi 4 tabel:
 ```sql
 SELECT table_name, table_type
 FROM information_schema.tables
-WHERE table_schema = 'dbt_marts';
+WHERE table_schema = 'gold';
 ```
 
 #### dbt Lineage Graph
@@ -356,7 +358,7 @@ dbt docs serve
 Buka browser di `http://localhost:8080`.
 
 **Yang diajarkan:**
-1. **Lineage Graph** — panah dari source → staging → intermediate → marts.
+1. **Lineage Graph** — panah dari source → silver → intermediate → gold.
 2. **Model details** — klik model untuk melihat deskripsi, kolom, dan test.
 3. **Ref mapping** — semua `{{ ref() }}` otomatis menjadi koneksi di graph.
 
@@ -371,7 +373,7 @@ Contoh lineage untuk dim_customers:
 
 #### Generic Tests
 
-Buka `models/marts/schema.yml`:
+Buka `models/gold/schema.yml`:
 
 ```yaml
 models:
@@ -388,7 +390,7 @@ models:
 
 **Yang diajarkan:**
 1. **Generic tests** — `unique`, `not_null`, `accepted_values`, `relationships`.
-2. **Test per model** — setiap model di marts punya test sendiri.
+2. **Test per model** — setiap model di gold punya test sendiri.
 
 #### Jalankan Tests
 
@@ -491,8 +493,8 @@ WHERE review_score < 1 OR review_score > 5
 ```bash
 dbt run                    # Run semua model
 dbt run --select int_*     # Run intermediate saja
-dbt run --select marts     # Run marts saja
-dbt test --select marts    # Test marts saja
+dbt run --select gold     # Run gold saja
+dbt test --select gold    # Test gold saja
 dbt docs generate          # Generate docs
 dbt docs serve             # Buka docs di browser
 dbt source freshness       # Cek umur data
@@ -523,13 +525,13 @@ Gunakan dbt untuk mengubah data mentah (raw_schema) menjadi Star Schema
 yang siap-pakai untuk analisis.
 
 ### ⚙️ Langkah-langkah
-1. Jalankan seluruh dbt project (stg → int → marts)
+1. Jalankan seluruh dbt project (stg → int → gold)
 2. Verifikasi lineage graph di dbt docs
 3. Tambahkan 3 test kustom:
    - Pastikan tidak ada customer_id null di fct_orders
    - Pastikan total_order_value > 0
    - Pastikan review_score antara 1-5
-4. Tulis 2 query analitik di atas dbt_marts:
+4. Tulis 2 query analitik di atas `gold`:
    - 1 Query dengan CTE (analisis product category performance)
    - 1 Query dengan Window Function (customer ranking per state)
 

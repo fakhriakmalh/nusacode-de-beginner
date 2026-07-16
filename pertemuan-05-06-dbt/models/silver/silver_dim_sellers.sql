@@ -1,11 +1,13 @@
 {{ config(
     materialized='table',
+    alias='silver_dim_sellers',
     engine='MergeTree()',
-    order_by='seller_id'
+    order_by='seller_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
--- Staging Model: stg_sellers
+-- Silver Model: silver_dim_sellers
 -- Deskripsi    : Membersihkan data penjual, standarisasi format kota dan state.
 -- ============================================================================
 

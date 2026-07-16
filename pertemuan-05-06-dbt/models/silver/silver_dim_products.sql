@@ -1,11 +1,13 @@
 {{ config(
     materialized='table',
+    alias='silver_dim_products',
     engine='MergeTree()',
-    order_by='product_id'
+    order_by='product_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
--- Staging Model: stg_products
+-- Silver Model: silver_dim_products
 -- Deskripsi    : Menggabungkan data produk dengan terjemahan kategori
 --                (Portugis -> Inggris).
 -- ============================================================================

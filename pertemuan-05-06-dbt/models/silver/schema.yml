@@ -10,7 +10,7 @@ version: 2
 sources:
   - name: public
     description: "Data mentah Olist yang sudah di-load ke ClickHouse"
-    schema: default
+    schema: "{{ env_var('DBT_SCHEMA') }}"
     tables:
       - name: dim_customer
         description: "Data pelanggan Olist"
@@ -74,38 +74,38 @@ sources:
               - not_null
 
 models:
-  - name: stg_customers
-    description: "Staging model untuk data pelanggan. Membersihkan dan menstandarisasi kolom."
+  - name: silver_dim_customers
+    description: "Silver model untuk data pelanggan. Membersihkan dan menstandarisasi kolom."
     columns:
       - name: customer_id
         tests:
           - unique
           - not_null
 
-  - name: stg_orders
-    description: "Staging model untuk data pesanan. Menambahkan flag status."
+  - name: silver_fact_orders
+    description: "Silver model untuk data pesanan. Menambahkan flag status."
     columns:
       - name: order_id
         tests:
           - unique
           - not_null
 
-  - name: stg_order_items
-    description: "Staging model untuk item pesanan. Memastikan harga dan freight bernilai positif."
+  - name: silver_fact_order_items
+    description: "Silver model untuk item pesanan. Memastikan harga dan freight bernilai positif."
 
-  - name: stg_products
-    description: "Staging model untuk produk dengan kategori bahasa Inggris."
+  - name: silver_dim_products
+    description: "Silver model untuk produk dengan kategori bahasa Inggris."
     columns:
       - name: product_id
         tests:
           - unique
           - not_null
 
-  - name: stg_sellers
-    description: "Staging model untuk data penjual."
+  - name: silver_dim_sellers
+    description: "Silver model untuk data penjual."
 
-  - name: stg_payments
-    description: "Staging model untuk pembayaran per pesanan."
+  - name: silver_fact_payments
+    description: "Silver model untuk pembayaran per pesanan."
 
-  - name: stg_reviews
-    description: "Staging model untuk review pesanan. Menstandarisasi skor review."
+  - name: silver_fact_reviews
+    description: "Silver model untuk review pesanan. Menstandarisasi skor review."

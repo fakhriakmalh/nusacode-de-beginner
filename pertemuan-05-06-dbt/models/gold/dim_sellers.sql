@@ -1,7 +1,8 @@
 {{ config(
     materialized='table',
     engine='MergeTree()',
-    order_by='seller_id'
+    order_by='seller_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
@@ -12,7 +13,7 @@
 -- ============================================================================
 
 WITH source AS (
-    SELECT * FROM {{ ref('stg_sellers') }}
+    SELECT * FROM {{ ref('silver_dim_sellers') }}
 ),
 
 order_items AS (
@@ -22,7 +23,7 @@ order_items AS (
         SUM(price) AS total_revenue,
         SUM(freight_value) AS total_freight,
         COUNT(DISTINCT product_id) AS unique_products
-    FROM {{ ref('stg_order_items') }}
+    FROM {{ ref('silver_fact_order_items') }}
     GROUP BY seller_id
 ),
 
@@ -31,8 +32,8 @@ reviews AS (
         oi.seller_id,
         ROUND(AVG(r.review_score), 2) AS avg_customer_review,
         COUNT(r.review_id) AS total_reviews
-    FROM {{ ref('stg_reviews') }} r
-    JOIN {{ ref('stg_order_items') }} oi
+    FROM {{ ref('silver_fact_reviews') }} r
+    JOIN {{ ref('silver_fact_order_items') }} oi
         ON r.order_id = oi.order_id
     GROUP BY oi.seller_id
 ),

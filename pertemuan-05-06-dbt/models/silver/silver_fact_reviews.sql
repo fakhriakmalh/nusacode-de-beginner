@@ -1,11 +1,13 @@
 {{ config(
     materialized='table',
+    alias='silver_fact_reviews',
     engine='MergeTree()',
-    order_by='review_id'
+    order_by='review_id',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
--- Staging Model: stg_reviews
+-- Silver Model: silver_fact_reviews
 -- Deskripsi    : Membersihkan data review, menstandarisasi skor review.
 -- ============================================================================
 

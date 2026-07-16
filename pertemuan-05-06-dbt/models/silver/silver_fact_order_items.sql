@@ -1,11 +1,13 @@
 {{ config(
     materialized='table',
+    alias='silver_fact_order_items',
     engine='MergeTree()',
-    order_by='(order_id, order_item_id)'
+    order_by='(order_id, order_item_id)',
+    settings={'allow_nullable_key': 1}
 ) }}
 
 -- ============================================================================
--- Staging Model: stg_order_items
+-- Silver Model: silver_fact_order_items
 -- Deskripsi    : Membersihkan data item pesanan, memastikan harga dan
 --                freight bernilai positif.
 -- ============================================================================

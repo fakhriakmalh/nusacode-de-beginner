@@ -2845,3 +2845,1293 @@ drop table if exists "dw_nusacode"."marts"."fct_orders__dbt_backup" cascade
 [0m16:31:03.245054 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ee9eac00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ef133230>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c90ecf74170>]}
 [0m16:31:03.245826 [debug] [MainThread]: Flushing usage events
 [0m16:31:05.504649 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:43:05.982097 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76cb010fd520>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76cb00d830b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76cb00b5a510>]}
+
+
+============================== 18:43:05.991739 | 93a31b57-1769-4f09-8df4-de3ce06ec8a9 ==============================
+[0m18:43:05.991739 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:43:05.993232 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'version_check': 'True', 'introspect': 'True', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'log_format': 'default', 'warn_error': 'None', 'printer_width': '80', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'invocation_command': 'dbt debug', 'write_json': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'use_colors': 'True', 'indirect_selection': 'eager', 'fail_fast': 'False', 'empty': 'None', 'debug': 'False', 'use_experimental_parser': 'False', 'no_print': 'None', 'partial_parse': 'True'}
+[0m18:43:06.029225 [info ] [MainThread]: dbt version: 1.11.11
+[0m18:43:06.030220 [info ] [MainThread]: python version: 3.12.3
+[0m18:43:06.030971 [info ] [MainThread]: python path: /home/ffkhr/my_env/bin/python3
+[0m18:43:06.031689 [info ] [MainThread]: os info: Linux-6.14.0-37-generic-x86_64-with-glibc2.39
+[0m18:43:06.033334 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Syntax error near line 23
+  ------------------------------
+  20 |       user: "{{ env_var('DBT_USER') }}"
+  21 |       password: "{{ env_var('DBT_PASSWORD') }}"
+  22 |       schema: "{{ env_var('DBT_SCHEMA') }}"
+  23 |       secure: {{ env_var('DBT_SECURE', 'false') | lower }}
+  24 | 
+  25 |       # === Connection Settings ===
+  26 |       threads: "{{ env_var('DBT_THREADS') | int }}"
+  
+  Raw Error:
+  ------------------------------
+  while parsing a flow mapping
+    in "<unicode string>", line 23, column 16
+  did not find expected ',' or '}'
+    in "<unicode string>", line 23, column 47
+[0m18:43:06.036518 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.06199808, "process_in_blocks": "78256", "process_kernel_time": 0.577544, "process_mem_max_rss": "118784", "process_out_blocks": "8", "process_user_time": 5.551686}
+[0m18:43:06.040087 [debug] [MainThread]: Command `dbt debug` failed at 18:43:06.038369 after 0.06 seconds
+[0m18:43:06.041610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76cb067b4050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76cb019ec9b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76cb0167bbc0>]}
+[0m18:43:06.042821 [debug] [MainThread]: Flushing usage events
+[0m18:43:08.902543 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:44:47.134983 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e34fcea65a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e34fcea5dc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e34fcea66f0>]}
+
+
+============================== 18:44:47.143593 | e58b4ae3-7ce6-4693-a5f2-ac3dea329c96 ==============================
+[0m18:44:47.143593 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:44:47.144750 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt debug', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'printer_width': '80', 'cache_selected_only': 'False', 'partial_parse': 'True', 'debug': 'False', 'use_colors': 'True', 'empty': 'None', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'no_print': 'None', 'quiet': 'False', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'write_json': 'True', 'static_parser': 'True', 'log_format': 'default', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'indirect_selection': 'eager'}
+[0m18:44:47.174179 [info ] [MainThread]: dbt version: 1.11.11
+[0m18:44:47.175492 [info ] [MainThread]: python version: 3.12.3
+[0m18:44:47.176700 [info ] [MainThread]: python path: /home/ffkhr/my_env/bin/python3
+[0m18:44:47.178131 [info ] [MainThread]: os info: Linux-6.14.0-37-generic-x86_64-with-glibc2.39
+[0m18:44:47.181138 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Syntax error near line 23
+  ------------------------------
+  20 |       user: "{{ env_var('DBT_USER') }}"
+  21 |       password: "{{ env_var('DBT_PASSWORD') }}"
+  22 |       schema: "{{ env_var('DBT_SCHEMA') }}"
+  23 |       secure: {{ env_var('DBT_SECURE', 'false') | lower }}
+  24 | 
+  25 |       # === Connection Settings ===
+  26 |       threads: "{{ env_var('DBT_THREADS') | int }}"
+  
+  Raw Error:
+  ------------------------------
+  while parsing a flow mapping
+    in "<unicode string>", line 23, column 16
+  did not find expected ',' or '}'
+    in "<unicode string>", line 23, column 47
+[0m18:44:47.184902 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.05702835, "process_in_blocks": "47632", "process_kernel_time": 0.465059, "process_mem_max_rss": "118704", "process_out_blocks": "8", "process_user_time": 5.251385}
+[0m18:44:47.186315 [debug] [MainThread]: Command `dbt debug` failed at 18:44:47.186072 after 0.06 seconds
+[0m18:44:47.187207 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e34fced05f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e34fced2d20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e34fcea5e20>]}
+[0m18:44:47.188031 [debug] [MainThread]: Flushing usage events
+[0m18:44:51.846242 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:46:07.277108 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x746a8840ad80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x746a87e06420>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x746a8a272510>]}
+
+
+============================== 18:46:07.283532 | 64a9487c-88e0-4bb9-8328-9865db184efd ==============================
+[0m18:46:07.283532 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:46:07.285098 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'log_format': 'default', 'target_path': 'None', 'warn_error': 'None', 'introspect': 'True', 'static_parser': 'True', 'write_json': 'True', 'fail_fast': 'False', 'indirect_selection': 'eager', 'debug': 'False', 'cache_selected_only': 'False', 'partial_parse': 'True', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'version_check': 'True', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'no_print': 'None', 'printer_width': '80', 'invocation_command': 'dbt debug', 'empty': 'None', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs'}
+[0m18:46:07.308257 [info ] [MainThread]: dbt version: 1.11.11
+[0m18:46:07.309614 [info ] [MainThread]: python version: 3.12.3
+[0m18:46:07.310681 [info ] [MainThread]: python path: /home/ffkhr/my_env/bin/python3
+[0m18:46:07.311739 [info ] [MainThread]: os info: Linux-6.14.0-37-generic-x86_64-with-glibc2.39
+[0m18:46:07.437629 [info ] [MainThread]: Using profiles dir at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt
+[0m18:46:07.438639 [info ] [MainThread]: Using profiles.yml file at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/profiles.yml
+[0m18:46:07.439292 [info ] [MainThread]: Using dbt_project.yml file at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/dbt_project.yml
+[0m18:46:07.666488 [info ] [MainThread]: Configuration:
+[0m18:46:07.667707 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m18:46:07.668578 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m18:46:07.669287 [info ] [MainThread]: Required dependencies:
+[0m18:46:07.670048 [debug] [MainThread]: Executing "git --help"
+[0m18:46:07.680100 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:46:07.681419 [debug] [MainThread]: STDERR: "b''"
+[0m18:46:07.682970 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:46:07.684591 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m18:46:07.686334 [info ] [MainThread]: [31m1 check failed:[0m
+[0m18:46:07.687640 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "nusacode_de", target "dev" invalid: 'false' is not of type 'boolean'
+
+
+[0m18:46:07.690189 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.53806967, "process_in_blocks": "13032", "process_kernel_time": 0.430168, "process_mem_max_rss": "123452", "process_out_blocks": "16", "process_user_time": 5.77326}
+[0m18:46:07.692151 [debug] [MainThread]: Command `dbt debug` failed at 18:46:07.691638 after 0.54 seconds
+[0m18:46:07.694071 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x746a88492540>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x746a880e6de0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x746a893170e0>]}
+[0m18:46:07.696193 [debug] [MainThread]: Flushing usage events
+[0m18:46:09.662826 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:47:38.065862 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c162b886cc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c162b5eb5c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c162b628d40>]}
+
+
+============================== 18:47:38.076503 | 986ceadc-fda8-49b6-afb2-36271995c9d5 ==============================
+[0m18:47:38.076503 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:47:38.078560 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'log_format': 'default', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'version_check': 'True', 'invocation_command': 'dbt debug', 'debug': 'False', 'empty': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'introspect': 'True', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'target_path': 'None', 'use_colors': 'True', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'no_print': 'None', 'warn_error': 'None', 'fail_fast': 'False', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'write_json': 'True'}
+[0m18:47:38.114448 [info ] [MainThread]: dbt version: 1.11.11
+[0m18:47:38.116628 [info ] [MainThread]: python version: 3.12.3
+[0m18:47:38.117862 [info ] [MainThread]: python path: /home/ffkhr/my_env/bin/python3
+[0m18:47:38.119398 [info ] [MainThread]: os info: Linux-6.14.0-37-generic-x86_64-with-glibc2.39
+[0m18:47:38.367924 [info ] [MainThread]: Using profiles dir at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt
+[0m18:47:38.369402 [info ] [MainThread]: Using profiles.yml file at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/profiles.yml
+[0m18:47:38.370823 [info ] [MainThread]: Using dbt_project.yml file at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/dbt_project.yml
+[0m18:47:38.372970 [info ] [MainThread]: adapter type: clickhouse
+[0m18:47:38.374744 [info ] [MainThread]: adapter version: 1.10.1
+[0m18:47:38.815436 [info ] [MainThread]: Configuration:
+[0m18:47:38.817405 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:47:38.819096 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m18:47:38.821050 [info ] [MainThread]: Required dependencies:
+[0m18:47:38.824053 [debug] [MainThread]: Executing "git --help"
+[0m18:47:38.832720 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:47:38.834933 [debug] [MainThread]: STDERR: "b''"
+[0m18:47:38.836863 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:47:38.838819 [info ] [MainThread]: Connection:
+[0m18:47:38.840408 [info ] [MainThread]:   driver: None
+[0m18:47:38.841898 [info ] [MainThread]:   host: localhost
+[0m18:47:38.843278 [info ] [MainThread]:   port: 8123
+[0m18:47:38.845288 [info ] [MainThread]:   user: clickhousedev
+[0m18:47:38.847146 [info ] [MainThread]:   schema: nusacode_db
+[0m18:47:38.849109 [info ] [MainThread]:   retries: 1
+[0m18:47:38.850991 [info ] [MainThread]:   cluster: None
+[0m18:47:38.852977 [info ] [MainThread]:   database_engine: None
+[0m18:47:38.855025 [info ] [MainThread]:   cluster_mode: False
+[0m18:47:38.857118 [info ] [MainThread]:   secure: False
+[0m18:47:38.859303 [info ] [MainThread]:   verify: True
+[0m18:47:38.861214 [info ] [MainThread]:   client_cert: None
+[0m18:47:38.863372 [info ] [MainThread]:   client_cert_key: None
+[0m18:47:38.865956 [info ] [MainThread]:   connect_timeout: 10
+[0m18:47:38.868059 [info ] [MainThread]:   send_receive_timeout: 300
+[0m18:47:38.870168 [info ] [MainThread]:   sync_request_timeout: 5
+[0m18:47:38.872485 [info ] [MainThread]:   compress_block_size: 1048576
+[0m18:47:38.874648 [info ] [MainThread]:   compression: 
+[0m18:47:38.877629 [info ] [MainThread]:   check_exchange: True
+[0m18:47:38.879868 [info ] [MainThread]:   custom_settings: None
+[0m18:47:38.882279 [info ] [MainThread]:   use_lw_deletes: False
+[0m18:47:38.884718 [info ] [MainThread]:   allow_automatic_deduplication: False
+[0m18:47:38.887202 [info ] [MainThread]:   tcp_keepalive: False
+[0m18:47:38.889934 [info ] [MainThread]: Registered adapter: clickhouse=1.10.1
+[0m18:47:39.110705 [debug] [MainThread]: Acquiring new clickhouse connection 'debug'
+[0m18:47:39.112205 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:47:39.627628 [debug] [MainThread]: dbt_clickhouse adapter: On debug: select 1 as id...
+[0m18:47:39.638561 [debug] [MainThread]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m18:47:39.754978 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m18:47:39.756820 [info ] [MainThread]: [32mAll checks passed![0m
+[0m18:47:39.760248 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 1.8666945, "process_in_blocks": "77272", "process_kernel_time": 0.745365, "process_mem_max_rss": "128520", "process_out_blocks": "24", "process_user_time": 7.600526}
+[0m18:47:39.762396 [debug] [MainThread]: Command `dbt debug` succeeded at 18:47:39.761791 after 1.87 seconds
+[0m18:47:39.764675 [debug] [MainThread]: Connection 'debug' was left open.
+[0m18:47:39.767005 [debug] [MainThread]: On debug: Close
+[0m18:47:39.769836 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c162d073f80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c162ab04fb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c162a7fde20>]}
+[0m18:47:39.772364 [debug] [MainThread]: Flushing usage events
+[0m18:47:42.534011 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:48:28.104179 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785cd3808d40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785cd5d1d4f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785cd3caa9c0>]}
+
+
+============================== 18:48:28.112500 | ace64b2d-1f85-4de6-bf7c-9dffd698e8e9 ==============================
+[0m18:48:28.112500 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:48:28.113865 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'quiet': 'False', 'fail_fast': 'False', 'indirect_selection': 'eager', 'debug': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'warn_error': 'None', 'use_experimental_parser': 'False', 'static_parser': 'True', 'no_print': 'None', 'log_cache_events': 'False', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'introspect': 'True', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'log_format': 'default', 'write_json': 'True', 'empty': 'None', 'target_path': 'None', 'invocation_command': 'dbt debug', 'version_check': 'True', 'use_colors': 'True'}
+[0m18:48:28.150309 [info ] [MainThread]: dbt version: 1.11.11
+[0m18:48:28.152070 [info ] [MainThread]: python version: 3.12.3
+[0m18:48:28.153761 [info ] [MainThread]: python path: /home/ffkhr/my_env/bin/python3
+[0m18:48:28.155402 [info ] [MainThread]: os info: Linux-6.14.0-37-generic-x86_64-with-glibc2.39
+[0m18:48:28.337352 [info ] [MainThread]: Using profiles dir at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt
+[0m18:48:28.338426 [info ] [MainThread]: Using profiles.yml file at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/profiles.yml
+[0m18:48:28.339248 [info ] [MainThread]: Using dbt_project.yml file at /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/dbt_project.yml
+[0m18:48:28.340760 [info ] [MainThread]: adapter type: clickhouse
+[0m18:48:28.341639 [info ] [MainThread]: adapter version: 1.10.1
+[0m18:48:28.615429 [info ] [MainThread]: Configuration:
+[0m18:48:28.616699 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:48:28.617580 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m18:48:28.618408 [info ] [MainThread]: Required dependencies:
+[0m18:48:28.619303 [debug] [MainThread]: Executing "git --help"
+[0m18:48:28.627671 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:48:28.629318 [debug] [MainThread]: STDERR: "b''"
+[0m18:48:28.631072 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:48:28.632730 [info ] [MainThread]: Connection:
+[0m18:48:28.634071 [info ] [MainThread]:   driver: None
+[0m18:48:28.635437 [info ] [MainThread]:   host: localhost
+[0m18:48:28.637180 [info ] [MainThread]:   port: 8123
+[0m18:48:28.639283 [info ] [MainThread]:   user: clickhousedev
+[0m18:48:28.641257 [info ] [MainThread]:   schema: nusacode_db
+[0m18:48:28.643160 [info ] [MainThread]:   retries: 1
+[0m18:48:28.644548 [info ] [MainThread]:   cluster: None
+[0m18:48:28.645447 [info ] [MainThread]:   database_engine: None
+[0m18:48:28.646560 [info ] [MainThread]:   cluster_mode: False
+[0m18:48:28.648690 [info ] [MainThread]:   secure: False
+[0m18:48:28.650934 [info ] [MainThread]:   verify: True
+[0m18:48:28.652681 [info ] [MainThread]:   client_cert: None
+[0m18:48:28.654303 [info ] [MainThread]:   client_cert_key: None
+[0m18:48:28.656301 [info ] [MainThread]:   connect_timeout: 10
+[0m18:48:28.657962 [info ] [MainThread]:   send_receive_timeout: 300
+[0m18:48:28.659535 [info ] [MainThread]:   sync_request_timeout: 5
+[0m18:48:28.661270 [info ] [MainThread]:   compress_block_size: 1048576
+[0m18:48:28.662820 [info ] [MainThread]:   compression: 
+[0m18:48:28.664629 [info ] [MainThread]:   check_exchange: True
+[0m18:48:28.666397 [info ] [MainThread]:   custom_settings: None
+[0m18:48:28.668125 [info ] [MainThread]:   use_lw_deletes: False
+[0m18:48:28.669515 [info ] [MainThread]:   allow_automatic_deduplication: False
+[0m18:48:28.671745 [info ] [MainThread]:   tcp_keepalive: False
+[0m18:48:28.674127 [info ] [MainThread]: Registered adapter: clickhouse=1.10.1
+[0m18:48:28.906747 [debug] [MainThread]: Acquiring new clickhouse connection 'debug'
+[0m18:48:28.907871 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:48:29.373797 [debug] [MainThread]: dbt_clickhouse adapter: On debug: select 1 as id...
+[0m18:48:29.382172 [debug] [MainThread]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m18:48:29.445483 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m18:48:29.446505 [info ] [MainThread]: [32mAll checks passed![0m
+[0m18:48:29.448860 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 1.481076, "process_in_blocks": "86296", "process_kernel_time": 0.748684, "process_mem_max_rss": "130916", "process_out_blocks": "24", "process_user_time": 6.365321}
+[0m18:48:29.449937 [debug] [MainThread]: Command `dbt debug` succeeded at 18:48:29.449757 after 1.48 seconds
+[0m18:48:29.450725 [debug] [MainThread]: Connection 'debug' was left open.
+[0m18:48:29.451400 [debug] [MainThread]: On debug: Close
+[0m18:48:29.452319 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785cd2e89820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785cd300b1a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785cd29557c0>]}
+[0m18:48:29.453426 [debug] [MainThread]: Flushing usage events
+[0m18:48:31.067456 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:53:17.732790 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a83679fb230>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a8366cf46e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a83679f8920>]}
+
+
+============================== 18:53:17.739217 | c0238ff8-8c95-42af-9379-8cbdfa4e94a6 ==============================
+[0m18:53:17.739217 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:53:17.740473 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'write_json': 'True', 'fail_fast': 'False', 'no_print': 'None', 'use_experimental_parser': 'False', 'empty': 'False', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False', 'use_colors': 'True', 'debug': 'False', 'version_check': 'True', 'invocation_command': 'dbt run --select stg_customer', 'log_format': 'default', 'partial_parse': 'True', 'warn_error': 'None', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'introspect': 'True', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'log_cache_events': 'False', 'target_path': 'None', 'static_parser': 'True'}
+[0m18:53:18.168879 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c0238ff8-8c95-42af-9379-8cbdfa4e94a6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a83667e8500>]}
+[0m18:53:18.312579 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'c0238ff8-8c95-42af-9379-8cbdfa4e94a6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a836679af90>]}
+[0m18:53:18.315410 [info ] [MainThread]: Registered adapter: clickhouse=1.10.1
+[0m18:53:18.481416 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m18:53:18.483330 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m18:53:18.484455 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'c0238ff8-8c95-42af-9379-8cbdfa4e94a6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a8366c23620>]}
+[0m18:53:22.074419 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'c0238ff8-8c95-42af-9379-8cbdfa4e94a6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a836634bc20>]}
+[0m18:53:22.284440 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:53:22.290297 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:53:22.317240 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'c0238ff8-8c95-42af-9379-8cbdfa4e94a6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a8365037380>]}
+[0m18:53:22.318724 [info ] [MainThread]: Found 11 models, 33 data tests, 8 sources, 531 macros
+[0m18:53:22.319701 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'c0238ff8-8c95-42af-9379-8cbdfa4e94a6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a8366346c30>]}
+[0m18:53:22.321581 [warn ] [MainThread]: The selection criterion 'stg_customer' does not match any enabled nodes
+[0m18:53:22.324568 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m18:53:22.326013 [debug] [MainThread]: Command end result
+[0m18:53:22.404584 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:53:22.410096 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:53:22.416441 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m18:53:22.419901 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.8056755, "process_in_blocks": "25768", "process_kernel_time": 0.650753, "process_mem_max_rss": "139136", "process_out_blocks": "4456", "process_user_time": 10.322092}
+[0m18:53:22.421824 [debug] [MainThread]: Command `dbt run` succeeded at 18:53:22.421266 after 4.81 seconds
+[0m18:53:22.423182 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a8366f7dbb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a8366f7fe90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a8365110dd0>]}
+[0m18:53:22.424489 [debug] [MainThread]: Flushing usage events
+[0m18:53:24.475125 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:53:41.725498 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b662d6aff0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b663509a00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b662dfede0>]}
+
+
+============================== 18:53:41.731794 | 395509e2-11d5-439f-9b90-eb578c619afc ==============================
+[0m18:53:41.731794 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:53:41.733218 [debug] [MainThread]: running dbt with arguments {'empty': 'False', 'send_anonymous_usage_stats': 'True', 'introspect': 'True', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'use_colors': 'True', 'printer_width': '80', 'static_parser': 'True', 'write_json': 'True', 'invocation_command': 'dbt run --select stg_customers', 'use_experimental_parser': 'False', 'target_path': 'None', 'version_check': 'True', 'log_format': 'default', 'log_cache_events': 'False', 'fail_fast': 'False', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'quiet': 'False', 'warn_error': 'None', 'no_print': 'None', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False'}
+[0m18:53:42.125449 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '395509e2-11d5-439f-9b90-eb578c619afc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b662422cc0>]}
+[0m18:53:42.260993 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '395509e2-11d5-439f-9b90-eb578c619afc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b6633f3410>]}
+[0m18:53:42.262858 [info ] [MainThread]: Registered adapter: clickhouse=1.10.1
+[0m18:53:42.417554 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m18:53:42.676197 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m18:53:42.677408 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m18:53:42.678164 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m18:53:42.783830 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '395509e2-11d5-439f-9b90-eb578c619afc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b662445a60>]}
+[0m18:53:43.209793 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:53:43.213932 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:53:43.234203 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '395509e2-11d5-439f-9b90-eb578c619afc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b66202ba70>]}
+[0m18:53:43.235360 [info ] [MainThread]: Found 11 models, 33 data tests, 8 sources, 531 macros
+[0m18:53:43.236103 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '395509e2-11d5-439f-9b90-eb578c619afc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b661ddea80>]}
+[0m18:53:43.240209 [info ] [MainThread]: 
+[0m18:53:43.241241 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m18:53:43.241931 [info ] [MainThread]: 
+[0m18:53:43.243221 [debug] [MainThread]: Acquiring new clickhouse connection 'master'
+[0m18:53:43.247113 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list_'
+[0m18:53:43.283145 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:53:43.464257 [debug] [ThreadPool]: dbt_clickhouse adapter: On list_: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_"} */
+
+    select name from system.databases
+  ...
+[0m18:53:43.470768 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m18:53:43.517145 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_, now create__silver)
+[0m18:53:43.518376 [debug] [ThreadPool]: Creating schema "schema: "silver"
+"
+[0m18:53:43.533141 [debug] [ThreadPool]: dbt_clickhouse adapter: On create__silver: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "create__silver"} */
+create database if not exists `silver`
+        
+  
+        
+  ...
+[0m18:53:43.544730 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m18:53:43.568516 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create__silver, now list__gold)
+[0m18:53:43.571093 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list__silver'
+[0m18:53:43.589984 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__gold: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__gold"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'gold'
+      group by name, schema, type, db_engine
+
+  ...
+[0m18:53:43.600396 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:53:43.643110 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__silver: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__silver"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'silver'
+      group by name, schema, type, db_engine
+
+  ...
+[0m18:53:43.741041 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.14 seconds
+[0m18:53:43.743378 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.10 seconds
+[0m18:53:43.749315 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '395509e2-11d5-439f-9b90-eb578c619afc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b661f69fa0>]}
+[0m18:53:43.756912 [debug] [Thread-1 (]: Began running node model.nusacode_de.stg_customers
+[0m18:53:43.758344 [info ] [Thread-1 (]: 1 of 1 START sql table model `silver`.`silver_customers` ....................... [RUN]
+[0m18:53:43.759411 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list__silver, now model.nusacode_de.stg_customers)
+[0m18:53:43.760247 [debug] [Thread-1 (]: Began compiling node model.nusacode_de.stg_customers
+[0m18:53:43.778005 [debug] [Thread-1 (]: Writing injected SQL for node "model.nusacode_de.stg_customers"
+[0m18:53:43.781353 [debug] [Thread-1 (]: Began executing node model.nusacode_de.stg_customers
+[0m18:53:43.867863 [debug] [Thread-1 (]: Creating new relation silver_customers
+[0m18:53:43.937743 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+            
+
+    
+        create table `silver`.`silver_customers`
+        
+  
+        
+  engine = MergeTree()
+        order by (customer_id)
+        
+        
+        
+        
+                    -- end_of_sql
+                    SETTINGS replicated_deduplication_window='0'
+
+                    
+            empty
+          as (
+            
+
+-- ============================================================================
+-- Staging Model: stg_customers
+-- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
+--                raw_schema.dim_customer.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM `default`.`dim_customer`
+),
+
+cleaned AS (
+    SELECT
+        customer_id,
+        customer_unique_id,
+        customer_zip_code_prefix,
+        -- Trim whitespace dan standarisasi format kota
+        TRIM(INITCAP(customer_city)) AS customer_city,
+        -- Standarisasi state ke uppercase
+        UPPER(TRIM(customer_state)) AS customer_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+          )
+        
+        ...
+[0m18:53:43.963601 [debug] [Thread-1 (]: dbt_clickhouse adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+            
+
+    
+        create table `silver`.`silver_customers`
+        
+  
+        
+  engine = MergeTree()
+        order by (customer_id)
+        
+        
+        
+        
+                    -- end_of_sql
+                    SETTINGS replicated_deduplication_window='0'
+
+                    
+            empty
+          as (
+            
+
+-- ============================================================================
+-- Staging Model: stg_customers
+-- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
+--                raw_schema.dim_customer.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM `default`.`dim_customer`
+),
+
+cleaned AS (
+    SELECT
+        customer_id,
+        customer_unique_id,
+        customer_zip_code_prefix,
+        -- Trim whitespace dan standarisasi format kota
+        TRIM(INITCAP(customer_city)) AS customer_city,
+        -- Standarisasi state ke uppercase
+        UPPER(TRIM(customer_state)) AS customer_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+          )
+        
+        
+[0m18:53:43.977972 [debug] [Thread-1 (]: Database Error in model stg_customers (models/silver/stg_customers.sql)
+  Received ClickHouse exception, code: 60, server response: Code: 60. DB::Exception: Unknown table expression identifier 'default.dim_customer' in scope  source. Maybe you meant nusacode_db.dim_customer?. (UNKNOWN_TABLE) (for url http://localhost:8123)
+[0m18:53:43.981375 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '395509e2-11d5-439f-9b90-eb578c619afc', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b663360170>]}
+[0m18:53:43.983049 [error] [Thread-1 (]: 1 of 1 ERROR creating sql table model `silver`.`silver_customers` .............. [[31mERROR[0m in 0.22s]
+[0m18:53:43.984430 [debug] [Thread-1 (]: Finished running node model.nusacode_de.stg_customers
+[0m18:53:43.985872 [debug] [Thread-7 (]: Marking all children of 'model.nusacode_de.stg_customers' to be skipped because of status 'error'.  Reason: Database Error in model stg_customers (models/silver/stg_customers.sql)
+  Received ClickHouse exception, code: 60, server response: Code: 60. DB::Exception: Unknown table expression identifier 'default.dim_customer' in scope  source. Maybe you meant nusacode_db.dim_customer?. (UNKNOWN_TABLE) (for url http://localhost:8123).
+[0m18:53:43.990099 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m18:53:43.991897 [debug] [MainThread]: Connection 'list__gold' was left open.
+[0m18:53:43.993421 [debug] [MainThread]: On list__gold: Close
+[0m18:53:43.995121 [debug] [MainThread]: Connection 'model.nusacode_de.stg_customers' was left open.
+[0m18:53:43.996703 [debug] [MainThread]: On model.nusacode_de.stg_customers: Close
+[0m18:53:43.998972 [info ] [MainThread]: 
+[0m18:53:44.000641 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.76 seconds (0.76s).
+[0m18:53:44.003448 [debug] [MainThread]: Command end result
+[0m18:53:44.099885 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:53:44.104824 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:53:44.117810 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m18:53:44.118846 [info ] [MainThread]: 
+[0m18:53:44.119974 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m18:53:44.121117 [info ] [MainThread]: 
+[0m18:53:44.122302 [error] [MainThread]: [31mFailure in model stg_customers (models/silver/stg_customers.sql)[0m
+[0m18:53:44.123639 [error] [MainThread]:   Database Error in model stg_customers (models/silver/stg_customers.sql)
+  Received ClickHouse exception, code: 60, server response: Code: 60. DB::Exception: Unknown table expression identifier 'default.dim_customer' in scope  source. Maybe you meant nusacode_db.dim_customer?. (UNKNOWN_TABLE) (for url http://localhost:8123)
+[0m18:53:44.124715 [info ] [MainThread]: 
+[0m18:53:44.126274 [info ] [MainThread]:   compiled code at target/compiled/nusacode_de/models/silver/stg_customers.sql
+[0m18:53:44.127975 [info ] [MainThread]: 
+[0m18:53:44.129309 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 NO-OP=0 TOTAL=1
+[0m18:53:44.132378 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.523868, "process_in_blocks": "2704", "process_kernel_time": 0.590038, "process_mem_max_rss": "141736", "process_out_blocks": "3128", "process_user_time": 7.411485}
+[0m18:53:44.134675 [debug] [MainThread]: Command `dbt run` failed at 18:53:44.134183 after 2.53 seconds
+[0m18:53:44.136193 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b664b352e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b6633f0290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79b662a579b0>]}
+[0m18:53:44.137667 [debug] [MainThread]: Flushing usage events
+[0m18:53:45.428119 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:55:04.065178 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd9267e7fe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd925df08c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd925df11c0>]}
+
+
+============================== 18:55:04.072903 | b47400e3-0d0d-4a9b-ade4-0b62f7e05470 ==============================
+[0m18:55:04.072903 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:55:04.074048 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'indirect_selection': 'eager', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'cache_selected_only': 'False', 'invocation_command': 'dbt run --select stg_customers', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'log_format': 'default', 'target_path': 'None', 'printer_width': '80', 'empty': 'False', 'quiet': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'write_json': 'True', 'fail_fast': 'False', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'log_cache_events': 'False', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m18:55:04.559850 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b47400e3-0d0d-4a9b-ade4-0b62f7e05470', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd9282dbaa0>]}
+[0m18:55:04.732106 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b47400e3-0d0d-4a9b-ade4-0b62f7e05470', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd9252ef800>]}
+[0m18:55:04.738546 [info ] [MainThread]: Registered adapter: clickhouse=1.10.1
+[0m18:55:04.921532 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m18:55:05.227161 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m18:55:05.230979 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/schema.yml
+[0m18:55:06.835030 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b47400e3-0d0d-4a9b-ade4-0b62f7e05470', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd924cd1730>]}
+[0m18:55:07.046295 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:55:07.050919 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:55:07.075551 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'b47400e3-0d0d-4a9b-ade4-0b62f7e05470', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd90fae9b80>]}
+[0m18:55:07.076676 [info ] [MainThread]: Found 11 models, 33 data tests, 8 sources, 531 macros
+[0m18:55:07.077374 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b47400e3-0d0d-4a9b-ade4-0b62f7e05470', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd924cde930>]}
+[0m18:55:07.081259 [info ] [MainThread]: 
+[0m18:55:07.082220 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m18:55:07.082861 [info ] [MainThread]: 
+[0m18:55:07.083922 [debug] [MainThread]: Acquiring new clickhouse connection 'master'
+[0m18:55:07.086806 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list_'
+[0m18:55:07.117863 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:55:07.314133 [debug] [ThreadPool]: dbt_clickhouse adapter: On list_: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_"} */
+
+    select name from system.databases
+  ...
+[0m18:55:07.322030 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m18:55:07.410490 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_, now list__gold)
+[0m18:55:07.412764 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list__silver'
+[0m18:55:07.432131 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__gold: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__gold"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'gold'
+      group by name, schema, type, db_engine
+
+  ...
+[0m18:55:07.436543 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:55:07.482407 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__silver: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__silver"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'silver'
+      group by name, schema, type, db_engine
+
+  ...
+[0m18:55:07.486264 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.05 seconds
+[0m18:55:07.511826 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.03 seconds
+[0m18:55:07.515657 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b47400e3-0d0d-4a9b-ade4-0b62f7e05470', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd90f83aa80>]}
+[0m18:55:07.521541 [debug] [Thread-1 (]: Began running node model.nusacode_de.stg_customers
+[0m18:55:07.522825 [info ] [Thread-1 (]: 1 of 1 START sql table model `silver`.`silver_customers` ....................... [RUN]
+[0m18:55:07.523885 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list__silver, now model.nusacode_de.stg_customers)
+[0m18:55:07.524743 [debug] [Thread-1 (]: Began compiling node model.nusacode_de.stg_customers
+[0m18:55:07.541785 [debug] [Thread-1 (]: Writing injected SQL for node "model.nusacode_de.stg_customers"
+[0m18:55:07.543633 [debug] [Thread-1 (]: Began executing node model.nusacode_de.stg_customers
+[0m18:55:07.623859 [debug] [Thread-1 (]: Creating new relation silver_customers
+[0m18:55:07.701541 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+            
+
+    
+        create table `silver`.`silver_customers`
+        
+  
+        
+  engine = MergeTree()
+        order by (customer_id)
+        
+        
+        
+        
+                    -- end_of_sql
+                    SETTINGS replicated_deduplication_window='0'
+
+                    
+            empty
+          as (
+            
+
+-- ============================================================================
+-- Staging Model: stg_customers
+-- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
+--                raw_schema.dim_customer.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM `nusacode_db`.`dim_customer`
+),
+
+cleaned AS (
+    SELECT
+        customer_id,
+        customer_unique_id,
+        customer_zip_code_prefix,
+        -- Trim whitespace dan standarisasi format kota
+        TRIM(INITCAP(customer_city)) AS customer_city,
+        -- Standarisasi state ke uppercase
+        UPPER(TRIM(customer_state)) AS customer_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+          )
+        
+        ...
+[0m18:55:07.731279 [debug] [Thread-1 (]: dbt_clickhouse adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+            
+
+    
+        create table `silver`.`silver_customers`
+        
+  
+        
+  engine = MergeTree()
+        order by (customer_id)
+        
+        
+        
+        
+                    -- end_of_sql
+                    SETTINGS replicated_deduplication_window='0'
+
+                    
+            empty
+          as (
+            
+
+-- ============================================================================
+-- Staging Model: stg_customers
+-- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
+--                raw_schema.dim_customer.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM `nusacode_db`.`dim_customer`
+),
+
+cleaned AS (
+    SELECT
+        customer_id,
+        customer_unique_id,
+        customer_zip_code_prefix,
+        -- Trim whitespace dan standarisasi format kota
+        TRIM(INITCAP(customer_city)) AS customer_city,
+        -- Standarisasi state ke uppercase
+        UPPER(TRIM(customer_state)) AS customer_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+          )
+        
+        
+[0m18:55:07.744906 [debug] [Thread-1 (]: Database Error in model stg_customers (models/silver/stg_customers.sql)
+  Received ClickHouse exception, code: 44, server response: Code: 44. DB::Exception: Sorting key contains nullable columns, but merge tree setting `allow_nullable_key` is disabled. (ILLEGAL_COLUMN) (for url http://localhost:8123)
+[0m18:55:07.748354 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b47400e3-0d0d-4a9b-ade4-0b62f7e05470', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd92635c890>]}
+[0m18:55:07.750079 [error] [Thread-1 (]: 1 of 1 ERROR creating sql table model `silver`.`silver_customers` .............. [[31mERROR[0m in 0.22s]
+[0m18:55:07.751874 [debug] [Thread-1 (]: Finished running node model.nusacode_de.stg_customers
+[0m18:55:07.753705 [debug] [Thread-7 (]: Marking all children of 'model.nusacode_de.stg_customers' to be skipped because of status 'error'.  Reason: Database Error in model stg_customers (models/silver/stg_customers.sql)
+  Received ClickHouse exception, code: 44, server response: Code: 44. DB::Exception: Sorting key contains nullable columns, but merge tree setting `allow_nullable_key` is disabled. (ILLEGAL_COLUMN) (for url http://localhost:8123).
+[0m18:55:07.760003 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m18:55:07.760925 [debug] [MainThread]: Connection 'list__gold' was left open.
+[0m18:55:07.761691 [debug] [MainThread]: On list__gold: Close
+[0m18:55:07.762333 [debug] [MainThread]: Connection 'model.nusacode_de.stg_customers' was left open.
+[0m18:55:07.762987 [debug] [MainThread]: On model.nusacode_de.stg_customers: Close
+[0m18:55:07.764153 [info ] [MainThread]: 
+[0m18:55:07.765304 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.68 seconds (0.68s).
+[0m18:55:07.767023 [debug] [MainThread]: Command end result
+[0m18:55:07.849808 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:55:07.854393 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:55:07.865705 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m18:55:07.866649 [info ] [MainThread]: 
+[0m18:55:07.867504 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m18:55:07.868261 [info ] [MainThread]: 
+[0m18:55:07.869099 [error] [MainThread]: [31mFailure in model stg_customers (models/silver/stg_customers.sql)[0m
+[0m18:55:07.869890 [error] [MainThread]:   Database Error in model stg_customers (models/silver/stg_customers.sql)
+  Received ClickHouse exception, code: 44, server response: Code: 44. DB::Exception: Sorting key contains nullable columns, but merge tree setting `allow_nullable_key` is disabled. (ILLEGAL_COLUMN) (for url http://localhost:8123)
+[0m18:55:07.870528 [info ] [MainThread]: 
+[0m18:55:07.871258 [info ] [MainThread]:   compiled code at target/compiled/nusacode_de/models/silver/stg_customers.sql
+[0m18:55:07.871902 [info ] [MainThread]: 
+[0m18:55:07.872662 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 NO-OP=0 TOTAL=1
+[0m18:55:07.875136 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 3.936856, "process_in_blocks": "75192", "process_kernel_time": 0.785673, "process_mem_max_rss": "148588", "process_out_blocks": "4488", "process_user_time": 8.828565}
+[0m18:55:07.876571 [debug] [MainThread]: Command `dbt run` failed at 18:55:07.876216 after 3.94 seconds
+[0m18:55:07.877687 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd9254b82c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd925e1bc20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7dd90fb0a390>]}
+[0m18:55:07.878665 [debug] [MainThread]: Flushing usage events
+[0m18:55:12.774566 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:56:52.873637 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068eee15df0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068eead2000>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068ee43eb70>]}
+
+
+============================== 18:56:52.880729 | 54e76599-2672-4070-9812-2d32ed9bd186 ==============================
+[0m18:56:52.880729 [info ] [MainThread]: Running with dbt=1.11.11
+[0m18:56:52.882320 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'debug': 'False', 'log_cache_events': 'False', 'no_print': 'None', 'partial_parse': 'True', 'printer_width': '80', 'use_experimental_parser': 'False', 'static_parser': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'fail_fast': 'False', 'target_path': 'None', 'quiet': 'False', 'invocation_command': 'dbt run --select stg_customers', 'empty': 'False', 'introspect': 'True', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'write_json': 'True', 'version_check': 'True'}
+[0m18:56:53.299557 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '54e76599-2672-4070-9812-2d32ed9bd186', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068ede79130>]}
+[0m18:56:53.485513 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '54e76599-2672-4070-9812-2d32ed9bd186', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068f3bd80b0>]}
+[0m18:56:53.488692 [info ] [MainThread]: Registered adapter: clickhouse=1.10.1
+[0m18:56:53.740010 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m18:56:54.064748 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 11 files changed.
+[0m18:56:54.067313 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/stg_orders.sql
+[0m18:56:54.069082 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/stg_payments.sql
+[0m18:56:54.070295 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/stg_customers.sql
+[0m18:56:54.071448 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/dim_customers.sql
+[0m18:56:54.072575 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/fct_orders.sql
+[0m18:56:54.073911 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/dim_sellers.sql
+[0m18:56:54.075086 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/stg_products.sql
+[0m18:56:54.076123 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/dim_products.sql
+[0m18:56:54.077352 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/stg_order_items.sql
+[0m18:56:54.078683 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/stg_sellers.sql
+[0m18:56:54.079783 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/stg_reviews.sql
+[0m18:56:55.505630 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '54e76599-2672-4070-9812-2d32ed9bd186', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068edee95e0>]}
+[0m18:56:55.713196 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:56:55.717270 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:56:55.738892 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '54e76599-2672-4070-9812-2d32ed9bd186', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068ec955970>]}
+[0m18:56:55.740191 [info ] [MainThread]: Found 33 data tests, 11 models, 8 sources, 531 macros
+[0m18:56:55.741054 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '54e76599-2672-4070-9812-2d32ed9bd186', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068f0966b40>]}
+[0m18:56:55.745519 [info ] [MainThread]: 
+[0m18:56:55.746643 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m18:56:55.747386 [info ] [MainThread]: 
+[0m18:56:55.748782 [debug] [MainThread]: Acquiring new clickhouse connection 'master'
+[0m18:56:55.751734 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list_'
+[0m18:56:55.783219 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:56:55.941544 [debug] [ThreadPool]: dbt_clickhouse adapter: On list_: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_"} */
+
+    select name from system.databases
+  ...
+[0m18:56:55.949025 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m18:56:56.008793 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_, now list__gold)
+[0m18:56:56.010817 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list__silver'
+[0m18:56:56.026205 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__gold: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__gold"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'gold'
+      group by name, schema, type, db_engine
+
+  ...
+[0m18:56:56.037140 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:56:56.088797 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__silver: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__silver"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'silver'
+      group by name, schema, type, db_engine
+
+  ...
+[0m18:56:56.092610 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.05 seconds
+[0m18:56:56.115761 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.03 seconds
+[0m18:56:56.119412 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '54e76599-2672-4070-9812-2d32ed9bd186', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068ec407f80>]}
+[0m18:56:56.124678 [debug] [Thread-1 (]: Began running node model.nusacode_de.stg_customers
+[0m18:56:56.126170 [info ] [Thread-1 (]: 1 of 1 START sql table model `silver`.`silver_customers` ....................... [RUN]
+[0m18:56:56.127324 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list__silver, now model.nusacode_de.stg_customers)
+[0m18:56:56.128218 [debug] [Thread-1 (]: Began compiling node model.nusacode_de.stg_customers
+[0m18:56:56.153379 [debug] [Thread-1 (]: Writing injected SQL for node "model.nusacode_de.stg_customers"
+[0m18:56:56.155646 [debug] [Thread-1 (]: Began executing node model.nusacode_de.stg_customers
+[0m18:56:56.237958 [debug] [Thread-1 (]: Creating new relation silver_customers
+[0m18:56:56.316319 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+            
+
+    
+        create table `silver`.`silver_customers`
+        
+  
+        
+  engine = MergeTree()
+        order by (customer_id)
+        
+        
+        
+        
+                    -- end_of_sql
+                    SETTINGS allow_nullable_key=1, replicated_deduplication_window='0'
+
+                    
+            empty
+          as (
+            
+
+-- ============================================================================
+-- Staging Model: stg_customers
+-- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
+--                raw_schema.dim_customer.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM `nusacode_db`.`dim_customer`
+),
+
+cleaned AS (
+    SELECT
+        customer_id,
+        customer_unique_id,
+        customer_zip_code_prefix,
+        -- Trim whitespace dan standarisasi format kota
+        TRIM(INITCAP(customer_city)) AS customer_city,
+        -- Standarisasi state ke uppercase
+        UPPER(TRIM(customer_state)) AS customer_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+          )
+        
+        ...
+[0m18:56:56.335266 [debug] [Thread-1 (]: dbt_clickhouse adapter: SQL status: OK in 0.02 seconds
+[0m18:56:56.379253 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+    select name, type from system.columns where table = 'silver_customers'
+    
+      
+        and database = 'silver'
+      
+    
+    order by position
+  ...
+[0m18:56:56.392883 [debug] [Thread-1 (]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m18:56:56.401502 [debug] [Thread-1 (]: Writing runtime sql for node "model.nusacode_de.stg_customers"
+[0m18:56:56.403579 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.stg_customers: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.stg_customers"} */
+
+  
+    
+    
+    
+        
+         
+
+
+        
+  
+
+  insert into `silver`.`silver_customers`
+        ("customer_id", "customer_unique_id", "customer_zip_code_prefix", "customer_city", "customer_state")
+
+-- ============================================================================
+-- Staging Model: stg_customers
+-- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari
+--                raw_schema.dim_customer.
+-- ============================================================================
+
+WITH source AS (
+    SELECT * FROM `nusacode_db`.`dim_customer`
+),
+
+cleaned AS (
+    SELECT
+        customer_id,
+        customer_unique_id,
+        customer_zip_code_prefix,
+        -- Trim whitespace dan standarisasi format kota
+        TRIM(INITCAP(customer_city)) AS customer_city,
+        -- Standarisasi state ke uppercase
+        UPPER(TRIM(customer_state)) AS customer_state
+    FROM source
+)
+
+SELECT * FROM cleaned
+  ...
+[0m18:56:56.624694 [debug] [Thread-1 (]: dbt_clickhouse adapter: SQL status: OK in 0.22 seconds
+[0m18:56:56.692921 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '54e76599-2672-4070-9812-2d32ed9bd186', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068ef02e990>]}
+[0m18:56:56.694792 [info ] [Thread-1 (]: 1 of 1 OK created sql table model `silver`.`silver_customers` .................. [[32mOK[0m in 0.56s]
+[0m18:56:56.696196 [debug] [Thread-1 (]: Finished running node model.nusacode_de.stg_customers
+[0m18:56:56.699255 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m18:56:56.700988 [debug] [MainThread]: Connection 'list__gold' was left open.
+[0m18:56:56.702960 [debug] [MainThread]: On list__gold: Close
+[0m18:56:56.704609 [debug] [MainThread]: Connection 'model.nusacode_de.stg_customers' was left open.
+[0m18:56:56.705932 [debug] [MainThread]: On model.nusacode_de.stg_customers: Close
+[0m18:56:56.707335 [info ] [MainThread]: 
+[0m18:56:56.708174 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.96 seconds (0.96s).
+[0m18:56:56.709959 [debug] [MainThread]: Command end result
+[0m18:56:56.800452 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m18:56:56.805838 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m18:56:56.818336 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m18:56:56.819362 [info ] [MainThread]: 
+[0m18:56:56.820522 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m18:56:56.821378 [info ] [MainThread]: 
+[0m18:56:56.822285 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m18:56:56.824497 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.112724, "process_in_blocks": "872", "process_kernel_time": 0.626009, "process_mem_max_rss": "146760", "process_out_blocks": "4504", "process_user_time": 9.289134}
+[0m18:56:56.825790 [debug] [MainThread]: Command `dbt run` succeeded at 18:56:56.825514 after 4.11 seconds
+[0m18:56:56.827159 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068ee9c89e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068ee4d59d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7068eda26030>]}
+[0m18:56:56.828711 [debug] [MainThread]: Flushing usage events
+[0m18:56:58.655108 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:02:25.852886 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0b725490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0d6c2570>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0a6ddc10>]}
+
+
+============================== 19:02:25.859301 | 0ce938de-028b-4084-adfd-fccb542f5a25 ==============================
+[0m19:02:25.859301 [info ] [MainThread]: Running with dbt=1.11.11
+[0m19:02:25.860610 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'warn_error': 'None', 'log_format': 'default', 'invocation_command': 'dbt run --select silver_dim_products', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'write_json': 'True', 'log_cache_events': 'False', 'empty': 'False', 'profiles_dir': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt', 'printer_width': '80', 'use_experimental_parser': 'False', 'no_print': 'None', 'cache_selected_only': 'False', 'introspect': 'True', 'fail_fast': 'False', 'target_path': 'None', 'version_check': 'True', 'log_path': '/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/logs', 'debug': 'False', 'partial_parse': 'True'}
+[0m19:02:26.239448 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '0ce938de-028b-4084-adfd-fccb542f5a25', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0a4eb560>]}
+[0m19:02:26.374813 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '0ce938de-028b-4084-adfd-fccb542f5a25', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0d120680>]}
+[0m19:02:26.376673 [info ] [MainThread]: Registered adapter: clickhouse=1.10.1
+[0m19:02:26.597884 [debug] [MainThread]: checksum: 30a8cc8fdcbf66701b0944d4ccce3fa46dd04b61e5df68b9f16d57b2e0e3f0be, vars: {}, profile: , target: , version: 1.11.11
+[0m19:02:26.854816 [debug] [MainThread]: Partial parsing enabled: 7 files deleted, 7 files added, 5 files changed.
+[0m19:02:26.856337 [debug] [MainThread]: Partial parsing: added file: nusacode_de://models/silver/silver_dim_sellers.sql
+[0m19:02:26.857283 [debug] [MainThread]: Partial parsing: added file: nusacode_de://models/silver/silver_fact_orders.sql
+[0m19:02:26.858367 [debug] [MainThread]: Partial parsing: added file: nusacode_de://models/silver/silver_fact_payments.sql
+[0m19:02:26.859272 [debug] [MainThread]: Partial parsing: added file: nusacode_de://models/silver/silver_dim_products.sql
+[0m19:02:26.859969 [debug] [MainThread]: Partial parsing: added file: nusacode_de://models/silver/silver_fact_reviews.sql
+[0m19:02:26.860789 [debug] [MainThread]: Partial parsing: added file: nusacode_de://models/silver/silver_dim_customers.sql
+[0m19:02:26.861473 [debug] [MainThread]: Partial parsing: added file: nusacode_de://models/silver/silver_fact_order_items.sql
+[0m19:02:26.863005 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/silver/schema.yml
+[0m19:02:26.864441 [debug] [MainThread]: Partial parsing: deleted file: nusacode_de://models/silver/stg_order_items.sql
+[0m19:02:26.865118 [debug] [MainThread]: Partial parsing: deleted file: nusacode_de://models/silver/stg_reviews.sql
+[0m19:02:26.865755 [debug] [MainThread]: Partial parsing: deleted file: nusacode_de://models/silver/stg_products.sql
+[0m19:02:26.866353 [debug] [MainThread]: Partial parsing: deleted file: nusacode_de://models/silver/stg_sellers.sql
+[0m19:02:26.866981 [debug] [MainThread]: Partial parsing: deleted file: nusacode_de://models/silver/stg_customers.sql
+[0m19:02:26.867607 [debug] [MainThread]: Partial parsing: deleted file: nusacode_de://models/silver/stg_orders.sql
+[0m19:02:26.868197 [debug] [MainThread]: Partial parsing: deleted file: nusacode_de://models/silver/stg_payments.sql
+[0m19:02:26.868927 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/fct_orders.sql
+[0m19:02:26.869611 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/dim_customers.sql
+[0m19:02:26.870271 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/dim_products.sql
+[0m19:02:26.870964 [debug] [MainThread]: Partial parsing: updated file: nusacode_de://models/gold/dim_sellers.sql
+[0m19:02:28.252276 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '0ce938de-028b-4084-adfd-fccb542f5a25', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f09ecfb90>]}
+[0m19:02:28.471937 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m19:02:28.476961 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m19:02:28.503729 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '0ce938de-028b-4084-adfd-fccb542f5a25', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f08c75220>]}
+[0m19:02:28.505022 [info ] [MainThread]: Found 33 data tests, 11 models, 8 sources, 531 macros
+[0m19:02:28.505890 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '0ce938de-028b-4084-adfd-fccb542f5a25', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0a13b380>]}
+[0m19:02:28.510421 [info ] [MainThread]: 
+[0m19:02:28.511696 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m19:02:28.512876 [info ] [MainThread]: 
+[0m19:02:28.514823 [debug] [MainThread]: Acquiring new clickhouse connection 'master'
+[0m19:02:28.517896 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list_'
+[0m19:02:28.542913 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m19:02:28.711843 [debug] [ThreadPool]: dbt_clickhouse adapter: On list_: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list_"} */
+
+    select name from system.databases
+  ...
+[0m19:02:28.719140 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m19:02:28.789902 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_, now list__silver)
+[0m19:02:28.797381 [debug] [ThreadPool]: Acquiring new clickhouse connection 'list__gold'
+[0m19:02:28.812595 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__silver: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__silver"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'silver'
+      group by name, schema, type, db_engine
+
+  ...
+[0m19:02:28.818582 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m19:02:28.870654 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.05 seconds
+[0m19:02:28.884754 [debug] [ThreadPool]: dbt_clickhouse adapter: On list__gold: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "connection_name": "list__gold"} */
+with mv_sources as (
+      -- Find all MVs and their target tables (database and name of the MV, plus the SELECT SQL)
+      select
+        name as mv_name,
+        database as mv_database,
+        any(as_select) as mv_sql,
+        any(replaceRegexpOne(create_table_query, '.*TO\\s+`?([^`\\s(]+)`?\\.`?([^`\\s(]+)`?.*', '\\1.\\2')) as target_fqn
+      
+      from system.tables
+      
+      where engine = 'MaterializedView'
+        and create_table_query like '%TO %'
+      group by mv_name, mv_database
+    )
+    select
+      t.name as name,
+      t.database as schema,
+      multiIf(
+        t.engine = 'MaterializedView', 'materialized_view',
+        t.engine = 'View', 'view',
+        t.engine = 'Dictionary', 'dictionary',
+        'table'
+      ) as type,
+      db.engine as db_engine,
+      groupArrayIf(
+        map('schema', mv_sources.mv_database, 'name', mv_sources.mv_name, 'sql', mv_sources.mv_sql),
+        mv_sources.mv_name != ''
+      ) as mvs_pointing_to_it,0 as is_on_cluster
+        from system.tables as t
+      
+        join system.databases as db on t.database = db.name
+        left join mv_sources on mv_sources.target_fqn = concat(t.database, '.', t.name)
+      where schema = 'gold'
+      group by name, schema, type, db_engine
+
+  ...
+[0m19:02:28.926063 [debug] [ThreadPool]: dbt_clickhouse adapter: SQL status: OK in 0.04 seconds
+[0m19:02:28.931435 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '0ce938de-028b-4084-adfd-fccb542f5a25', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f09ecf080>]}
+[0m19:02:28.939133 [debug] [Thread-1 (]: Began running node model.nusacode_de.silver_dim_products
+[0m19:02:28.940535 [info ] [Thread-1 (]: 1 of 1 START sql table model `silver`.`silver_dim_products` .................... [RUN]
+[0m19:02:28.941599 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list__gold, now model.nusacode_de.silver_dim_products)
+[0m19:02:28.942425 [debug] [Thread-1 (]: Began compiling node model.nusacode_de.silver_dim_products
+[0m19:02:28.960409 [debug] [Thread-1 (]: Writing injected SQL for node "model.nusacode_de.silver_dim_products"
+[0m19:02:28.962538 [debug] [Thread-1 (]: Began executing node model.nusacode_de.silver_dim_products
+[0m19:02:29.043330 [debug] [Thread-1 (]: Creating new relation silver_dim_products
+[0m19:02:29.119785 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.silver_dim_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.silver_dim_products"} */
+
+            
+
+    
+        create table `silver`.`silver_dim_products`
+        
+  
+        
+  engine = MergeTree()
+        order by (product_id)
+        
+        
+        
+        
+                    -- end_of_sql
+                    SETTINGS allow_nullable_key=1, replicated_deduplication_window='0'
+
+                    
+            empty
+          as (
+            
+
+-- ============================================================================
+-- Silver Model: silver_dim_products
+-- Deskripsi    : Menggabungkan data produk dengan terjemahan kategori
+--                (Portugis -> Inggris).
+-- ============================================================================
+
+WITH source_product AS (
+    SELECT * FROM `nusacode_db`.`dim_product`
+),
+
+source_category AS (
+    SELECT * FROM `nusacode_db`.`dim_product_category`
+),
+
+joined AS (
+    SELECT
+        p.product_id,
+        p.product_category_name,
+        COALESCE(c.product_category_name_english, 'unknown') AS product_category_english,
+        p.product_name_lenght,
+        p.product_description_lenght,
+        p.product_photos_qty,
+        p.product_weight_g,
+        p.product_length_cm,
+        p.product_height_cm,
+        p.product_width_cm
+    FROM source_product p
+    LEFT JOIN source_category c
+        ON p.product_category_name = c.product_category_name
+)
+
+SELECT * FROM joined
+          )
+        
+        ...
+[0m19:02:29.151333 [debug] [Thread-1 (]: dbt_clickhouse adapter: SQL status: OK in 0.03 seconds
+[0m19:02:29.195446 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.silver_dim_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.silver_dim_products"} */
+
+    select name, type from system.columns where table = 'silver_dim_products'
+    
+      
+        and database = 'silver'
+      
+    
+    order by position
+  ...
+[0m19:02:29.205335 [debug] [Thread-1 (]: dbt_clickhouse adapter: SQL status: OK in 0.01 seconds
+[0m19:02:29.214274 [debug] [Thread-1 (]: Writing runtime sql for node "model.nusacode_de.silver_dim_products"
+[0m19:02:29.215995 [debug] [Thread-1 (]: dbt_clickhouse adapter: On model.nusacode_de.silver_dim_products: /* {"app": "dbt", "dbt_version": "1.11.11", "profile_name": "nusacode_de", "target_name": "dev", "node_id": "model.nusacode_de.silver_dim_products"} */
+
+  
+    
+    
+    
+        
+         
+
+
+        
+  
+
+  insert into `silver`.`silver_dim_products`
+        ("product_id", "product_category_name", "product_category_english", "product_name_lenght", "product_description_lenght", "product_photos_qty", "product_weight_g", "product_length_cm", "product_height_cm", "product_width_cm")
+
+-- ============================================================================
+-- Silver Model: silver_dim_products
+-- Deskripsi    : Menggabungkan data produk dengan terjemahan kategori
+--                (Portugis -> Inggris).
+-- ============================================================================
+
+WITH source_product AS (
+    SELECT * FROM `nusacode_db`.`dim_product`
+),
+
+source_category AS (
+    SELECT * FROM `nusacode_db`.`dim_product_category`
+),
+
+joined AS (
+    SELECT
+        p.product_id,
+        p.product_category_name,
+        COALESCE(c.product_category_name_english, 'unknown') AS product_category_english,
+        p.product_name_lenght,
+        p.product_description_lenght,
+        p.product_photos_qty,
+        p.product_weight_g,
+        p.product_length_cm,
+        p.product_height_cm,
+        p.product_width_cm
+    FROM source_product p
+    LEFT JOIN source_category c
+        ON p.product_category_name = c.product_category_name
+)
+
+SELECT * FROM joined
+  ...
+[0m19:02:29.295641 [debug] [Thread-1 (]: dbt_clickhouse adapter: SQL status: OK in 0.08 seconds
+[0m19:02:29.334950 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '0ce938de-028b-4084-adfd-fccb542f5a25', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0d48aa80>]}
+[0m19:02:29.336663 [info ] [Thread-1 (]: 1 of 1 OK created sql table model `silver`.`silver_dim_products` ............... [[32mOK[0m in 0.39s]
+[0m19:02:29.337999 [debug] [Thread-1 (]: Finished running node model.nusacode_de.silver_dim_products
+[0m19:02:29.341448 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m19:02:29.342718 [debug] [MainThread]: Connection 'list__silver' was left open.
+[0m19:02:29.344300 [debug] [MainThread]: On list__silver: Close
+[0m19:02:29.345979 [debug] [MainThread]: Connection 'model.nusacode_de.silver_dim_products' was left open.
+[0m19:02:29.347650 [debug] [MainThread]: On model.nusacode_de.silver_dim_products: Close
+[0m19:02:29.349582 [info ] [MainThread]: 
+[0m19:02:29.351009 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.84 seconds (0.84s).
+[0m19:02:29.353398 [debug] [MainThread]: Command end result
+[0m19:02:29.437343 [debug] [MainThread]: Wrote artifact WritableManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/manifest.json
+[0m19:02:29.441826 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/semantic_manifest.json
+[0m19:02:29.453283 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt/target/run_results.json
+[0m19:02:29.454239 [info ] [MainThread]: 
+[0m19:02:29.455116 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m19:02:29.455824 [info ] [MainThread]: 
+[0m19:02:29.456586 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m19:02:29.458584 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 3.7305772, "process_in_blocks": "0", "process_kernel_time": 0.664362, "process_mem_max_rss": "146724", "process_out_blocks": "4536", "process_user_time": 8.643702}
+[0m19:02:29.459618 [debug] [MainThread]: Command `dbt run` succeeded at 19:02:29.459416 after 3.73 seconds
+[0m19:02:29.460444 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0acf5c40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0a696b40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a0f0b96b8f0>]}
+[0m19:02:29.461339 [debug] [MainThread]: Flushing usage events
+[0m19:02:32.896883 [debug] [MainThread]: An error was encountered while trying to flush usage events

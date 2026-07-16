@@ -29,8 +29,8 @@ clean-targets:
 # Konfigurasi di bawah hanya untuk grouping schema per folder.
 models:
   nusacode_de:
-    staging:
-      +schema: staging
+    silver:
+      +schema: silver
 
-    marts:
-      +schema: marts
+    gold:
+      +schema: gold
