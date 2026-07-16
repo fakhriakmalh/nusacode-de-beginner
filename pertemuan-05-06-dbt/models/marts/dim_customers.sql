@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='customer_id'
+) }}
+
 WITH customers AS (
     SELECT * FROM {{ ref('stg_customers') }}
 ),

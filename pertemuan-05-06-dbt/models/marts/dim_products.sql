@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='product_id'
+) }}
+
 -- ============================================================================
 -- Marts Model: dim_products
 -- Deskripsi    : Dimension table untuk data produk. Menggabungkan produk

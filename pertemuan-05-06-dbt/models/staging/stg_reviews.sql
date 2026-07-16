@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='review_id'
+) }}
+
 -- ============================================================================
 -- Staging Model: stg_reviews
 -- Deskripsi    : Membersihkan data review, menstandarisasi skor review.

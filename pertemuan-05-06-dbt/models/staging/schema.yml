@@ -9,9 +9,8 @@ version: 2
 
 sources:
   - name: public
-    description: "Data mentah Olist yang sudah di-load ke PostgreSQL dari Sesi 3"
-    database: dw_nusacode
-    schema: public
+    description: "Data mentah Olist yang sudah di-load ke ClickHouse"
+    schema: default
     tables:
       - name: dim_customer
         description: "Data pelanggan Olist"

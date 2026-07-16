@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='(order_id, order_item_id)'
+) }}
+
 -- ============================================================================
 -- Staging Model: stg_order_items
 -- Deskripsi    : Membersihkan data item pesanan, memastikan harga dan

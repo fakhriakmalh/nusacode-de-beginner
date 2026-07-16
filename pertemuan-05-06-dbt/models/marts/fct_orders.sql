@@ -1,3 +1,12 @@
+{{ config(
+    materialized='incremental',
+    engine='ReplacingMergeTree()',
+    unique_key='order_id',
+    incremental_strategy='delete+insert',
+    order_by='order_id',
+    partition_by='toYYYYMM(order_purchase_timestamp)'
+) }}
+
 WITH orders AS (
     SELECT * FROM {{ ref('stg_orders') }}
 ),

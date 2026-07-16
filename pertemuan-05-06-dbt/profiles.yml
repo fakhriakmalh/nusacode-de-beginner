@@ -1,31 +1,28 @@
 # ============================================================================
-# dbt Profile — NusaCode DE Beginner
+# dbt Profile — NusaCode DE Beginner (ClickHouse)
 # ============================================================================
 # Nilai kredensial diambil dari environment variable.
-# Setup: cp .env.example .env lalu isi sesuai PostgreSQL lokal Anda.
+# Setup: cp .env.example .env lalu isi sesuai ClickHouse lokal Anda.
 #
-# Cara run:
-#   python -m dotenv -f .env run -- dbt run --select stg_customers
-#   atau:
-#   source <(grep -v '^#' .env | xargs) && dbt run --select stg_customers
+# Required adapter:
+#   pip install dbt-core dbt-clickhouse
 # ============================================================================
 
 nusacode_de:
   target: dev
   outputs:
     dev:
-      type: postgres
+      type: clickhouse
 
-      # === Koneksi ke PostgreSQL lokal (dari env) ===
+      # === Koneksi ke ClickHouse lokal (dari env) ===
       host: "{{ env_var('DBT_HOST') }}"
+      port: "{{ env_var('DBT_PORT') | int }}"
       user: "{{ env_var('DBT_USER') }}"
       password: "{{ env_var('DBT_PASSWORD') }}"
-      port: "{{ env_var('DBT_PORT') | int }}"
-      database: "{{ env_var('DBT_DATABASE')}}"
       schema: "{{ env_var('DBT_SCHEMA') }}"
+      secure: {{ env_var('DBT_SECURE', 'false') | lower }}
 
-      # === Connection Pool Settings ===
+      # === Connection Settings ===
       threads: "{{ env_var('DBT_THREADS') | int }}"
       connect_timeout: "{{ env_var('DBT_CONNECT_TIMEOUT') | int }}"
-      keepalives_idle: 0
-      priority: 1
+      retries: 1

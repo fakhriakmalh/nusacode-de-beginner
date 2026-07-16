@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='order_id'
+) }}
+
 -- ============================================================================
 -- Staging Model: stg_orders
 -- Deskripsi    : Membersihkan data pesanan dan menambahkan kolom flag

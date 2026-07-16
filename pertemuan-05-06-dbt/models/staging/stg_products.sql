@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='product_id'
+) }}
+
 -- ============================================================================
 -- Staging Model: stg_products
 -- Deskripsi    : Menggabungkan data produk dengan terjemahan kategori

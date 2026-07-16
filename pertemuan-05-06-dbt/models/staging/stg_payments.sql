@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='(order_id, payment_sequential)'
+) }}
+
 -- ============================================================================
 -- Staging Model: stg_payments
 -- Deskripsi    : Membersihkan data pembayaran per pesanan.

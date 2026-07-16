@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='customer_id'
+) }}
+
 -- ============================================================================
 -- Staging Model: stg_customers
 -- Deskripsi    : Membersihkan dan menstandarisasi data pelanggan dari

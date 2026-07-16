@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='seller_id'
+) }}
+
 -- ============================================================================
 -- Staging Model: stg_sellers
 -- Deskripsi    : Membersihkan data penjual, standarisasi format kota dan state.

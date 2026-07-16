@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    engine='MergeTree()',
+    order_by='seller_id'
+) }}
+
 -- ============================================================================
 -- Marts Model: dim_sellers
 -- Deskripsi    : Dimension table untuk data penjual. Berisi informasi

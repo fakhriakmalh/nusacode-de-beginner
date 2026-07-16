@@ -4,6 +4,8 @@
 
 Module ini mencakup **Sesi 5 & 6** dari kursus Data Engineer Beginner. Fokus utama adalah **Data Transformation** menggunakan **dbt (Data Build Tool)** dengan pendekatan **ELT (Extract-Load-Transform)**.
 
+> **Catatan:** Project ini telah dikonversi dari PostgreSQL ke **ClickHouse**. Setiap model memiliki `{{ config() }}` block sendiri dengan `engine`, `order_by`, dan opsi ClickHouse spesifik lainnya.
+
 ```
 ┌─────────────────────────────────────────────────────────┐
 │              DBT TRANSFORMATION PIPELINE                 │
@@ -90,24 +92,31 @@ pertemuan-05-06-dbt/
 
 ### Prasyarat
 
-1. **PostgreSQL** — dari Sesi 3 (Docker Compose), database `dw_nusacode` sudah ada dengan data Olist.
+1. **ClickHouse** — pastikan ClickHouse sudah berjalan dan data Olist sudah ada.
 2. **Python 3.9+** — untuk instalasi dbt.
 
 ### Instalasi dbt
 
 ```bash
-pip install dbt-core dbt-postgres
+pip install dbt-core dbt-clickhouse
 dbt --version
 ```
 
 ### Konfigurasi Koneksi
 
-Copy `profiles.yml` ke `~/.dbt/`:
+Copy `profiles.yml` ke `~/.dbt/` atau set `DBT_PROFILES_DIR`:
 
 ```bash
 mkdir -p ~/.dbt
 cp profiles.yml ~/.dbt/profiles.yml
-# Edit password jika perlu
+# Edit kredensial jika perlu
+```
+
+Atau gunakan `.env` (disarankan):
+
+```bash
+export DBT_PROFILES_DIR=$(pwd)
+python -m dotenv -f .env run -- dbt debug
 ```
 
 Verifikasi:
@@ -119,7 +128,7 @@ dbt debug
 ### Jalankan Pipeline
 
 ```bash
-# Run semua model (stg → int → marts)
+# Run semua model (stg → marts)
 dbt run
 
 # Run spesifik layer
