@@ -1,9 +1,17 @@
 {{ config(
     materialized='table',
+    alias='gold_dim_customers',
     engine='MergeTree()',
     order_by='customer_id',
     settings={'allow_nullable_key': 1}
 ) }}
+
+-- ============================================================================
+-- Gold Model: gold_dim_customers
+-- Deskripsi    : Dimension table untuk data pelanggan. Berisi informasi
+--                demografis dan metrik performa tiap customer.
+--                Grain: satu baris per pelanggan (customer_id).
+-- ============================================================================
 
 WITH customers AS (
     SELECT * FROM {{ ref('silver_dim_customers') }}
@@ -22,7 +30,7 @@ payments AS (
         order_id,
         SUM(payment_value) AS total_payment,
         COUNT(DISTINCT payment_type) AS payment_method_count,
-        STRING_AGG(DISTINCT payment_type, ', ') AS payment_types
+        groupArray(DISTINCT payment_type) AS payment_types
     FROM {{ ref('silver_fact_payments') }}
     GROUP BY order_id
 ),
@@ -59,8 +67,8 @@ customer_summary AS (
         c.customer_state,
 
         COUNT(DISTINCT o.order_id) AS total_orders,
-        COUNT(DISTINCT CASE WHEN o.is_delivered THEN o.order_id END) AS delivered_orders,
-        COUNT(DISTINCT CASE WHEN o.is_canceled THEN o.order_id END) AS canceled_orders,
+        countDistinctIf(o.order_id, o.is_delivered) AS delivered_orders,
+        countDistinctIf(o.order_id, o.is_canceled) AS canceled_orders,
         SUM(o.total_payment) AS total_revenue,
         AVG(o.avg_review_score) AS avg_review_score,
         MIN(o.order_purchase_timestamp) AS first_order_date,
@@ -84,7 +92,7 @@ SELECT
 
     CASE
         WHEN total_orders > 0
-        THEN ROUND(delivered_orders::NUMERIC / total_orders, 2)
+        THEN ROUND(delivered_orders / total_orders, 2)
         ELSE 0
     END AS delivery_rate,
 
@@ -95,7 +103,7 @@ SELECT
 
     CASE
         WHEN first_order_date IS NOT NULL AND last_order_date IS NOT NULL
-        THEN EXTRACT(DAY FROM (last_order_date - first_order_date))
+        THEN dateDiff('day', toDateTime(first_order_date), toDateTime(last_order_date))
         ELSE 0
     END AS customer_tenure_days
 
