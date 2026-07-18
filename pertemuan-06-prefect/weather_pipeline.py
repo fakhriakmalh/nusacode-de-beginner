@@ -1,4 +1,5 @@
 import os
+import subprocess
 from datetime import datetime
 from typing import Optional
 
@@ -7,6 +8,22 @@ from prefect.client.schemas.schedules import CronSchedule
 
 from openmateo import fetch_weather_data
 from weatherapi import fetch_weatherapi_hourly
+
+DBT_PROJECT_DIR = "/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-05-06-dbt"
+DBT_PROFILES_DIR = DBT_PROJECT_DIR
+DBT_BIN = "/home/ffkhr/my_env/bin/dbt"
+
+DBT_ENV = {
+    **os.environ,
+    "DBT_HOST":            "localhost",
+    "DBT_PORT":            "8123",
+    "DBT_USER":            "clickhousedev",
+    "DBT_PASSWORD":        "adminpass123",
+    "DBT_SCHEMA":          "nusacode_db",
+    "DBT_SECURE":          "false",
+    "DBT_THREADS":         "4",
+    "DBT_CONNECT_TIMEOUT": "10",
+}
 
 
 # ── Task: Open-Meteo ──────────────────────────────────────────────────────────
@@ -37,6 +54,25 @@ def task_fetch_weatherapi(
     return {"rows": len(df), "columns": list(df.columns), "city": city, "date": date}
 
 
+# ── Task: dbt ────────────────────────────────────────────────────────────────
+
+@task
+def task_dbt_run(selector: str) -> dict:
+    cmd = [
+        DBT_BIN, "run",
+        "--select", selector,
+        "--project-dir", DBT_PROJECT_DIR,
+        "--profiles-dir", DBT_PROFILES_DIR,
+    ]
+    print(f"[dbt] Running: {' '.join(cmd)}")
+    result = subprocess.run(cmd, capture_output=True, text=True, env=DBT_ENV)
+    print(result.stdout)
+    if result.returncode != 0:
+        print(result.stderr)
+        raise RuntimeError(f"dbt run --select {selector} failed:\n{result.stderr}")
+    return {"selector": selector, "returncode": result.returncode}
+
+
 # ── Flow: Open-Meteo ──────────────────────────────────────────────────────────
 
 @flow(name="openmeteo-pipeline", log_prints=True)
@@ -53,12 +89,22 @@ def weatherapi_pipeline(city: str = "Jakarta", date: Optional[str] = None):
     print(f"Pipeline complete: {result}")
 
 
+# ── Flow: dbt Silver → Gold (sequential) ─────────────────────────────────────
+
+@flow(name="dbt-pipeline", log_prints=True)
+def dbt_pipeline():
+    silver = task_dbt_run(selector="silver")
+    print(f"dbt silver complete: {silver}")
+    gold = task_dbt_run(selector="gold")
+    print(f"dbt gold complete: {gold}")
+
+
 # ── Deploy ────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    SOURCE = "/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-06-prefect"
-    POOL   = "default-agent-pool"
-    SCHEDULE = [CronSchedule(cron="*/2 * * * *", timezone="Asia/Jakarta")]
+    SOURCE   = "/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-06-prefect"
+    POOL     = "default-agent-pool"
+    SCHEDULE = [CronSchedule(cron="*/10 * * * *", timezone="Asia/Jakarta")]
 
     openmeteo_pipeline.from_source(
         source=SOURCE,
@@ -78,29 +124,11 @@ if __name__ == "__main__":
         schedules=SCHEDULE,
     )
 
-
-# # 1. Definisikan deployment untuk OpenMeteo (tanpa langsung memanggil .deploy())
-#     openmeteo_dep = openmeteo_pipeline.from_source(
-#         source=SOURCE,
-#         entrypoint="weather_pipeline.py:openmeteo_pipeline",
-#     ).to_deployment(
-#         name="weather-open-meteo",
-#         schedules=SCHEDULE,
-#     )
-
-#     # 2. Definisikan deployment untuk WeatherAPI
-#     weatherapi_dep = weatherapi_pipeline.from_source(
-#         source=SOURCE,
-#         entrypoint="weather_pipeline.py:weatherapi_pipeline",
-#     ).to_deployment(
-#         name="weather-weatherapi",
-#         schedules=SCHEDULE,
-#     )
-
-#     # 3. Jalankan deploy sekaligus untuk kedua objek deployment di atas
-#     print("Deploying both pipelines to Prefect...")
-#     deploy(
-#         openmeteo_dep,
-#         weatherapi_dep,
-#         work_pool_name=POOL,
-#     )
+    dbt_pipeline.from_source(
+        source=SOURCE,
+        entrypoint="weather_pipeline.py:dbt_pipeline",
+    ).deploy(
+        name="dbt-silver-gold",
+        work_pool_name=POOL,
+        schedules=SCHEDULE,
+    )
