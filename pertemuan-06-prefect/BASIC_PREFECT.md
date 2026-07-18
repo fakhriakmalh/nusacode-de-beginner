@@ -103,6 +103,42 @@ if __name__ == "__main__":
     )
 ```
 
+Atau pakai `CronSchedule` untuk kontrol lebih detail:
+
+```python
+from prefect import flow, task
+from prefect.client.schemas.schedules import CronSchedule
+
+@task
+def my_task():
+    print("Working...")
+
+@flow(log_prints=True)
+def my_pipeline():
+    my_task()
+
+if __name__ == "__main__":
+    my_pipeline.serve(
+        name="my-scheduled-pipeline",
+        schedules=[CronSchedule(cron="*/5 * * * *", timezone="Asia/Jakarta")],
+    )
+```
+
+Untuk multiple flows dalam satu file, gunakan `serve()` dari `prefect`:
+
+```python
+from prefect import serve
+from prefect.client.schemas.schedules import CronSchedule
+
+if __name__ == "__main__":
+    SCHEDULE = [CronSchedule(cron="*/10 * * * *", timezone="Asia/Jakarta")]
+
+    serve(
+        flow_a.to_deployment(name="flow-a", schedules=SCHEDULE),
+        flow_b.to_deployment(name="flow-b", schedules=SCHEDULE),
+    )
+```
+
 ### 7. Caching Task Result
 
 ```python
@@ -117,8 +153,11 @@ Hasil task akan di-cache selama jangka waktu tertentu (default task run tidak di
 
 ## Contoh Lengkap (dari project ini)
 
+### Open-Meteo — serve() + CronSchedule
+
 ```python
 from prefect import flow, task
+from prefect.client.schemas.schedules import CronSchedule
 from openmateo import fetch_weather_data
 
 
@@ -128,25 +167,48 @@ def fetch_openmateo_data(latitude: float = -6.5944, longitude: float = 106.7892)
     return {"rows": len(df), "columns": list(df.columns)}
 
 
-@flow
+@flow(log_prints=True)
 def weather_pipeline():
     result = fetch_openmateo_data()
     print(f"Pipeline complete: {result}")
 
 
 if __name__ == "__main__":
-    weather_pipeline()
+    weather_pipeline.serve(
+        name="open-meteo-pipeline",
+        schedules=[CronSchedule(cron="*/3 * * * *", timezone="Asia/Jakarta")],
+    )
+```
+
+### Multiple Flows — serve() + to_deployment()
+
+```python
+from prefect import serve
+from prefect.client.schemas.schedules import CronSchedule
+
+if __name__ == "__main__":
+    SCHEDULE = [CronSchedule(cron="*/10 * * * *", timezone="Asia/Jakarta")]
+
+    serve(
+        flow1.to_deployment(name="deploy-1", schedules=SCHEDULE),
+        flow2.to_deployment(name="deploy-2", schedules=SCHEDULE),
+    )
 ```
 
 ---
 
-## Deployment & Prefect Server (Agar Ada UI seperti Airflow)
+## Deployment & Prefect Server (Opsional — Kalau Mau UI seperti Airflow)
 
-### Kenapa `serve()` Tidak Punya Tombol Run?
+### Kapan Pakai `serve()` Saja?
 
-`serve()` hanyalah Python process biasa — tidak ada web UI, tidak ada database, tidak ada tombol "Run".
+`serve()` sudah cukup untuk:
+- Menjalankan flow secara periodik (cron / interval)
+- Tanpa perlu Prefect Server, database, atau Worker
+- Cukup `python weather_pipeline.py` — proses akan jalan terus dan mengeksekusi flow sesuai jadwal
 
-Agar bisa trigger job dari UI (seperti Airflow), Prefect butuh:
+### Kapan Butuh Prefect Server + Worker?
+
+Kalau kamu butuh **UI** (tombol **▶ Run** manual, history, monitoring), Prefect butuh:
 
 | Komponen | Fungsi | Analogi Airflow |
 |---|---|---|
@@ -169,9 +231,36 @@ UI akan terbuka di **http://127.0.0.1:4200**. Di sini kamu bisa melihat Flow Run
 
 ### 2. Buat Deployment
 
-Ada dua cara:
+Ada tiga cara:
 
-#### A. Via `.deploy()` di code (recommended)
+#### A. Via `.serve()` (paling praktis — tanpa server/worker)
+
+```python
+from prefect import flow, task
+from prefect.client.schemas.schedules import CronSchedule
+
+@task
+def my_task():
+    print("Working...")
+
+@flow(log_prints=True)
+def my_pipeline():
+    my_task()
+
+if __name__ == "__main__":
+    my_pipeline.serve(
+        name="my-deployment",
+        schedules=[CronSchedule(cron="*/5 * * * *", timezone="Asia/Jakarta")],
+    )
+```
+
+Jalankan langsung:
+```bash
+python my_pipeline.py
+```
+Proses akan jalan terus dan mengeksekusi flow setiap 5 menit — tanpa perlu server atau worker.
+
+#### B. Via `.deploy()` di code (butuh server + worker)
 
 ```python
 from prefect import flow, task
@@ -196,14 +285,13 @@ if __name__ == "__main__":
 ```
 
 Kemudian jalankan:
-
 ```bash
 python my_pipeline.py          # mendaftarkan deployment ke server
 ```
 
 Setelah terdaftar, flow akan muncul di UI Prefect → tab **Deployments** → bisa di-trigger manual via tombol **"Run"**.
 
-#### B. Via CLI (`prefect deploy`)
+#### C. Via CLI (`prefect deploy`)
 
 ```bash
 prefect deploy --name weather-pipeline --interval 3600

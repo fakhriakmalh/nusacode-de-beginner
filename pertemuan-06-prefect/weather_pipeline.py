@@ -99,36 +99,24 @@ def dbt_pipeline():
     print(f"dbt gold complete: {gold}")
 
 
-# ── Deploy ────────────────────────────────────────────────────────────────────
+# ── Deploy via serve() ─────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    SOURCE   = "/home/ffkhr/Documents/nusacode-de-beginner/pertemuan-06-prefect"
-    POOL     = "default-agent-pool"
+    from prefect import serve
+
     SCHEDULE = [CronSchedule(cron="*/10 * * * *", timezone="Asia/Jakarta")]
 
-    openmeteo_pipeline.from_source(
-        source=SOURCE,
-        entrypoint="weather_pipeline.py:openmeteo_pipeline",
-    ).deploy(
-        name="weather-open-meteo",
-        work_pool_name=POOL,
-        schedules=SCHEDULE,
-    )
-
-    weatherapi_pipeline.from_source(
-        source=SOURCE,
-        entrypoint="weather_pipeline.py:weatherapi_pipeline",
-    ).deploy(
-        name="weather-weatherapi",
-        work_pool_name=POOL,
-        schedules=SCHEDULE,
-    )
-
-    dbt_pipeline.from_source(
-        source=SOURCE,
-        entrypoint="weather_pipeline.py:dbt_pipeline",
-    ).deploy(
-        name="dbt-silver-gold",
-        work_pool_name=POOL,
-        schedules=SCHEDULE,
+    serve(
+        openmeteo_pipeline.to_deployment(
+            name="weather-open-meteo",
+            schedules=SCHEDULE,
+        ),
+        weatherapi_pipeline.to_deployment(
+            name="weather-weatherapi",
+            schedules=SCHEDULE,
+        ),
+        dbt_pipeline.to_deployment(
+            name="dbt-silver-gold",
+            schedules=SCHEDULE,
+        ),
     )
