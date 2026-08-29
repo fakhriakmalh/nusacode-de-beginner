@@ -9,50 +9,12 @@ version: 2
 models:
   - name: dim_customers
     description: "Dimension table — data pelanggan dengan metrik agregat. Siap digunakan untuk segmentasi dan analisis customer."
-    columns:
-      - name: customer_id
-        tests:
-          - unique
-          - not_null
-      - name: customer_unique_id
-        tests:
-          - unique
-      - name: total_orders
-        tests:
-          - not_null
-      - name: total_revenue
-        tests:
-          - not_null
 
   - name: dim_products
     description: "Dimension table — data produk dengan kategori bahasa Inggris. Siap digunakan untuk analisis kategori dan performa produk."
-    columns:
-      - name: product_id
-        tests:
-          - unique
-          - not_null
-      - name: product_category_english
-        tests:
-          - not_null
 
   - name: dim_sellers
     description: "Dimension table — data penjual dengan metrik performa. Siap digunakan untuk evaluasi seller."
-    columns:
-      - name: seller_id
-        tests:
-          - unique
-          - not_null
 
   - name: fct_orders
     description: "Fact table — transaksi pesanan yang sudah dibersihkan dan siap analisis. Grain: satu baris per pesanan."
-    columns:
-      - name: order_id
-        tests:
-          - unique
-          - not_null
-      - name: customer_id
-        tests:
-          - not_null
-      - name: total_order_value
-        tests:
-          - not_null

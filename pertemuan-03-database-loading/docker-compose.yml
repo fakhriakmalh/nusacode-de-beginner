@@ -1,23 +1,25 @@
-# docker-compose.yml
-# Konfigurasi database PostgreSQL lokal untuk Sesi 3.
-# Dilengkapi mount initialization script (init.sql) untuk setup raw_schema otomatis.
+# Menjalankan postgres 15 alpine dan ClickHouse
+
 version: '3.8'
 
 services:
-  dw_server:
-    image: postgres:16-alpine
-    container_name: postgres_dw_sesi3
+  database_server:
+    image: postgres:15-alpine
+    restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=admindwpass
-      - POSTGRES_DB=dw_nusacode
+      - POSTGRES_USER=postgresdev
+      - POSTGRES_PASSWORD=adminpass123
+      - POSTGRES_DB=nusacode_db
     ports:
       - "5432:5432"
-    volumes:
-      - pgdata_sesi3:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Setup skema otomatis saat up
-    restart: unless-stopped
 
-volumes:
-  pgdata_sesi3:
-    driver: local
+  clickhouse_server:
+    image: clickhouse/clickhouse-server:latest
+    restart: always
+    environment:
+      - CLICKHOUSE_USER=clickhousedev
+      - CLICKHOUSE_PASSWORD=adminpass123
+      - CLICKHOUSE_DB=nusacode_db
+    ports:
+      - "8123:8123"
+      - "9000:9000"

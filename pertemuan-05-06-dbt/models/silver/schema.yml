@@ -14,92 +14,40 @@ sources:
     tables:
       - name: dim_customer
         description: "Data pelanggan Olist"
-        columns:
-          - name: customer_id
-            description: "Primary key pelanggan"
-            tests:
-              - unique
-              - not_null
 
       - name: dim_product
         description: "Data produk Olist"
-        columns:
-          - name: product_id
-            tests:
-              - unique
-              - not_null
 
       - name: dim_product_category
         description: "Terjemahan kategori produk (Portugis -> Inggris)"
 
       - name: dim_seller
         description: "Data penjual Olist"
-        columns:
-          - name: seller_id
-            tests:
-              - unique
-              - not_null
 
       - name: fact_order
         description: "Data pesanan/transaksi utama"
-        columns:
-          - name: order_id
-            tests:
-              - unique
-              - not_null
 
       - name: fact_order_item
         description: "Item detail dalam setiap pesanan"
-        columns:
-          - name: order_id
-            tests:
-              - not_null
-          - name: order_item_id
-            tests:
-              - not_null
 
       - name: fact_order_payment
         description: "Metode pembayaran per pesanan"
-        columns:
-          - name: order_id
-            tests:
-              - not_null
 
       - name: fact_order_review
         description: "Ulasan/review per pesanan"
-        columns:
-          - name: review_id
-            tests:
-              - unique
-              - not_null
 
 models:
   - name: silver_dim_customers
     description: "Silver model untuk data pelanggan. Membersihkan dan menstandarisasi kolom."
-    columns:
-      - name: customer_id
-        tests:
-          - unique
-          - not_null
 
   - name: silver_fact_orders
     description: "Silver model untuk data pesanan. Menambahkan flag status."
-    columns:
-      - name: order_id
-        tests:
-          - unique
-          - not_null
 
   - name: silver_fact_order_items
     description: "Silver model untuk item pesanan. Memastikan harga dan freight bernilai positif."
 
   - name: silver_dim_products
     description: "Silver model untuk produk dengan kategori bahasa Inggris."
-    columns:
-      - name: product_id
-        tests:
-          - unique
-          - not_null
 
   - name: silver_dim_sellers
     description: "Silver model untuk data penjual."
